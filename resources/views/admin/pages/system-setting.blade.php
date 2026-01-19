@@ -1,5 +1,5 @@
 @extends("admin.layout.admin-master")
-@section("title", "System Settings | Diagnoedge")
+@section("title", "System Settings | Continuity Care")
 
 @section("content")
     <div class="content-body">
@@ -32,7 +32,7 @@
                         @method('PUT')
 
                         <div class="card">
-                            <div class="card-header">
+                            <div class="card-header bg-theme-light">
                                 <h4 class="card-title">Logo & Appearance Settings</h4>
                             </div>
                             <div class="card-body">
@@ -104,7 +104,7 @@
 
                                 <div class="text-end">
                                     <button type="submit" class="btn btn-primary btn-lg px-5">
-                                        Save 
+                                        Save
                                     </button>
                                 </div>
                             </div>

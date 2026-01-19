@@ -1,7 +1,7 @@
 {{-- resources/views/admin/pages/admin-subparameters.blade.php --}}
 @extends("admin.layout.admin-master")
 
-@section("title", " Test Packages | Diagnoedge")
+@section("title", " Test Packages | Continuity Care")
 
 @section("content")
     <div class="content-body">
@@ -63,20 +63,20 @@
                                     <tr>
                                         <td>
                                             <div class="checkbox text-end align-self-center ms-2">
-                                                  
-                                                        <div class="form-check custom-checkbox ">
-                                                            <input type="checkbox" class="form-check-input checkItem"  value="{{ $sub->id }}"
-                                                                required="">
-                                                            <label class="form-check-label" for="checkbox"></label>
-                                                        </div>
-                                                    </div>
+
+                                                <div class="form-check custom-checkbox ">
+                                                    <input type="checkbox" class="form-check-input checkItem"
+                                                        value="{{ $sub->id }}" required="">
+                                                    <label class="form-check-label" for="checkbox"></label>
+                                                </div>
+                                            </div>
                                         </td>
                                         <td>{{ Str::limit($sub->title, 40) }}</td>
                                         {{-- <td>
                                             @forelse($sub->parameters as $param)
-                                                <span class="badge bg-info me-1">{{ $param->title }}</span>
+                                            <span class="badge bg-info me-1">{{ $param->title }}</span>
                                             @empty
-                                                <span class="text-muted">—</span>
+                                            <span class="text-muted">—</span>
                                             @endforelse
                                         </td> --}}
                                         <td><strong>₹{{ number_format($sub->price ?? 0, 2) }}</strong></td>
@@ -206,7 +206,7 @@
                             <th>Title :</th>
                             <td colspan="3">{{ $sub->title }}</td>
 
-                           
+
                         </tr>
 
                         <tr>
@@ -253,16 +253,16 @@
                                 @endif
                             </td>
                         </tr>
-                         @if($sub->description)
-                        <tr>
-                            <th>Description</th>
-                            <td colspan="3">{!! $sub->description !!}</td>
-                        </tr>
-                          @endif
+                        @if($sub->description)
+                            <tr>
+                                <th>Description</th>
+                                <td colspan="3">{!! $sub->description !!}</td>
+                            </tr>
+                        @endif
 
                     </table>
 
-                   
+
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
@@ -276,14 +276,14 @@
         <!-- Edit Modal -->
         <div class="modal fade" id="edit{{ $sub->id }}">
             <div class="modal-dialog custom-modal">
-               <div class="modal-content">
-                        <div class="modal-header">
-                            <h5>Edit {{ $sub->title }}</h5>
-                            <button class="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
-                          <form action="{{ route('admin-subparameters.update', $sub) }}" method="POST" enctype="multipart/form-data">
-                    @csrf @method('PUT')
-                   
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5>Edit {{ $sub->title }}</h5>
+                        <button class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <form action="{{ route('admin-subparameters.update', $sub) }}" method="POST" enctype="multipart/form-data">
+                        @csrf @method('PUT')
+
                         <div class="modal-body">
                             <div class="row g-3">
                                 <div class="col-md-6"><label>Title *</label><input type="text" name="title"
@@ -346,7 +346,7 @@
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                             <button type="submit" class="btn btn-primary">Update </button>
                         </div>
-                    </div>
+                </div>
                 </form>
             </div>
         </div>
@@ -368,8 +368,8 @@
                 var form = $(this).closest('form');
                 Swal.fire({
                     title: 'Delete?',
-                     text: "This Package will be permanently  deleted!",
-                      icon: 'warning',
+                    text: "This Package will be permanently  deleted!",
+                    icon: 'warning',
                     showCancelButton: true, confirmButtonText: 'Yes, delete!'
                 }).then((result) => { if (result.isConfirmed) form.submit(); });
             });
@@ -432,65 +432,65 @@
         });
 
         const searchInput = document.getElementById('testSearch');
-const tableBody = document.getElementById('testTableBody');
+        const tableBody = document.getElementById('testTableBody');
         searchInput.addEventListener('keyup', function () {
 
-    let keyword = this.value.trim();
+            let keyword = this.value.trim();
 
-    fetch(`/admin-subparameters/search?keyword=${keyword}`)
-        .then(res => res.json())
-        .then(res => {
+            fetch(`/admin-subparameters/search?keyword=${keyword}`)
+                .then(res => res.json())
+                .then(res => {
 
-            let html = '';
+                    let html = '';
 
-            if (res.data.length > 0) {
+                    if (res.data.length > 0) {
 
-                res.data.forEach(item => {
-                    html += `
+                        res.data.forEach(item => {
+                            html += `
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="checkItem" value="${item.id}">
+                                </td>
+
+                                <td>${highlight(item.title, keyword)}</td>
+                                <td>${highlight(item.price, keyword)}</td>
+                                <td class="text-primary">${highlight(item.status, keyword)}</td>
+
+                                <td>
+
+
+                                    <a href="javascript:void(0)" data-id="${item.id}" 
+                                       class="editApp btn btn-sm btn-warning light">
+                                       <i class="fa fa-pencil"></i>
+                                    </a>
+
+                                    <a href="javascript:void(0)" data-id="${item.id}" 
+                                       class="deleteContact btn btn-sm btn-danger light">
+                                       <i class="fa fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        `;
+                        });
+
+                    } else {
+                        html = `
                         <tr>
-                            <td>
-                                <input type="checkbox" class="checkItem" value="${item.id}">
-                            </td>
-                         
-                            <td>${highlight(item.title, keyword)}</td>
-                            <td>${highlight(item.price, keyword)}</td>
-                            <td class="text-primary">${highlight(item.status, keyword)}</td>
-                           
-                            <td>
-                               
-
-                                <a href="javascript:void(0)" data-id="${item.id}" 
-                                   class="editApp btn btn-sm btn-warning light">
-                                   <i class="fa fa-pencil"></i>
-                                </a>
-
-                                <a href="javascript:void(0)" data-id="${item.id}" 
-                                   class="deleteContact btn btn-sm btn-danger light">
-                                   <i class="fa fa-trash"></i>
-                                </a>
+                            <td colspan="6" class="text-center text-danger">
+                                No related search
                             </td>
                         </tr>
                     `;
+                    }
+
+                    tableBody.innerHTML = html;
                 });
-
-            } else {
-                html = `
-                    <tr>
-                        <td colspan="6" class="text-center text-danger">
-                            No related search
-                        </td>
-                    </tr>
-                `;
-            }
-
-            tableBody.innerHTML = html;
         });
-});
-function highlight(text, keyword) {
-    if (!keyword) return text;
+        function highlight(text, keyword) {
+            if (!keyword) return text;
 
-    const regex = new RegExp(`(${keyword})`, 'gi');
-    return text.replace(regex, `<mark>$1</mark>`);
-}
+            const regex = new RegExp(`(${keyword})`, 'gi');
+            return text.replace(regex, `<mark>$1</mark>`);
+        }
     </script>
 @endpush

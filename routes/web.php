@@ -48,7 +48,7 @@ use App\Models\PopularTests;
 use App\Http\Controllers\UserRegisterController;
 use App\Http\Controllers\JobCareerApplicationController;
 use App\Http\Controllers\PopularTestController;
-
+use App\Http\Controllers\StaffController;
 
 
 
@@ -63,163 +63,6 @@ Route::get('/search-all', [SearchController::class, 'searchAll'])->name('search.
 Route::get('/doctors', [DoctorController::class, 'frontendDoctors'])->name('doctors');
 Route::get('/', [GalleryController::class, 'frontendGallery'])->name('welcome');
 
-
-//   for frontend 
-
-Route::get('/', function () {
-    $gallery = Gallery::where('status', 'active')->get();
-    return view('website.pages.welcome', compact('gallery'));
-})->name('home');
-
-
-// for the sub parameter or health detail
-Route::get('/health-packages/{slug}', function ($slug) {
-    $package = \App\Models\Subparameter::where('slug', $slug)
-        ->orWhere('slug', null)->whereRaw("LOWER(title) = ?", [strtolower(str_replace('-', ' ', $slug))])
-        ->where('status', 'active')
-        ->firstOrFail();
-
-    return view('website.pages.health-packages-detail', compact('package'));
-})->name('health-package.detail');
-
-// for the parameter detail
-
-Route::get('/package/{slug}', function ($slug) {
-
-    $package = Parameter::where('slug', $slug)
-        ->orWhere(function ($q) use ($slug) {
-            $q->whereNull('slug')
-                ->where('title', 'LIKE', "%{$slug}%");
-        })
-        ->where('status', 'active')
-        ->firstOrFail();
-
-    return view('website.pages.package-detail', compact('package'));
-})->name('parameter-detail');
-// for test details
-Route::get('/test/{slug}', function ($slug) {
-
-    $PopularTest = PopularTests::where('slug', $slug)
-        ->orWhere(function ($q) use ($slug) {
-            $q->whereNull('slug')
-                ->where('title', 'LIKE', "%{$slug}%");
-        })
-        ->where('status', 'active')
-        ->firstOrFail();
-
-    return view('website.pages.test-details', compact('PopularTest'));
-})->name('test-detail');
-
-
-
-//health risk
-Route::get('/healthrisk/{slug}', function ($slug) {
-    $package = \App\Models\HealthRisk::where('slug', $slug)
-        ->orWhere('slug', null)->whereRaw("LOWER(title) = ?", [strtolower(str_replace('-', ' ', $slug))])
-        ->where('status', 'active')
-        ->firstOrFail();
-
-    return view('website.pages.healthrisk', compact('package'));
-})->name('healthrisk');
-
-
-Route::get('/about-us', function () {
-    return view('website.pages.about-us');
-})->name('about-us');
-
-Route::get('/contact-us', function () {
-    return view('website.pages.contact-us');
-})->name('contact-us');
-Route::get('/doctors', function () {
-    $doctors = Doctor::where('status', '1')->get();
-    return view('website.pages.doctors', compact('doctors'));
-})->name('doctors');
-Route::get('/our-partners', function () {
-    return view('website.pages.our-partner');
-})->name('our-partners');
-Route::get('/corporate', function () {
-    return view('website.pages.corporate');
-})->name('corporate');
-Route::get('/career', function () {
-    return view('website.pages.career');
-})->name('career');
-Route::get('/career-form/{slug}', [JobCareerController::class, 'apply'])
-    ->name('career-form');
-
-Route::post('/career-form', [JobCareerApplicationController::class, 'store'])->name('career-form.store');
-
-Route::get('/privacy-policy', function () {
-    return view('website.pages.privacy-policy');
-})->name('privacy-policy');
-Route::get('/terms-conditions', function () {
-    return view('website.pages.terms-conditions');
-})->name('terms-conditions');
-// All blogs page
-Route::get('/our-blogs', function () {
-    return view('website.pages.our-blogs');
-})->name('our-blogs');
-
-// Blog detail page
-Route::get('/our-blogs/{slug}', [BlogController::class, 'details'])
-    ->name('blog-details');
-
-Route::get('/health-package', function () {
-    return view('website.pages.health-package');
-})->name('health-package');
-
-Route::prefix('/health-package')->group(function () {
-    Route::get('/package-details', function () {
-        return view('website.pages.health-packages-detail');
-    })->name('package-details');
-});
-Route::get('/appointment', function () {
-    return view('website.pages.appointment');
-})->name('appointment');
-
-
-
-Route::get('/admin-staff', function () {
-    return view("admin.pages.admin-staff");
-})->name('admin-staff');
-Route::get('/admin-profile', function () {
-    return view("admin.pages.admin-profile");
-})->name('admin-profile');
-Route::get('/admin-patient', function () {
-    return view('admin.pages.admin-patient');
-})->name('admin-patient');
-
-Route::get('/general-setting', function () {
-    return view('admin.pages.general-setting');
-})->name('general-setting');
-Route::get('/logout', function () {
-    return view('admin.pages.logout');
-})->name('logout.page');
-
-Route::get('/pages', function () {
-    return view('admin.pages.pages');
-})->name('pages');
-Route::get('/test-description', function () {
-    return view('admin.pages.test-description');
-})->name('test-description');
-
-
-Route::get('/blog-description', function () {
-    return view('admin.pages.blog-description');
-})->name('blog-description');
-
-Route::get('/theme-setting', function () {
-    return view('admin.pages.theme-setting');
-})->name('theme-setting');
-
-
-
-
-// for appointment form
-Route::post('/appointment-store', [AppointmentController::class, 'store'])->name('appointment.store');
-// for contact form
-Route::post('/store', [ContactController::class, 'store'])->name('contact-us.store');
-// for booking
-Route::post('/book-test', [BookingController::class, 'store'])->name('book.test');
 
 
 // ALL THE ROUTES FOR BACKEND DASHBOARD
@@ -602,6 +445,10 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/users/{user}', [UserRegisterController::class, 'show'])
         ->name('admin-register.show');
+
+
+
+
     //test services 
 
 
@@ -758,6 +605,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin-subparameters/search', [SubparameterController::class, 'search']);
     Route::get('/health-risks/search', [HealthRiskController::class, 'search']);
 
+
+    // for staff crud
+    Route::post('/staff/store', [StaffController::class, 'store'])->name('admin-staff.store');
+    Route::get('/staff', [StaffController::class, 'index'])->name('admin-staff.index');
+    Route::get('/staff/view/{id}', [StaffController::class, 'view']);
+    Route::post('/staff/update', [StaffController::class, 'update']);
+    Route::delete('/staff/delete/{id}', [StaffController::class, 'delete']);
+    Route::post('/staff/deleteSelected', [StaffController::class, 'deleteSelected']);
 });
 
 

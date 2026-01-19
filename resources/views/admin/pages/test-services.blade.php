@@ -1,5 +1,5 @@
 @extends("admin.layout.admin-master")
-@section("title", "Services | Diagnoedge")
+@section("title", "Services | Continuity Care")
 @section("content")
     <div class="content-body">
         <!-- row -->
@@ -152,7 +152,7 @@
                                     <div class="form-group">
                                         <label class="text-label">Parameters<span class="required">*</span></label>
 
-                                        <div id="packagesWrapper" ></div>
+                                        <div id="packagesWrapper"></div>
 
                                         <div class="d-flex gap-2 mt-2">
                                             <input type="text" id="addPackage" class="form-control"
@@ -217,5 +217,5 @@
 
 
 @push('scripts')
-   
+
 @endpush

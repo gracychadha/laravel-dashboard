@@ -16,40 +16,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Favicon icon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/images/logo/d.png') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('admin/images/logo/d.png') }}">
 
     <link href="vendor/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet">
     <link class="main-css" href="css/style.css" rel="stylesheet">
 
     <!-- Form step -->
     <link href="vendor/jquery-smartwizard/dist/css/smart_wizard.min.css" rel="stylesheet">
-   	<!-- Daterange picker -->
+    <!-- Daterange picker -->
     <link href="vendor/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-    
-	<!-- Clockpicker -->
+
+    <!-- Clockpicker -->
     <link href="vendor/clockpicker/css/bootstrap-clockpicker.min.css" rel="stylesheet">
     <!-- Datatable -->
     <link href="vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
-	<link href="vendor/datatables/css/responsive.bootstrap.min.css" rel="stylesheet">
-	<!-- asColorpicker -->
+    <link href="vendor/datatables/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <!-- asColorpicker -->
     <link href="vendor/jquery-asColorPicker/css/asColorPicker.min.css" rel="stylesheet">
-    
-	<!-- Material color picker -->
+
+    <!-- Material color picker -->
     <link href="vendor/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet">
-     <style>
-        .DZ-theme-btn.DZ-bt-buy-now{
-            display: none;
-        }
-        .DZ-theme-btn.DZ-bt-support-now{
-            display: none;
-        }
-        .sidebar-right .sidebar-right-trigger{
-            display: none !important;
-        }
-        .dz-demo-panel .dz-demo-trigger{
-            display: none !important;
-        }
-    </style>
+  
 </head>
 
 <body class="vh-100">
@@ -97,8 +84,8 @@
                                         </div>
                                     </form>
                                     <div class="new-account mt-3">
-                                        <p class="mb-0">Don't have an account? <a class="text-primary"
-                                                href="">Sign up</a></p>
+                                        <p class="mb-0">Don't have an account? <a class="text-primary" href="">Sign
+                                                up</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -117,29 +104,26 @@
     <script src="vendor/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
     <script src="js/custom.min.js"></script>
     <script src="js/deznav-init.js"></script>
-    {{-- <script src="js/demo.js"></script> --}}
-    {{-- <script src="js/styleSwitcher.js"></script> --}}
-
     <!-- Form step init -->
     <script src="vendor/jquery-smartwizard/dist/js/jquery.smartWizard.js"></script>
     <!-- asColorPicker -->
     <script src="vendor/jquery-asColor/jquery-asColor.min.js"></script>
     <script src="vendor/jquery-asGradient/jquery-asGradient.min.js"></script>
     <script src="vendor/jquery-asColorPicker/js/jquery-asColorPicker.min.js"></script>
-    
-	<!-- Clockpicker init -->
+
+    <!-- Clockpicker init -->
     <script src="js/plugins-init/clock-picker-init.js"></script>
-    
-	<!-- asColorPicker init -->
+
+    <!-- asColorPicker init -->
     <script src="js/plugins-init/jquery-asColorPicker.init.js"></script>
-    
-	<!-- Material color picker init -->
+
+    <!-- Material color picker init -->
     <script src="js/plugins-init/material-date-picker-init.js"></script>
-    
-	<!-- Material color picker init -->
+
+    <!-- Material color picker init -->
     <script src="js/plugins-init/material-date-picker-init.js"></script>
-        <script src="vendor/datatables/js/jquery.dataTables.min.js"></script>
-	<script src="vendor/datatables/js/dataTables.responsive.min.js"></script>
+    <script src="vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/js/dataTables.responsive.min.js"></script>
 </body>
 
 </html>

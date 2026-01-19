@@ -1,5 +1,5 @@
 @extends("admin.layout.admin-master")
-@section("title", "Doctor List | Diagnoedge")
+@section("title", "Our Staff | Continuity Care")
 @section("content")
 	<div class="content-body">
 		<!-- row -->
@@ -7,7 +7,7 @@
 			<div class="page-titles">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
-					<li class="breadcrumb-item  active"><a href="javascript:void(0)">Doctor List</a></li>
+					<li class="breadcrumb-item  active"><a href="javascript:void(0)">Our Staff</a></li>
 				</ol>
 			</div>
 
@@ -42,7 +42,7 @@
 										</div>
 									</th>
 									<th>Image</th>
-									<th>Doctor Name</th>
+									<th>Staff Name</th>
 									<th>Status</th>
 									<th>Action</th>
 								</tr>
@@ -111,10 +111,10 @@
 	</div>
 	{{-- ADD DOCTOR MODAL --}}
 	<div class="modal fade" id="addAppointment" tabindex="-1" aria-labelledby="addAppointment" aria-hidden="true">
-		<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-dialog custom-modal" role="document">
 			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="addAppointmentLabel">Add Doctor Details</h5>
+				<div class="modal-header bg-theme-light">
+					<h5 class="modal-title" id="addAppointmentLabel">Add Staff Details</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
 					</button>
 				</div>
@@ -161,7 +161,7 @@
 							</div>
 							<div class="col-xl-6">
 								<div class="form-group">
-									<label class="col-form-label">Specialization:</label>
+									<label class="col-form-label">Department :</label>
 									<input type="text" name="specialization" class="form-control" id=""
 										placeholder="Dentist">
 								</div>
@@ -181,7 +181,7 @@
 
 	{{-- VIEW DOCTOR MODAL --}}
 	<div class="modal fade" id="viewAppointment" tabindex="-1">
-		<div class="modal-dialog modal-lg modal-centered">
+		<div class="modal-dialog custom-modal">
 			<div class="modal-content">
 
 				<div class="modal-header">
@@ -227,7 +227,7 @@
 
 	{{-- EDIT DOCTOR MODAL--}}
 	<div class="modal fade" id="editAppointment" tabindex="-1">
-		<div class="modal-dialog modal-lg modal-centered">
+		<div class="modal-dialog custom-modal">
 			<div class="modal-content">
 
 				<div class="modal-header">

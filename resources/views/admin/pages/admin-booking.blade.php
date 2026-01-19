@@ -1,5 +1,5 @@
 @extends("admin.layout.admin-master")
-@section("title", "Booking Leads | Diagnoedge Dashboard")
+@section("title", "Booking Leads | Continuity Care Dashboard")
 @section("content")
     <div class="content-body">
         <!-- row -->
@@ -18,8 +18,8 @@
                     </div>
                 </div>
                 <div class="ms-auto">
-                    {{-- <a href="javascript:void(0);" class="btn btn-primary btn-rounded add-appointment" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal">+ Book Appointment</a> --}}
+                    {{-- <a href="javascript:void(0);" class="btn btn-primary btn-rounded add-appointment"
+                        data-bs-toggle="modal" data-bs-target="#exampleModal">+ Book Appointment</a> --}}
                     <a href="javascript:void(0);" class="btn btn-danger btn-rounded deleteSelected">Delete Selected</a>
                 </div>
             </div>
@@ -49,11 +49,11 @@
                                     <tbody id="bookingTableBody">
                                         @forelse($bookings as $booking)
                                             <tr>
-                                                 <td>
+                                                <td>
                                                     <div class="checkbox text-end align-self-center">
                                                         <div class="form-check custom-checkbox ">
-                                                            <input type="checkbox" class="form-check-input checkItem"  value="{{ $booking->id }}"
-                                                                required="">
+                                                            <input type="checkbox" class="form-check-input checkItem"
+                                                                value="{{ $booking->id }}" required="">
                                                             <label class="form-check-label" for="checkbox"></label>
                                                         </div>
                                                     </div>
@@ -207,62 +207,62 @@
 
         });
 
-// search functionality
+        // search functionality
 
-const searchInput = document.getElementById('bookingSearch');
-const tableBody = document.getElementById('bookingTableBody');
-searchInput.addEventListener('keyup', function () {
+        const searchInput = document.getElementById('bookingSearch');
+        const tableBody = document.getElementById('bookingTableBody');
+        searchInput.addEventListener('keyup', function () {
 
-    let keyword = this.value.trim();
+            let keyword = this.value.trim();
 
-    fetch(`/booking-lead/search?keyword=${keyword}`)
-        .then(res => res.json())
-        .then(res => {
+            fetch(`/booking-lead/search?keyword=${keyword}`)
+                .then(res => res.json())
+                .then(res => {
 
-            let html = '';
+                    let html = '';
 
-            if (res.data.length > 0) {
+                    if (res.data.length > 0) {
 
-                res.data.forEach(item => {
-                    html += `
+                        res.data.forEach(item => {
+                            html += `
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="checkItem" value="${item.id}">
+                                </td>
+                                <td>${highlight(item.name, keyword)}</td>
+
+                                <td>${highlight(item.mobile, keyword)}</td>
+                                <td>
+
+
+                                    <a href="javascript:void(0)" data-id="${item.id}" 
+                                       class="deleteBook btn btn-sm btn-danger light">
+                                       <i class="fa fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        `;
+                        });
+
+                    } else {
+                        html = `
                         <tr>
-                            <td>
-                                <input type="checkbox" class="checkItem" value="${item.id}">
-                            </td>
-                            <td>${highlight(item.name, keyword)}</td>
-                           
-                            <td>${highlight(item.mobile, keyword)}</td>
-                            <td>
-                              
-
-                                <a href="javascript:void(0)" data-id="${item.id}" 
-                                   class="deleteBook btn btn-sm btn-danger light">
-                                   <i class="fa fa-trash"></i>
-                                </a>
+                            <td colspan="4" class="text-center text-danger">
+                                No related search
                             </td>
                         </tr>
                     `;
+                    }
+
+                    tableBody.innerHTML = html;
                 });
-
-            } else {
-                html = `
-                    <tr>
-                        <td colspan="4" class="text-center text-danger">
-                            No related search
-                        </td>
-                    </tr>
-                `;
-            }
-
-            tableBody.innerHTML = html;
         });
-});
-function highlight(text, keyword) {
-    if (!keyword) return text;
+        function highlight(text, keyword) {
+            if (!keyword) return text;
 
-    const regex = new RegExp(`(${keyword})`, 'gi');
-    return text.replace(regex, `<mark>$1</mark>`);
-}
+            const regex = new RegExp(`(${keyword})`, 'gi');
+            return text.replace(regex, `<mark>$1</mark>`);
+        }
 
 
     </script>

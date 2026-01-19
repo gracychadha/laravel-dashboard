@@ -1,14 +1,15 @@
 <div class="nav-header">
     <a href="{{ route('dashboard') }}" class="brand-logo d-flex align-items-center">
         <!-- Logo Image -->
-        {{-- <img src="{{ asset('assets/images/favicon.png') }}" alt="Logo" class="logo-abbr"> --}}
+        {{-- <img src="{{ asset('admin/images/favicon.png') }}" alt="Logo" class="logo-abbr"> --}}
 
         @php
-          $settings = App\Models\Setting::first();
+            $settings = App\Models\Setting::first();
         @endphp
         <!-- Optional: Brand Title next to logo -->
         <span class="brand-title ms-2">
-            <img src="{{ $settings->backend_logo ? asset('storage/' . $settings->backend_logo) : asset('assets/images/logo/diagno-logo.png') }}" alt="img">
+            <img src="{{ $settings->backend_logo ? asset('storage/' . $settings->backend_logo) : asset('images/logo/hozlogo.png') }}"
+                alt="img">
         </span>
     </a>
 
@@ -51,7 +52,7 @@
 
                         </a>
                         <div class="dropdown-menu dropdown-menu-end">
-                            <a href="{{ route('admin-profile') }}" class="dropdown-item ai-icon">
+                            <a href="" class="dropdown-item ai-icon">
                                 <svg id="icon-user1" xmlns="http://www.w3.org/2000/svg" class="text-primary" width="18"
                                     height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round">

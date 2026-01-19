@@ -1,5 +1,5 @@
 @extends("admin.layout.admin-master")
-@section("title", "SEO Settings | Diagnoedge")
+@section("title", "SEO Settings | Continuity Care")
 
 @section("content")
     <div class="content-body">

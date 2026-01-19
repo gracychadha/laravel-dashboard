@@ -1,5 +1,5 @@
 @extends("admin.layout.admin-master")
-@section("title", "Popular Test | Diagnoedge")
+@section("title", "Popular Test | Continuity Care")
 @section("content")
 	<div class="content-body">
 		<!-- row -->

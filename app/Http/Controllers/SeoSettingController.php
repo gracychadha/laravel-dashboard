@@ -24,7 +24,7 @@ class SeoSettingController extends Controller
             $seo = SeoSetting::where('page', 'home')->first();
 
             return $seo ?: (object) [
-                'title' => 'Welcome to Diagnoedge',
+                'title' => 'Welcome to Continuity Care',
                 'keywords' => '',
                 'description' => ''
             ];
@@ -46,7 +46,7 @@ class SeoSettingController extends Controller
         // DEFAULT SEO IF NOTHING FOUND
         // ----------------------------------------------------
         return $seo ?: (object) [
-            'title' => 'Welcome to Diagnoedge',
+            'title' => 'Welcome to Continuity Care',
             'keywords' => '',
             'description' => ''
         ];

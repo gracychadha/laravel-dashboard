@@ -8,7 +8,7 @@
                 <div class="me-auto d-none d-lg-block">
                     <h3 class="text-black font-w600">Welcome <strong class="text-dark">{{ auth()->user()->name }}</strong>!
                     </h3>
-                    <p class="mb-0 fs-18">Diagnoedge Admin Dashboard </p>
+                    <p class="mb-0 fs-18"> Admin Dashboard </p>
                 </div>
 
                 <div class="input-group search-area ms-auto d-inline-flex">
@@ -28,7 +28,8 @@
                                         <div class="media-body">
                                             <p class="mb-1">Total Job Applications</p>
                                             <div class="d-flex flex-wrap">
-                                                <h2 class="fs-40 font-w600 text-white mb-0 me-3">{{ $applicationLeads }}</h2>
+                                                {{-- <h2 class="fs-40 font-w600 text-white mb-0 me-3">{{ $applicationLeads }}</h2> --}}
+                                                <h2 class="fs-40 font-w600 text-white mb-0 me-3">90</h2>
                                                 <div>
                                                     <svg width="28" height="19" viewbox="0 0 28 19" fill="none"
                                                         xmlns="http://www.w3.org/2000/svg">
@@ -74,7 +75,8 @@
                                         <div class="media-body">
                                             <p class="mb-1">Doctor</p>
                                             <div class="d-flex flex-wrap">
-                                                <h2 class="fs-40 font-w600 text-white mb-0 me-3">{{ $doctorCount }}</h2>
+                                                <h2 class="fs-40 font-w600 text-white mb-0 me-3">14</h2>
+                                                {{-- <h2 class="fs-40 font-w600 text-white mb-0 me-3">{{ $doctorCount }}</h2> --}}
                                                 <div>
                                                     <svg width="28" height="19" viewbox="0 0 28 19" fill="none"
                                                         xmlns="http://www.w3.org/2000/svg">
@@ -120,7 +122,8 @@
                                         <div class="media-body">
                                             <p class="mb-1">Contact Leads</p>
                                             <div class="d-flex flex-wrap">
-                                                <h2 class="fs-40 font-w600 text-white mb-0 me-3">{{ $totalLeads }}</h2>
+                                                {{-- <h2 class="fs-40 font-w600 text-white mb-0 me-3">{{ $totalLeads }}</h2> --}}
+                                                <h2 class="fs-40 font-w600 text-white mb-0 me-3">90</h2>
                                                 <div>
                                                     <svg width="28" height="19" viewbox="0 0 28 19" fill="none"
                                                         xmlns="http://www.w3.org/2000/svg">
@@ -192,7 +195,7 @@
                                         <div class="media-body">
                                             <p class="mb-1">Appointments</p>
                                             <div class="d-flex flex-wrap">
-                                                <h2 class="fs-40 font-w600 text-white mb-0 me-3">{{ $appointmentLeads }}</h2>
+                                                <h2 class="fs-40 font-w600 text-white mb-0 me-3">12</h2>
                                                 <div>
                                                     <svg width="28" height="19" viewbox="0 0 28 19" fill="none"
                                                         xmlns="http://www.w3.org/2000/svg">

@@ -33,7 +33,10 @@ class BlogController extends Controller
             'description' => 'required',
             'image' => 'required|image|mimes:png,jpg,jpeg,webp|max:2048',
             'published_at' => 'required|date',
-            'status' => 'required|in:active,inactive'
+            'status' => 'required|in:active,inactive',
+            'benefits' => 'required',
+            'quote' => 'required|string|max:255'
+
         ]);
 
         $data = $request->all();
@@ -59,7 +62,9 @@ class BlogController extends Controller
             'description' => 'required',
             'image' => 'nullable|image|mimes:png,jpg,jpeg,webp|max:2048',
             'published_at' => 'required|date',
-            'status' => 'required|in:active,inactive'
+            'status' => 'required|in:active,inactive',
+            'benefits' => 'required',
+            'quote' => 'required|string|max:255'
         ]);
 
         $data = $request->all();

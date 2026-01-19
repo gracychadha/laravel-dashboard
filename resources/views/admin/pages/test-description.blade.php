@@ -1,5 +1,5 @@
 @extends("admin.layout.admin-master")
-@section("title", "Test Description | Diagnoedge")
+@section("title", "Test Description | Continuity Care")
 @section("content")
     <div class="content-body">
         <!-- row -->
@@ -44,7 +44,7 @@
                                             <th>Title</th>
                                             <th>Category</th>
                                             <th>Service</th>
-                                           
+
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -232,10 +232,11 @@
                                     Test
                                 </td>
                                 <th>
-                                   Image
+                                    Image
                                 </th>
                                 <td>
-                                    <img src="images/avatar/1.jpg" alt="" style="border-radius: 50% ; height:50px ; width:50px;">
+                                    <img src="images/avatar/1.jpg" alt=""
+                                        style="border-radius: 50% ; height:50px ; width:50px;">
                                 </td>
                             </tr>
                             <tr>
@@ -296,7 +297,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                         <form>
+                        <form>
                             <div class="row">
                                 <div class="col-lg-6 mb-2">
                                     <div class="form-group">
@@ -369,6 +370,6 @@
                 </div>
             </div>
         </div>
-       
+
     </div>
 @endsection

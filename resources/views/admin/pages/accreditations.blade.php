@@ -1,5 +1,5 @@
 @extends("admin.layout.admin-master")
-@section("title", "Accreditations Section | Diagnoedge")
+@section("title", "Accreditations Section | Continuity Care")
 
 @section("content")
     <div class="content-body">
@@ -13,7 +13,9 @@
 
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h4 class="card-title mb-0">Accreditations Section <badge class="text-danger" style="font-size: 10px;">Note : the icon size should be upto 2mb</badge></h4>
+                    <h4 class="card-title mb-0">Accreditations Section <badge class="text-danger" style="font-size: 10px;">
+                            Note : the icon size should be upto 2mb</badge>
+                    </h4>
 
                 </div>
                 <div class="card-body">
@@ -111,7 +113,7 @@
 
                         <div class="mt-5 text-center">
                             <button type="submit" class="btn btn-primary btn-lg px-5">
-                                Update 
+                                Update
                             </button>
                         </div>
                     </form>

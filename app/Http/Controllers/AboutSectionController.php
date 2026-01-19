@@ -12,14 +12,14 @@ class AboutSectionController extends Controller
     public function index()
     {
         $aboutSection = AboutSection::firstOrCreate(
-            [], 
+            [],
             [
                 'sub_title' => 'About Us',
                 'main_title' => 'Precision. Care. Confidence — The Edge in Diagnostics.',
-                'description_1' => 'At Diagnoedge, we are committed to delivering accurate, reliable, and timely diagnostic results to help doctors and patients make informed health decisions.',
+                'description_1' => 'At Continuity Care, we are committed to delivering accurate, reliable, and timely diagnostic results to help doctors and patients make informed health decisions.',
                 'description_2' => 'We believe in combining innovation with compassion, offering a wide range of pathology, radiology, and wellness services under one roof.',
                 'feature_1_title' => 'Advanced Technology, Accurate Results',
-                'feature_1_description' => 'Equipped with state-of-the-art analyzers and automated systems, DiagnoEdge ensures precise and reliable diagnostic outcomes every time.',
+                'feature_1_description' => 'Equipped with state-of-the-art analyzers and automated systems, Continuity Care ensures precise and reliable diagnostic outcomes every time.',
                 'feature_2_title' => 'Expert Team, Patient-Focused Care',
                 'feature_2_description' => 'Our team of qualified pathologists and technicians work with dedication and empathy to deliver results that support better health decisions and patient well-being.',
                 'is_active' => true
@@ -49,9 +49,15 @@ class AboutSectionController extends Controller
         ]);
 
         $data = $request->only([
-            'sub_title', 'main_title', 'description_1', 'description_2', 
-            'feature_1_title', 'feature_1_description', 
-            'feature_2_title', 'feature_2_description', 'is_active'
+            'sub_title',
+            'main_title',
+            'description_1',
+            'description_2',
+            'feature_1_title',
+            'feature_1_description',
+            'feature_2_title',
+            'feature_2_description',
+            'is_active'
         ]);
 
         // Handle main image upload
@@ -60,10 +66,10 @@ class AboutSectionController extends Controller
             if ($aboutSection->image && Storage::disk('public')->exists($aboutSection->image)) {
                 Storage::disk('public')->delete($aboutSection->image);
             }
-            
+
             $imagePath = $request->file('image')->store('about-sections', 'public');
             $data['image'] = $imagePath;
-            
+
             // Log for debugging
             Log::info('Main image uploaded: ' . $imagePath);
         }

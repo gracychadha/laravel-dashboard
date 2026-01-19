@@ -1,5 +1,5 @@
 @extends("admin.layout.admin-master")
-@section("title", "Patient List | Diagnoedge")
+@section("title", "Patient List | Continuity Care")
 @section("content")
     <div class="content-body">
         <!-- row -->
@@ -306,7 +306,7 @@
                                     <select class="form-control">
                                         <option>Female</option>
                                         <option>Male</option>
-                                        
+
                                     </select>
                                 </div>
                             </div>

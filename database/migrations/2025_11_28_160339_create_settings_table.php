@@ -7,8 +7,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
-return new class extends Migration
-{
+return new class extends Migration {
     public function up(): void
     {
         Schema::create('settings', function (Blueprint $table) {
@@ -25,16 +24,16 @@ return new class extends Migration
 
         // Insert default row so you always have one record
         DB::table('settings')->insert([
-            'company_name' => 'Diagnoedge',
-            'email'        => 'info@diagnoedge.com',
-            'location'     => 'Haryana, India',
-            'phone1'       => '+91 98765 43210',
-            'about'        => 'Welcome to Diagnoedge – your trusted healthcare partner.',
+            'company_name' => 'Continuity Care',
+            'email' => 'info@Continuity Care.com',
+            'location' => 'Haryana, India',
+            'phone1' => '+91 98765 43210',
+            'about' => 'Welcome to Continuity Care – your trusted healthcare partner.',
             'social_links' => json_encode([
-                'facebook'  => '',
+                'facebook' => '',
                 'instagram' => '',
-                'linkedin'  => '',
-                'twitter'   => '',
+                'linkedin' => '',
+                'twitter' => '',
             ]),
             'created_at' => now(),
             'updated_at' => now(),

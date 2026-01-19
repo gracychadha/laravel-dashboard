@@ -1,5 +1,5 @@
 @extends('admin.layout.admin-master')
-@section('title', 'Job Careers | Diagnoedge')
+@section('title', 'Job Careers | Continuity Care')
 
 @section('content')
     <div class="content-body">
@@ -230,7 +230,7 @@
                             </tr>
                         </table>
 
-                       
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
@@ -255,25 +255,29 @@
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <label class="col-form-label">Job Title:</label>
-                                    <input type="text" name="title" value="{{ old('title', $job->title) }}"
-                                        class="form-control" required>
-                                    </div>
+                                    <input type="text" name="title" value="{{ old('title', $job->title) }}" class="form-control"
+                                        required>
+                                </div>
                                 <div class="col-md-6">
                                     <label class="col-form-label">Job Type:</label>
-                                    <input type="text" name="type" value="{{ old('type', $job->type) }}"
-                                        class="form-control" required></div>
+                                    <input type="text" name="type" value="{{ old('type', $job->type) }}" class="form-control"
+                                        required>
+                                </div>
                                 <div class="col-md-6">
                                     <label class="col-form-label">Job Location:</label>
-                                    <input type="text" name="location"
-                                        value="{{ old('location', $job->location) }}" class="form-control" required></div>
+                                    <input type="text" name="location" value="{{ old('location', $job->location) }}"
+                                        class="form-control" required>
+                                </div>
                                 <div class="col-md-6">
                                     <label class="col-form-label">Salary Range:</label>
-                                    <input type="text" name="salary_range"
-                                        value="{{ old('salary_range', $job->salary_range) }}" class="form-control"></div>
+                                    <input type="text" name="salary_range" value="{{ old('salary_range', $job->salary_range) }}"
+                                        class="form-control">
+                                </div>
                                 <div class="col-md-6">
                                     <label class="col-form-label">Job Experience:</label>
-                                    <input type="text" name="experience"
-                                        value="{{ old('experience', $job->experience) }}" class="form-control" required></div>
+                                    <input type="text" name="experience" value="{{ old('experience', $job->experience) }}"
+                                        class="form-control" required>
+                                </div>
                                 <div class="col-md-6">
                                     <label class="col-form-label">Job Qualification:</label>
                                     <input type="text" name="qualification"

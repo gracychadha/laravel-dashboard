@@ -15,7 +15,7 @@ class PrivacyPolicyController extends Controller
             [
                 'sub_title' => 'Corporate Wellness',
                 'main_title' => 'Precision. Care. Confidence — The Edge in Diagnostics.',
-                'description' => 'At Diagnoedge, we are committed to delivering accurate, reliable, and timely diagnostic results to help doctors and patients make informed health decisions.',
+                'description' => 'At Continuity Care, we are committed to delivering accurate, reliable, and timely diagnostic results to help doctors and patients make informed health decisions.',
                 'is_active' => true
             ]
         );
@@ -41,7 +41,7 @@ class PrivacyPolicyController extends Controller
             'is_active'
         ]);
 
-      
+
 
         $PrivacyPolicyContent->update($data);
 

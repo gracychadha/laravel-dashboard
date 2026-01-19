@@ -8,15 +8,15 @@ use App\Models\WhyPartner;
 class WhyPartnerController extends Controller
 {
     //
-     //
-      public function index()
+    //
+    public function index()
     {
         $WhyPartners = WhyPartner::firstOrCreate(
             [],
             [
                 'sub_title' => 'Corporate Wellness',
                 'main_title' => 'Precision. Care. Confidence — The Edge in Diagnostics.',
-                'description' => 'At Diagnoedge, we are committed to delivering accurate, reliable, and timely diagnostic results to help doctors and patients make informed health decisions.',
+                'description' => 'At Continuity Care, we are committed to delivering accurate, reliable, and timely diagnostic results to help doctors and patients make informed health decisions.',
                 'is_active' => true
             ]
         );
@@ -57,7 +57,7 @@ class WhyPartnerController extends Controller
             // Log::info('Main image uploaded: ' . $imagePath);
         }
 
-       
+
 
         $WhyPartners->update($data);
 

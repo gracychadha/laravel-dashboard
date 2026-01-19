@@ -1,6 +1,6 @@
 {{-- resources/views/admin/pages/health-risks.blade.php --}}
 @extends("admin.layout.admin-master")
-@section("title", "Health Risks | Diagnoedge")
+@section("title", "Health Risks | Continuity Care")
 
 @section("content")
     <div class="content-body">
@@ -70,23 +70,25 @@
                                     <tbody id="testTableBody">
                                         @forelse($healthRisks as $risk)
                                             <tr>
-                                                <td><div class="checkbox text-end align-self-center ms-2">
-                                                  
+                                                <td>
+                                                    <div class="checkbox text-end align-self-center ms-2">
+
                                                         <div class="form-check custom-checkbox ">
-                                                            <input type="checkbox" class="form-check-input checkItem"  value="{{ $risk->id }}"
-                                                                required="">
+                                                            <input type="checkbox" class="form-check-input checkItem"
+                                                                value="{{ $risk->id }}" required="">
                                                             <label class="form-check-label" for="checkbox"></label>
                                                         </div>
-                                                    </div></td>
+                                                    </div>
+                                                </td>
                                                 {{-- <td>
                                                     @if($risk->icon)
-                                                        <img src="{{ asset('storage/' . $risk->icon) }}" width="40"
-                                                            class="rounded-circle">
+                                                    <img src="{{ asset('storage/' . $risk->icon) }}" width="40"
+                                                        class="rounded-circle">
                                                     @else
-                                                        <div class="bg-light rounded-circle d-inline-flex align-items-center justify-content-center"
-                                                            style="width:40px;height:40px;">
-                                                            <i class="fas fa-image "></i>
-                                                        </div>
+                                                    <div class="bg-light rounded-circle d-inline-flex align-items-center justify-content-center"
+                                                        style="width:40px;height:40px;">
+                                                        <i class="fas fa-image "></i>
+                                                    </div>
                                                     @endif
                                                 </td> --}}
                                                 <td class="">{{ Str::limit($risk->title, 25) }}</td>
@@ -119,14 +121,14 @@
                                                     <button class="btn btn-sm btn-warning light me-1" data-bs-toggle="modal"
                                                         data-bs-target="#editModal{{ $risk->id }}"><i
                                                             class="fas fa-edit"></i></button>
-                                                         <form action="{{ route('health-risks.destroy', $risk) }}" method="POST"
-                                                class="d-inline">
-                                                @csrf @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger light delete-btn"
-                                                    title="Delete">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                            </form>
+                                                    <form action="{{ route('health-risks.destroy', $risk) }}" method="POST"
+                                                        class="d-inline">
+                                                        @csrf @method('DELETE')
+                                                        <button type="submit" class="btn btn-sm btn-danger light delete-btn"
+                                                            title="Delete">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @empty
@@ -218,9 +220,9 @@
 
                     <table class="table table-bordered table-striped mb-0">
                         <tr>
-                            
+
                             <th>Icon :</th>
-                            <td >
+                            <td>
                                 @if($risk->icon)
                                     <img src="{{ asset('storage/' . $risk->icon) }}" width="100" class="rounded">
                                 @else
@@ -240,7 +242,7 @@
                             <th>Created :</th>
                             <td>{{ $risk->created_at->format('d M Y, h:i A') }}</td>
                         </tr>
-                        
+
                         <tr>
                             <th>Related Parameters :</th>
                             <td colspan="3">
@@ -260,7 +262,7 @@
                         </tr>
                     </table>
 
-                  
+
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -272,13 +274,14 @@
         <!-- EDIT MODAL -->
         <div class="modal fade" id="editModal{{ $risk->id }}">
             <div class="modal-dialog custom-modal">
-                 <div class="modal-content">
-                        <div class="modal-header">
-                            <h5>Edit: {{ $risk->title }}</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                        </div> <form action="{{ route('health-risks.update', $risk) }}" method="POST" enctype="multipart/form-data">
-                    @csrf @method('PUT')
-                  
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5>Edit: {{ $risk->title }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <form action="{{ route('health-risks.update', $risk) }}" method="POST" enctype="multipart/form-data">
+                        @csrf @method('PUT')
+
                         <div class="modal-body">
                             <div class="row g-3">
                                 <div class="col-md-8">
@@ -335,7 +338,7 @@
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                             <button type="submit" class="btn btn-primary">Update </button>
                         </div>
-                    </div>
+                </div>
                 </form>
             </div>
         </div>
@@ -439,80 +442,80 @@
 
         });
 
-         const searchInput = document.getElementById('testSearch');
-const tableBody = document.getElementById('testTableBody');
+        const searchInput = document.getElementById('testSearch');
+        const tableBody = document.getElementById('testTableBody');
         searchInput.addEventListener('keyup', function () {
 
-    let keyword = this.value.trim();
+            let keyword = this.value.trim();
 
-    fetch(`/health-risks/search?keyword=${keyword}`)
-        .then(res => res.json())
-        .then(res => {
+            fetch(`/health-risks/search?keyword=${keyword}`)
+                .then(res => res.json())
+                .then(res => {
 
-            let html = '';
+                    let html = '';
 
-            if (res.data.length > 0) {
+                    if (res.data.length > 0) {
 
-                res.data.forEach(item => {
-                    html += `
+                        res.data.forEach(item => {
+                            html += `
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="checkItem" value="${item.id}">
+                                </td>
+
+                                <td>${highlight(item.title, keyword)}</td>
+
+                                <td class="text-primary">${highlight(item.status, keyword)}</td>
+
+                                <td>
+
+
+                                    <a href="javascript:void(0)" data-id="${item.id}" 
+                                       class="editApp btn btn-sm btn-warning light">
+                                       <i class="fa fa-pencil"></i>
+                                    </a>
+
+                                    <a href="javascript:void(0)" data-id="${item.id}" 
+                                       class="deleteContact btn btn-sm btn-danger light">
+                                       <i class="fa fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        `;
+                        });
+
+                    } else {
+                        html = `
                         <tr>
-                            <td>
-                                <input type="checkbox" class="checkItem" value="${item.id}">
-                            </td>
-                         
-                            <td>${highlight(item.title, keyword)}</td>
-                            
-                            <td class="text-primary">${highlight(item.status, keyword)}</td>
-                           
-                            <td>
-                               
-
-                                <a href="javascript:void(0)" data-id="${item.id}" 
-                                   class="editApp btn btn-sm btn-warning light">
-                                   <i class="fa fa-pencil"></i>
-                                </a>
-
-                                <a href="javascript:void(0)" data-id="${item.id}" 
-                                   class="deleteContact btn btn-sm btn-danger light">
-                                   <i class="fa fa-trash"></i>
-                                </a>
+                            <td colspan="6" class="text-center text-danger">
+                                No related search
                             </td>
                         </tr>
                     `;
+                    }
+
+                    tableBody.innerHTML = html;
                 });
-
-            } else {
-                html = `
-                    <tr>
-                        <td colspan="6" class="text-center text-danger">
-                            No related search
-                        </td>
-                    </tr>
-                `;
-            }
-
-            tableBody.innerHTML = html;
         });
-});
-function highlight(text, keyword) {
-    if (!keyword) return text;
+        function highlight(text, keyword) {
+            if (!keyword) return text;
 
-    const regex = new RegExp(`(${keyword})`, 'gi');
-    return text.replace(regex, `<mark>$1</mark>`);
-}
+            const regex = new RegExp(`(${keyword})`, 'gi');
+            return text.replace(regex, `<mark>$1</mark>`);
+        }
 
 
-$(function (){
- $('.delete-btn').click(function (e) {
+        $(function () {
+            $('.delete-btn').click(function (e) {
                 e.preventDefault();
                 var form = $(this).closest('form');
                 Swal.fire({
                     title: 'Delete?',
-                     text: "This Health Risk will be permanently  deleted!",
-                      icon: 'warning',
+                    text: "This Health Risk will be permanently  deleted!",
+                    icon: 'warning',
                     showCancelButton: true, confirmButtonText: 'Yes, delete!'
                 }).then((result) => { if (result.isConfirmed) form.submit(); });
             });
-});
+        });
     </script>
 @endpush

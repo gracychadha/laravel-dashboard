@@ -1,5 +1,5 @@
 @extends("admin.layout.admin-master")
-@section("title", "SEO Pages | Diagnoedge")
+@section("title", "SEO Pages | Continuity Care")
 @section("content")
     <div class="content-body">
         <!-- row -->
@@ -224,7 +224,7 @@
                     $('#edit_id').val(doctor.id);
                     $('#edit_page').val(doctor.page);
                     $('#edit_status').val(doctor.status);
-                 
+
 
                     $('#editAppointment').modal('show');
                 }

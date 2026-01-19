@@ -1,5 +1,5 @@
 @extends("admin.layout.admin-master")
-@section("title", "FAQs | Diagnoedge")
+@section("title", "FAQs | Continuity Care")
 
 @section("content")
     <div class="content-body">
@@ -94,14 +94,15 @@
             <form action="{{ route('faqs.store') }}" method="POST">
                 @csrf
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header bg-theme-light">
                         <h5>Add New FAQ</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body">
                         <div class="mb-3">
                             <label>Question <span class="text-danger">*</span></label>
-                            <input type="text" name="question" class="form-control" required>
+                            <input type="text" name="question" class="form-control" placeholder="Write Question Here"
+                                required>
                         </div>
                         <div class="mb-3">
                             <label>Answer <span class="text-danger">*</span></label>
@@ -116,8 +117,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Save FAQ</button>
+
+                        <button type="submit" class="btn btn-primary">Save</button>
                     </div>
                 </div>
             </form>
@@ -143,9 +144,9 @@
                             <th>Question :</th>
                             <td colspan="3">{{ $faq->question }}</td>
 
-                        </tr>
+                        </tr> 
                         <tr>
-                            <th>Answer</th>
+                            <th>Answer : </th>
                             <td colspan="3"> {!! $faq->answer !!}</td>
                         </tr>
                         <tr>
@@ -160,7 +161,7 @@
 
                     </table>
 
-                   
+
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
@@ -179,7 +180,7 @@
                 <form action="{{ route('faqs.update', $faq) }}" method="POST">
                     @csrf @method('PUT')
                     <div class="modal-content">
-                        <div class="modal-header">
+                        <div class="modal-header bg-theme-light">
                             <h5>Edit FAQ</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
@@ -201,8 +202,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-primary">Update FAQ</button>
+                           
+                            <button type="submit" class="btn btn-primary">Update </button>
                         </div>
                     </div>
                 </form>
@@ -231,7 +232,7 @@
                 let form = $(this).closest('form');
                 Swal.fire({
                     title: 'Delete FAQ?',
-                    text: "This cannot be undone!",
+                    text: "This FAQ will be permanently deleted!",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonText: 'Yes, delete it!'

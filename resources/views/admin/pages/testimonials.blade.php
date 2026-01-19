@@ -1,5 +1,5 @@
 @extends("admin.layout.admin-master")
-@section("title", "Testimonials | Diagnoedge")
+@section("title", "Testimonials | Continuity Care")
 
 @section("content")
     <div class="content-body">
@@ -13,8 +13,8 @@
 
             <div class="form-head d-flex mb-3 mb-md-4 align-items-center justify-content-between">
                 <div class="input-group search-area w-25">
-                    <input type="text" id="searchInput" class="form-control" placeholder="Search testimonials...">
-                    <span class="input-group-text"><i class="flaticon-381-search-2"></i></span>
+                    {{-- <input type="text" id="searchInput" class="form-control" placeholder="Search testimonials...">
+                    <span class="input-group-text"><i class="flaticon-381-search-2"></i></span> --}}
                 </div>
                 <button class="btn btn-primary btn-rounded" data-bs-toggle="modal" data-bs-target="#addModal">
                     + Add Testimonial
@@ -109,7 +109,7 @@
             <form action="{{ route('testimonials.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header bg-theme-light">
                         <h5>Add New Testimonial</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
@@ -117,15 +117,21 @@
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label>Name <span class="text-danger">*</span></label>
-                                <input type="text" name="name" class="form-control" required>
+                                <input type="text" name="name" placeholder="Enter Testimonial Name" class="form-control"
+                                    required>
                             </div>
                             <div class="col-md-6">
                                 <label>Designation <span class="text-danger">*</span></label>
-                                <input type="text" name="designation" class="form-control" required>
+                                <input type="text" name="designation" placeholder="Designation" class="form-control"
+                                    required>
                             </div>
                             <div class="col-md-6">
                                 <label>Photo <span class="text-danger">*</span></label>
                                 <input type="file" name="image" class="form-control" accept="image/*" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Side Photo <span class="text-danger">*</span></label>
+                                <input type="file" name="photo" class="form-control" accept="image/*" required>
                             </div>
                             <div class="col-md-6">
                                 <label>Status</label>
@@ -134,9 +140,13 @@
                                     <option value="inactive">Inactive</option>
                                 </select>
                             </div>
+                            <div class="col-md-6">
+                                <label>Quote<span class="text-danger">(Max Words:6-7)*</span></label>
+                                <input type="text" name="quote" placeholder="Best Services" class="form-control" required>
+                            </div>
                             <div class="col-12">
                                 <label>Message <span class="text-danger">*</span></label>
-                                <textarea name="message" class="form-control" rows="4" required></textarea>
+                                <textarea name="message" class="form-control summernote" rows="4" required></textarea>
                             </div>
                         </div>
                     </div>
@@ -178,14 +188,27 @@
 
                         <tr>
                             <th>Designation :</th>
-                            <td colspan="3">
+                            <td>
                                 {{ $testimonial->designation ?? '—' }}
+                            </td>
+                            <th>Quote</th>
+                            <td>
+                                {{ $testimonial->quote }}
                             </td>
                         </tr>
 
                         <tr>
                             <th>Image :</th>
-                            <td colspan="3">
+                            <td>
+                                @if($testimonial->image)
+                                    <img src="{{ asset('storage/' . $testimonial->image) }}" width="120"
+                                        class="rounded-circle mb-2">
+                                @else
+                                    <em class="text-muted">No image uploaded</em>
+                                @endif
+                            </td>
+                            <th>Side Image :</th>
+                            <td>
                                 @if($testimonial->image)
                                     <img src="{{ asset('storage/' . $testimonial->image) }}" width="120"
                                         class="rounded-circle mb-2">
@@ -194,16 +217,14 @@
                                 @endif
                             </td>
                         </tr>
+                        <tr>
+                            <th>Message :</th>
+                            <td colspan="3">{!! $testimonial->message !!}</td>
+                        </tr>
 
                     </table>
 
-                    <!-- Message Section -->
-                    <div class="p-3">
-                        <p><strong>Message:</strong></p>
-                        <div class="border p-3 rounded ">
-                            {!! nl2br(e($testimonial->message)) !!}
-                        </div>
-                    </div>
+
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
@@ -222,7 +243,7 @@
                 <form action="{{ route('testimonials.update', $testimonial) }}" method="POST" enctype="multipart/form-data">
                     @csrf @method('PUT')
                     <div class="modal-content">
-                        <div class="modal-header">
+                        <div class="modal-header bg-theme-light">
                             <h5>Edit Testimonial</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
@@ -247,6 +268,19 @@
                                     @endif
                                 </div>
                                 <div class="col-md-6">
+                                    <label>Change Side Photo</label>
+                                    <input type="file" name="photo" class="form-control" accept="image/*">
+                                    @if($testimonial->photo)
+                                        <img src="{{ asset('storage/' . $testimonial->photo) }}" width="120"
+                                            class="mt-2 ">
+                                    @endif
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Quote</label>
+                                    <input type="text" name="quote" value="{{ $testimonial->quote }}" class="form-control"
+                                        required>
+                                </div>
+                                <div class="col-md-6">
                                     <label>Status</label>
                                     <select name="status" class="form-control">
                                         <option value="active" {{ $testimonial->status == 'active' ? 'selected' : '' }}>Active
@@ -257,7 +291,7 @@
                                 </div>
                                 <div class="col-12">
                                     <label>Message</label>
-                                    <textarea name="message" class="form-control" rows="4"
+                                    <textarea name="message" class="form-control summernote" rows="4"
                                         required>{{ $testimonial->message }}</textarea>
                                 </div>
                             </div>
@@ -276,6 +310,11 @@
 @push('scripts')
     <script>
         $(function () {
+
+            $('.summernote').summernote({
+                height: 200,
+                placeholder: 'Write the message here...'
+            });
             $('#searchInput').on('keyup', function () {
                 var value = $(this).val().toLowerCase();
                 $("#testimonialTable tbody tr").filter(function () {

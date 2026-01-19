@@ -1,5 +1,5 @@
 @extends("admin.layout.admin-master")
-@section("title", "Packages | Diagnoedge")
+@section("title", "Packages | Continuity Care")
 @section("content")
     <div class="content-body">
         <!-- row -->
@@ -50,78 +50,78 @@
                                     </thead>
                                     <tbody>
 
- @forelse($packages as $sub)
-                                        <tr>
-                                            <td>
-                                                <div class="checkbox text-end align-self-center">
-                                                    <div class="form-check custom-checkbox ">
-                                                        <input type="checkbox" class="form-check-input" id="customCheckBox1"
-                                                            required="">
-                                                        <label class="form-check-label" for="customCheckBox1"></label>
+                                        @forelse($packages as $sub)
+                                            <tr>
+                                                <td>
+                                                    <div class="checkbox text-end align-self-center">
+                                                        <div class="form-check custom-checkbox ">
+                                                            <input type="checkbox" class="form-check-input" id="customCheckBox1"
+                                                                required="">
+                                                            <label class="form-check-label" for="customCheckBox1"></label>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </td>
-                                            <td class="patient-info ps-0">
-                                                <span>
-                                                    <img src="images/avatar/1.jpg" alt="">
-                                                </span>
-                                                <span class="text-nowrap ms-2">Health Test</span>
-                                            </td>
-                                            <td class="text-primary">Female</td>
-                                            <td>Tru Health</td>
+                                                </td>
+                                                <td class="patient-info ps-0">
+                                                    <span>
+                                                        <img src="images/avatar/1.jpg" alt="">
+                                                    </span>
+                                                    <span class="text-nowrap ms-2">Health Test</span>
+                                                </td>
+                                                <td class="text-primary">Female</td>
+                                                <td>Tru Health</td>
 
-                                            <td>
-                                                <span class="me-3">
-                                                    <a href="" data-bs-toggle="modal" data-bs-target="#viewAppointment"><i
-                                                            class="fa fa-eye fs-18"></i></a>
-                                                </span>
-                                                <span class="me-3">
-                                                    <a href="" class="edit-appointment" data-bs-toggle="modal"
-                                                        data-bs-target="#editAppointment"><i
-                                                            class="fa fa-pencil fs-18 "></i></a>
-                                                </span>
-                                                <span>
-                                                    <i class="fa fa-trash fs-18 text-danger" aria-hidden="true"></i>
-                                                </span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="checkbox text-end align-self-center">
-                                                    <div class="form-check custom-checkbox ">
-                                                        <input type="checkbox" class="form-check-input" id="customCheckBox1"
-                                                            required="">
-                                                        <label class="form-check-label" for="customCheckBox1"></label>
+                                                <td>
+                                                    <span class="me-3">
+                                                        <a href="" data-bs-toggle="modal" data-bs-target="#viewAppointment"><i
+                                                                class="fa fa-eye fs-18"></i></a>
+                                                    </span>
+                                                    <span class="me-3">
+                                                        <a href="" class="edit-appointment" data-bs-toggle="modal"
+                                                            data-bs-target="#editAppointment"><i
+                                                                class="fa fa-pencil fs-18 "></i></a>
+                                                    </span>
+                                                    <span>
+                                                        <i class="fa fa-trash fs-18 text-danger" aria-hidden="true"></i>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="checkbox text-end align-self-center">
+                                                        <div class="form-check custom-checkbox ">
+                                                            <input type="checkbox" class="form-check-input" id="customCheckBox1"
+                                                                required="">
+                                                            <label class="form-check-label" for="customCheckBox1"></label>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </td>
-                                            <td class="patient-info ps-0">
-                                                <span>
-                                                    <img src="images/avatar/1.jpg" alt="">
-                                                </span>
-                                                <span class="text-nowrap ms-2">Health Test</span>
-                                            </td>
-                                            <td class="text-primary">Female</td>
-                                            <td>Tru Health</td>
+                                                </td>
+                                                <td class="patient-info ps-0">
+                                                    <span>
+                                                        <img src="images/avatar/1.jpg" alt="">
+                                                    </span>
+                                                    <span class="text-nowrap ms-2">Health Test</span>
+                                                </td>
+                                                <td class="text-primary">Female</td>
+                                                <td>Tru Health</td>
 
-                                            <td>
-                                                <span class="me-3">
-                                                    <a href="" data-bs-toggle="modal" data-bs-target="#viewAppointment"><i
-                                                            class="fa fa-eye fs-18"></i></a>
-                                                </span>
-                                                <span class="me-3">
-                                                    <a href="" class="edit-appointment" data-bs-toggle="modal"
-                                                        data-bs-target="#editAppointment"><i
-                                                            class="fa fa-pencil fs-18 "></i></a>
-                                                </span>
-                                                <span>
-                                                    <i class="fa fa-trash fs-18 text-danger" aria-hidden="true"></i>
-                                                </span>
-                                            </td>
-                                        </tr>
+                                                <td>
+                                                    <span class="me-3">
+                                                        <a href="" data-bs-toggle="modal" data-bs-target="#viewAppointment"><i
+                                                                class="fa fa-eye fs-18"></i></a>
+                                                    </span>
+                                                    <span class="me-3">
+                                                        <a href="" class="edit-appointment" data-bs-toggle="modal"
+                                                            data-bs-target="#editAppointment"><i
+                                                                class="fa fa-pencil fs-18 "></i></a>
+                                                    </span>
+                                                    <span>
+                                                        <i class="fa fa-trash fs-18 text-danger" aria-hidden="true"></i>
+                                                    </span>
+                                                </td>
+                                            </tr>
                                         @empty
 
-@endforelse
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>

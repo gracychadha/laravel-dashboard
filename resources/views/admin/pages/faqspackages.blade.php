@@ -1,7 +1,7 @@
 {{-- resources/views/admin/pages/faqspackages.blade.php --}}
 @extends("admin.layout.admin-master")
 
-@section("title", "Package FAQs | Diagnoedge")
+@section("title", "Package FAQs | Continuity Care")
 
 @section("content")
     <div class="content-body">
@@ -371,43 +371,43 @@
 
                         res.data.forEach(item => {
                             html += `
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" class="checkItem" value="${item.id}">
-                                    </td>
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" class="checkItem" value="${item.id}">
+                                        </td>
 
-                                    <td>${highlight(item.quesion, keyword)}</td>
+                                        <td>${highlight(item.quesion, keyword)}</td>
 
-                                    <td class="text-primary">${highlight(item.status, keyword)}</td>
+                                        <td class="text-primary">${highlight(item.status, keyword)}</td>
 
-                                    <td>
-     <a href="javascript:void(0)" data-id="${item.id}" 
-                                       class="viewApp btn btn-sm btn-info light">
-                                       <i class="fa fa-eye"></i>
-                                    </a>
-
-                                        <a href="javascript:void(0)" data-id="${item.id}" 
-                                           class="editApp btn btn-sm btn-warning light">
-                                           <i class="fa fa-pencil"></i>
+                                        <td>
+         <a href="javascript:void(0)" data-id="${item.id}" 
+                                           class="viewApp btn btn-sm btn-info light">
+                                           <i class="fa fa-eye"></i>
                                         </a>
 
-                                        <a href="javascript:void(0)" data-id="${item.id}" 
-                                           class="deleteContact btn btn-sm btn-danger light">
-                                           <i class="fa fa-trash"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            `;
+                                            <a href="javascript:void(0)" data-id="${item.id}" 
+                                               class="editApp btn btn-sm btn-warning light">
+                                               <i class="fa fa-pencil"></i>
+                                            </a>
+
+                                            <a href="javascript:void(0)" data-id="${item.id}" 
+                                               class="deleteContact btn btn-sm btn-danger light">
+                                               <i class="fa fa-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                `;
                         });
 
                     } else {
                         html = `
-                            <tr>
-                                <td colspan="6" class="text-center text-danger">
-                                    No related search
-                                </td>
-                            </tr>
-                        `;
+                                <tr>
+                                    <td colspan="6" class="text-center text-danger">
+                                        No related search
+                                    </td>
+                                </tr>
+                            `;
                     }
 
                     tableBody.innerHTML = html;

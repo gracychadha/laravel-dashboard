@@ -1,7 +1,7 @@
 {{-- resources/views/admin/pages/test.blade.php --}}
 @extends("admin.layout.admin-master")
 
-@section("title", "Test Details | Diagnoedge")
+@section("title", "Test Details | Continuity Care")
 
 @section("content")
     <div class="content-body">
@@ -17,10 +17,11 @@
 
             <!-- Header: Search + Add Button -->
             <div class="form-head d-flex mb-3 mb-md-4 align-items-center justify-content-between">
-               <div class="input-group search-area d-inline-flex me-2">
-                    <input type="text" id="testSearch"  class="form-control" placeholder="Search here">
+                <div class="input-group search-area d-inline-flex me-2">
+                    <input type="text" id="testSearch" class="form-control" placeholder="Search here">
                     <div class="input-group-append">
-                        <button type="button" id="searchBtn" class="input-group-text"><i class="flaticon-381-search-2"></i></button>
+                        <button type="button" id="searchBtn" class="input-group-text"><i
+                                class="flaticon-381-search-2"></i></button>
                     </div>
                 </div>
                 <div class="ms-auto">
@@ -70,27 +71,27 @@
                                             </div>
                                         </div>
                                     </th>
-                                    <th >Icon</th>
+                                    <th>Icon</th>
                                     <th>Title</th>
-                                    <th >Status</th>
-                                    {{-- <th >Created At</th> --}}
-                                    <th  class="text-center">Actions</th>
+                                    <th>Status</th>
+                                    {{-- <th>Created At</th> --}}
+                                    <th class="text-center">Actions</th>
                                 </tr>
                             </thead>
                             <tbody id="testTableBody">
                                 @forelse($tests as $test)
                                     <tr>
                                         <td class="d-flex">
-                                             {{ $loop->iteration }}
+                                            {{ $loop->iteration }}
                                             <div class="checkbox text-end align-self-center ms-2">
-                                                  
-                                                        <div class="form-check custom-checkbox ">
-                                                            <input type="checkbox" class="form-check-input checkItem"  value="{{ $test->id }}"
-                                                                required="">
-                                                            <label class="form-check-label" for="checkbox"></label>
-                                                        </div>
-                                                    </div>
-                                         
+
+                                                <div class="form-check custom-checkbox ">
+                                                    <input type="checkbox" class="form-check-input checkItem"
+                                                        value="{{ $test->id }}" required="">
+                                                    <label class="form-check-label" for="checkbox"></label>
+                                                </div>
+                                            </div>
+
 
                                         </td>
                                         <td>
@@ -379,69 +380,69 @@
 
         // search functionality
 
-const searchInput = document.getElementById('testSearch');
-const tableBody = document.getElementById('testTableBody');
+        const searchInput = document.getElementById('testSearch');
+        const tableBody = document.getElementById('testTableBody');
 
-searchInput.addEventListener('keyup', function () {
+        searchInput.addEventListener('keyup', function () {
 
-    let keyword = this.value.trim();
+            let keyword = this.value.trim();
 
-    fetch(`/tests/search?keyword=${keyword}`)
-        .then(res => res.json())
-        .then(res => {
+            fetch(`/tests/search?keyword=${keyword}`)
+                .then(res => res.json())
+                .then(res => {
 
-            let html = '';
+                    let html = '';
 
-            if (res.data.length > 0) {
+                    if (res.data.length > 0) {
 
-                res.data.forEach(item => {
-                    html += `
+                        res.data.forEach(item => {
+                            html += `
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="checkItem" value="${item.id}">
+                                </td>
+                               <td>
+        <img src="${item.icon_url}" alt="img" width="50" class="rounded">
+    </td>
+                                <td>${highlight(item.title, keyword)}</td>
+                                <td class="text-primary">${highlight(item.status, keyword)}</td>
+
+                                <td>
+
+
+                                    <a href="javascript:void(0)" data-id="${item.id}" 
+                                       class="editApp btn btn-sm btn-warning light">
+                                       <i class="fa fa-pencil"></i>
+                                    </a>
+
+                                    <a href="javascript:void(0)" data-id="${item.id}" 
+                                       class="deleteContact btn btn-sm btn-danger light">
+                                       <i class="fa fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        `;
+                        });
+
+                    } else {
+                        html = `
                         <tr>
-                            <td>
-                                <input type="checkbox" class="checkItem" value="${item.id}">
-                            </td>
-                           <td>
-    <img src="${item.icon_url}" alt="img" width="50" class="rounded">
-</td>
-                            <td>${highlight(item.title, keyword)}</td>
-                            <td class="text-primary">${highlight(item.status, keyword)}</td>
-                           
-                            <td>
-                               
-
-                                <a href="javascript:void(0)" data-id="${item.id}" 
-                                   class="editApp btn btn-sm btn-warning light">
-                                   <i class="fa fa-pencil"></i>
-                                </a>
-
-                                <a href="javascript:void(0)" data-id="${item.id}" 
-                                   class="deleteContact btn btn-sm btn-danger light">
-                                   <i class="fa fa-trash"></i>
-                                </a>
+                            <td colspan="6" class="text-center text-danger">
+                                No related search
                             </td>
                         </tr>
                     `;
+                    }
+
+                    tableBody.innerHTML = html;
                 });
-
-            } else {
-                html = `
-                    <tr>
-                        <td colspan="6" class="text-center text-danger">
-                            No related search
-                        </td>
-                    </tr>
-                `;
-            }
-
-            tableBody.innerHTML = html;
         });
-});
-function highlight(text, keyword) {
-    if (!keyword) return text;
+        function highlight(text, keyword) {
+            if (!keyword) return text;
 
-    const regex = new RegExp(`(${keyword})`, 'gi');
-    return text.replace(regex, `<mark>$1</mark>`);
-}
+            const regex = new RegExp(`(${keyword})`, 'gi');
+            return text.replace(regex, `<mark>$1</mark>`);
+        }
 
 
 

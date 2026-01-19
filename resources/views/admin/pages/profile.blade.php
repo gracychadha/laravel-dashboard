@@ -71,9 +71,10 @@
                                     <div class="row align-items-center g-5 p-3">
                                         <div class="col-lg-4 text-center">
                                             <div class="position-relative d-inline-block">
-                                                <img src="{{ Auth::user()->profile_photo_url }}"
-                                                    class="rounded-circle shadow-lg border border-4 border-white"
-                                                    width="180" height="180" style="cover" alt="Profile">
+                                                <img src="{{ Auth::user()->profile_photo_path
+                                                        ? Storage::url(Auth::user()->profile_photo_path)
+                                                        : asset('images/profile/profile.png') }}" class="rounded-circle shadow-lg border  border-white"
+                                                        width="180" height="180" style="object-fit: cover;" alt="Profile">
                                                 <span
                                                     class="position-absolute bottom-0 end-0 badge bg-success rounded-pill px-3 py-2">Active</span>
                                             </div>
@@ -141,7 +142,7 @@
                                                 <div class="preview-box border rounded-3 p-4 bg-white mb-3">
                                                     <img src="{{ Auth::user()->profile_photo_path
                                                         ? Storage::url(Auth::user()->profile_photo_path)
-                                                        : asset('admin/images/profile/profile.png') }}" class="rounded-circle shadow-lg border border-4 border-white"
+                                                        : asset('images/profile/profile.png') }}" class="rounded-circle shadow-lg border  border-white"
                                                         width="180" height="180" style="object-fit: cover;" alt="Profile">
                                                 </div>
                                                 <input type="file" name="photo" class="form-control" accept="image/*"
@@ -151,7 +152,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="text-center mt-5">
+                                        <div class=" mt-5">
                                             <button type="submit" class="btn btn-success btn-lg px-6">
                                                 Update 
                                             </button>
@@ -161,7 +162,7 @@
 
                                 <!-- Change Password Tab -->
                                 <div class="tab-pane fade" id="change-password">
-                                    <div class="row justify-content-center">
+                                    <div class="row ">
                                         <div class="col-lg-7">
                                             <form action="{{ route('password.update') }}" method="POST">
                                                 @csrf
@@ -184,9 +185,9 @@
                                                         required>
                                                 </div>
 
-                                                <div class="text-center">
+                                                <div class="">
                                                     <button type="submit" class="btn btn-primary btn-lg px-6">
-                                                        Change 
+                                                        Update 
                                                     </button>
                                                 </div>
                                         </div>

@@ -28,12 +28,26 @@
         </div>
 
         <!-- Password -->
-        <div class="mb-3">
+        {{-- <div class="mb-3">
             <label class="form-label">Password</label>
             <input id="password" class="form-control" placeholder="Enter Password" type="password" name="password"
                 required autocomplete="current-password" />
-            {{-- <x-input-error :messages="$errors->get('password')" class="mt-2 text-danger" /> --}}
+            <x-input-error :messages="$errors->get('password')" class="mt-2 text-danger" />
+        </div> --}}
+        <div class="mb-3">
+            <label class="form-label">Password</label>
+
+            <div class="input-group">
+                <input id="password" class="form-control" placeholder="Enter Password" type="password" name="password"
+                    required autocomplete="current-password" />
+
+                <button class="btn" type="button" id="togglePassword">
+                    <i class="bi bi-eye"></i>
+                </button>
+            </div>
         </div>
+
+
 
         <!-- Remember Me -->
         <div class="form-row d-flex justify-content-between flex-wrap mb-3">
@@ -68,10 +82,27 @@
         </div>
     </form>
 
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
     <script>
         // Enable the login button after CAPTCHA success
         function onCaptchaSuccess(token) {
             document.getElementById('loginButton').disabled = false;
         }
+
+        const togglePassword = document.getElementById("togglePassword");
+        const password = document.getElementById("password");
+        const icon = togglePassword.querySelector("i");
+
+        togglePassword.addEventListener("click", function () {
+            const isPassword = password.type === "password";
+            password.type = isPassword ? "text" : "password";
+
+            icon.classList.toggle("bi-eye", !isPassword);
+            icon.classList.toggle("bi-eye-slash", isPassword);
+        });
+
+
     </script>
 </x-guest-layout>

@@ -11,30 +11,30 @@ class TestController extends Controller
 {
 
     // for test search
-  public function search(Request $request)
-{
-    $keyword = $request->keyword;
+    public function search(Request $request)
+    {
+        $keyword = $request->keyword;
 
-    $tests = \App\Models\Test::where('title', 'LIKE', "%{$keyword}%")
-        ->orWhere('status', 'LIKE', "%{$keyword}%")
-        ->get()
-        ->map(function ($test) {
-            return [
-                'id'     => $test->id,
-                'title'  => $test->title,
-                'status' => $test->status,
-                'icon'   => $test->icon,
-                'icon_url' => $test->icon
-                    ? asset('storage/' . $test->icon)
-                    : asset('assets/images/no-image.png'),
-            ];
-        });
+        $tests = \App\Models\Test::where('title', 'LIKE', "%{$keyword}%")
+            ->orWhere('status', 'LIKE', "%{$keyword}%")
+            ->get()
+            ->map(function ($test) {
+                return [
+                    'id' => $test->id,
+                    'title' => $test->title,
+                    'status' => $test->status,
+                    'icon' => $test->icon,
+                    'icon_url' => $test->icon
+                        ? asset('storage/' . $test->icon)
+                        : asset('admin/images/no-image.png'),
+                ];
+            });
 
-    return response()->json([
-        'status' => true,
-        'data'   => $tests
-    ]);
-}
+        return response()->json([
+            'status' => true,
+            'data' => $tests
+        ]);
+    }
 
     public function index()
     {

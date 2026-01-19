@@ -1,6 +1,6 @@
 {{-- resources/views/admin/pages/gallery.blade.php --}}
 @extends("admin.layout.admin-master")
-@section("title", "Gallery | Diagnoedge")
+@section("title", "Gallery | Continuity Care")
 
 @section("content")
     <div class="content-body">
@@ -103,7 +103,7 @@
                             <div class="col-12">
                                 <label>Caption / Alt Text (Optional)</label>
                                 <input type="text" name="caption" class="form-control"
-                                    placeholder="e.g. Diagnoedge – Advanced Diagnostic Excellence">
+                                    placeholder="e.g. Continuity Care – Advanced Diagnostic Excellence">
                             </div>
                             <div class="col-md-6">
                                 <label>Status</label>

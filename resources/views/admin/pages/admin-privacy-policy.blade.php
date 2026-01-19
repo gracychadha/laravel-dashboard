@@ -1,6 +1,6 @@
 @extends("admin.layout.admin-master")
 
-@section("title", "Privacy Policy Content | Diagnoedge")
+@section("title", "Privacy Policy Content | Continuity Care")
 
 @section("content")
     <div class="content-body">
@@ -31,12 +31,12 @@
                             enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
-                            <div class="card-header d-flex justify-content-between align-items-center">
-                                <h5 class="mb-0"><i class="fas fa-info-circle"></i>Privacy Policy Content</h5>
+                            <div class="card-header d-flex justify-content-between align-items-center bg-theme-light">
+                                <h5 class="mb-0"><i class="fas fa-info-circle"></i>&nbsp; Privacy Policy Content</h5>
 
                                 {{-- <div class="form-check form-switch">
                                     <input class="form-check-input" type="checkbox" name="is_active" value="1" {{
-        old('is_active', $PrivacyPolicyContent->is_active) ? 'checked' : '' }}>
+                                        old('is_active', $PrivacyPolicyContent->is_active) ? 'checked' : '' }}>
                                     <label class="form-check-label">Enable Section</label>
                                 </div> --}}
                             </div>
@@ -77,8 +77,9 @@
                                         <div class="mb-4">
                                             <label class="form-label fw-bold">Primary Description <span
                                                     class="text-danger">*</span></label>
-                                            <textarea name="description" class="form-control summernote">{!! old('description', $PrivacyPolicyContent->description)  !!}</textarea>
-                                       
+                                            <textarea name="description"
+                                                class="form-control summernote">{!! old('description', $PrivacyPolicyContent->description)  !!}</textarea>
+
                                             @error('description')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
@@ -88,7 +89,7 @@
                                     </div>
                                 </div>
 
-                                <div class="text-end mt-4">
+                                <div class="text-start  mt-4">
                                     <button type="submit" class="btn btn-success btn-lg px-5">
                                         <i class="fas fa-save me-2"></i>Update
                                     </button>

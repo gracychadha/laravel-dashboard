@@ -1,6 +1,6 @@
 {{-- resources/views/admin/pages/parameter.blade.php --}}
 @extends("admin.layout.admin-master")
-@section("title", "Parameters | Diagnoedge")
+@section("title", "Parameters | Continuity Care")
 
 @section("content")
     <div class="content-body">
@@ -41,7 +41,7 @@
                     <div class="card">
                         <div class="card-body p-0">
                             <div class="table-responsive">
-                                <table class="table table-striped" id="example5"> 
+                                <table class="table table-striped" id="example5">
                                     <thead>
                                         <tr>
                                             <th>
@@ -64,18 +64,18 @@
                                         @forelse($parameters as $param)
                                             <tr>
                                                 <td>
-                                                     <div class="checkbox text-end align-self-center ms-2">
-                                                  
+                                                    <div class="checkbox text-end align-self-center ms-2">
+
                                                         <div class="form-check custom-checkbox ">
-                                                            <input type="checkbox" class="form-check-input checkItem"  value="{{ $param->id }}"
-                                                                required="">
+                                                            <input type="checkbox" class="form-check-input checkItem"
+                                                                value="{{ $param->id }}" required="">
                                                             <label class="form-check-label" for="checkbox"></label>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td>
                                                     @if($param->icon)
-                                                        <img src="{{ $param->icon ? asset('storage/' . $param->icon) : asset('assets/images/default.webp') }}"
+                                                        <img src="{{ $param->icon ? asset('storage/' . $param->icon) : asset('admin/images/default.webp') }}"
                                                             width="40" height="40" class="rounded border" alt="Icon">
                                                     @else
                                                         <div class="bg-light rounded d-flex align-items-center justify-content-center"
@@ -202,18 +202,18 @@
                     <table class="table table-bordered table-striped mb-0">
                         <tr>
                             <th>Icon:</th>
-                            <td >
+                            <td>
                                 @if($param->icon)
-                                    <img src="{{ $param->icon ? asset('storage/' . $param->icon) : asset('assets/images/default.webp') }}"
+                                    <img src="{{ $param->icon ? asset('storage/' . $param->icon) : asset('admin/images/default.webp') }}"
                                         width="80" class="rounded border">
                                 @else
                                     <em class="text-muted">No icon</em>
                                 @endif
                             </td>
-                       
+
                             <th>Title:</th>
                             <td>{{ $param->title }}</td>
-                           
+
                         </tr>
                         <tr>
                             <th>Price:</th>
@@ -228,9 +228,9 @@
                         <tr>
                             <th>Created:</th>
                             <td>{{ $param->created_at->format('d M Y, h:i A') }}</td>
-                       
+
                             <th>Related Tests:</th>
-                            <td >
+                            <td>
                                 @php
                                     $ids = collect($param->detail_id ?? []);
                                     $tests = \App\Models\Test::whereIn('id', $ids)->get();
@@ -246,15 +246,15 @@
                         </tr>
                         <tr>
                             <th>Description</th>
-                          
+
                             <td colspan="3">{!! $param->description ?: '<em class="text-muted">No description</em>' !!}</td>
                         </tr>
-                        <tr>  
+                        <tr>
                             <th>Overview</th>
-                              <td colspan="3">{!! $param->overview ?: '<em class="text-muted">No overview</em>' !!}</td>
+                            <td colspan="3">{!! $param->overview ?: '<em class="text-muted">No overview</em>' !!}</td>
                         </tr>
                     </table>
-                   
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
                     </div>
@@ -291,7 +291,7 @@
                                     <label>Package Icon</label>
                                     @if($param->icon)
                                         <div class="mb-2">
-                                            <img src="{{ $param->icon ? asset('storage/' . $param->icon) : asset('assets/images/default.webp') }}"
+                                            <img src="{{ $param->icon ? asset('storage/' . $param->icon) : asset('admin/images/default.webp') }}"
                                                 width="60" class="rounded border">
                                         </div>
                                     @endif
@@ -363,7 +363,7 @@
         });
 
 
-        
+
 
         $(document).on('click', '.delete-param', function () {
             const id = $(this).data('id');
@@ -453,69 +453,69 @@
             });
 
         });
-const searchInput = document.getElementById('testSearch');
-const tableBody = document.getElementById('testTableBody');
+        const searchInput = document.getElementById('testSearch');
+        const tableBody = document.getElementById('testTableBody');
         searchInput.addEventListener('keyup', function () {
 
-    let keyword = this.value.trim();
+            let keyword = this.value.trim();
 
-    fetch(`/parameters/search?keyword=${keyword}`)
-        .then(res => res.json())
-        .then(res => {
+            fetch(`/parameters/search?keyword=${keyword}`)
+                .then(res => res.json())
+                .then(res => {
 
-            let html = '';
+                    let html = '';
 
-            if (res.data.length > 0) {
+                    if (res.data.length > 0) {
 
-                res.data.forEach(item => {
-                    html += `
+                        res.data.forEach(item => {
+                            html += `
+                            <tr>
+                                <td>
+                                    <input type="checkbox" class="checkItem" value="${item.id}">
+                                </td>
+                               <td>
+        <img src="${item.icon_url}" alt="img" width="50" class="rounded">
+    </td>
+                                <td>${highlight(item.title, keyword)}</td>
+                                <td>${highlight(item.price, keyword)}</td>
+                                <td class="text-primary">${highlight(item.status, keyword)}</td>
+
+                                <td>
+
+
+                                    <a href="javascript:void(0)" data-id="${item.id}" 
+                                       class="editApp btn btn-sm btn-warning light">
+                                       <i class="fa fa-pencil"></i>
+                                    </a>
+
+                                    <a href="javascript:void(0)" data-id="${item.id}" 
+                                       class="deleteContact btn btn-sm btn-danger light">
+                                       <i class="fa fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        `;
+                        });
+
+                    } else {
+                        html = `
                         <tr>
-                            <td>
-                                <input type="checkbox" class="checkItem" value="${item.id}">
-                            </td>
-                           <td>
-    <img src="${item.icon_url}" alt="img" width="50" class="rounded">
-</td>
-                            <td>${highlight(item.title, keyword)}</td>
-                            <td>${highlight(item.price, keyword)}</td>
-                            <td class="text-primary">${highlight(item.status, keyword)}</td>
-                           
-                            <td>
-                               
-
-                                <a href="javascript:void(0)" data-id="${item.id}" 
-                                   class="editApp btn btn-sm btn-warning light">
-                                   <i class="fa fa-pencil"></i>
-                                </a>
-
-                                <a href="javascript:void(0)" data-id="${item.id}" 
-                                   class="deleteContact btn btn-sm btn-danger light">
-                                   <i class="fa fa-trash"></i>
-                                </a>
+                            <td colspan="6" class="text-center text-danger">
+                                No related search
                             </td>
                         </tr>
                     `;
+                    }
+
+                    tableBody.innerHTML = html;
                 });
-
-            } else {
-                html = `
-                    <tr>
-                        <td colspan="6" class="text-center text-danger">
-                            No related search
-                        </td>
-                    </tr>
-                `;
-            }
-
-            tableBody.innerHTML = html;
         });
-});
-function highlight(text, keyword) {
-    if (!keyword) return text;
+        function highlight(text, keyword) {
+            if (!keyword) return text;
 
-    const regex = new RegExp(`(${keyword})`, 'gi');
-    return text.replace(regex, `<mark>$1</mark>`);
-}
+            const regex = new RegExp(`(${keyword})`, 'gi');
+            return text.replace(regex, `<mark>$1</mark>`);
+        }
 
     </script>
 @endpush

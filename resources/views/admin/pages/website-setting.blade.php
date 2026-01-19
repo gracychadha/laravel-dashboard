@@ -1,5 +1,5 @@
 @extends("admin.layout.admin-master")
-@section("title", "Website Settings | Diagnoedge")
+@section("title", "Website Settings | Continuity Care")
 
 @section("content")
 <div class="content-body">
@@ -38,7 +38,7 @@
                     @method('PUT')
 
                     <div class="card mb-4">
-                        <div class="card-header">
+                        <div class="card-header bg-theme-light">
                             <h4 class="card-title">General Settings</h4>
                         </div>
                         <div class="card-body">
@@ -90,7 +90,7 @@
                     @method('PUT')
 
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header bg-theme-light">
                             <h4 class="card-title">Social Media Links</h4>
                         </div>
                         <div class="card-body">

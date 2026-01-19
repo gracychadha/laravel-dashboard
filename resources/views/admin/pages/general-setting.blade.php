@@ -1,5 +1,5 @@
 @extends("admin.layout.admin-master")
-@section("title", "General Settings | Diagnoedge")
+@section("title", "General Settings | Continuity Care")
 
 @section("content")
 <div class="content-body">
@@ -34,7 +34,7 @@
     <input type="hidden" name="captcha_type" value="cloudflare">
 
     <div class="card mb-4">
-        <div class="card-header d-flex justify-content-between align-items-center">
+        <div class="card-header d-flex justify-content-between align-items-center bg-theme-light">
             <h4 class="card-title mb-0">Cloudflare Turnstile</h4>
             <div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" name="cloudflare_status"
@@ -75,8 +75,8 @@
     <input type="hidden" name="captcha_type" value="google">
 
     <div class="card">
-        <div class="card-header d-flex justify-content-between align-items-center">
-            <h4 class="card-title mb-0">Google reCAPTCHA v3</h4>
+        <div class="card-header d-flex justify-content-between align-items-center bg-theme-light">
+            <h4 class="card-title mb-0">Google reCAPTCHA </h4>
             <div class="form-check form-switch">
                 <input class="form-check-input" type="checkbox" name="google_status"
                        {{ $google->google_active ? 'checked' : '' }}>

@@ -1,5 +1,5 @@
 @extends("admin.layout.admin-master")
-@section("title", "Blogs | Diagnoedge")
+@section("title", "Blogs | Continuity Care")
 
 @section("content")
     <div class="content-body">
@@ -13,8 +13,8 @@
 
             <div class="form-head d-flex mb-4 align-items-center justify-content-between">
                 <div class="input-group search-area w-25">
-                    <input type="text" id="searchInput" class="form-control" placeholder="Search blogs...">
-                    <span class="input-group-text"><i class="flaticon-381-search-2"></i></span>
+                    {{-- <input type="text" id="searchInput" class="form-control" placeholder="Search blogs...">
+                    <span class="input-group-text"><i class="flaticon-381-search-2"></i></span> --}}
                 </div>
                 <button class="btn btn-primary btn-rounded" data-bs-toggle="modal" data-bs-target="#addModal">
                     + Add Blog
@@ -37,7 +37,6 @@
                                     <th>Image</th>
                                     <th>Title</th>
                                     <th>Author</th>
-                                    {{-- <th>Categories</th> --}}
                                     <th>Published</th>
                                     <th>Status</th>
                                     <th>Actions</th>
@@ -59,11 +58,7 @@
                                         </td>
                                         <td><strong>{{ Str::limit($blog->title, 40) }}</strong></td>
                                         <td>{{ $blog->author }}</td>
-                                        {{-- <td>
-                                            @foreach($blog->categories as $cat)
-                                            <span class="badge bg-info me-1">{{ $cat->name }}</span>
-                                            @endforeach
-                                        </td> --}}
+                                       
                                         <td>{{ $blog->published_at?->format('d M Y') ?? '—' }}</td>
                                         <td>
                                             <span
@@ -108,7 +103,7 @@
             <form action="{{ route('blogs.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header bg-theme-light">
                         <h5>Add New Blog</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
@@ -116,7 +111,7 @@
                         <div class="row g-3">
                             <div class="col-md-8">
                                 <label>Title <span class="text-danger">*</span></label>
-                                <input type="text" name="title" class="form-control" required>
+                                <input type="text" name="title" placeholder="Blog Title" class="form-control" required>
                             </div>
                             <div class="col-md-4">
                                 <label>Published By <span class="text-danger">*</span></label>
@@ -151,10 +146,18 @@
                                 <label>Cover Image <span class="text-danger">*</span></label>
                                 <input type="file" name="image" class="form-control" accept="image/*" required>
                             </div>
+                            <div class="col-md-8">
+                                <label>Quote <span class="text-danger">*</span></label>
+                                <input type="text" name="quote" class="form-control" placeholder="Quote" required>
+                            </div>
 
                             <div class="col-col12">
                                 <label>Description <span class="text-danger">*</span></label>
                                 <textarea name="description" class="summernote" required></textarea>
+                            </div>
+                            <div class="col-col12">
+                                <label>Benefits <span class="text-danger">*</span></label>
+                                <textarea name="benefits" class="summernote" required></textarea>
                             </div>
                         </div>
                     </div>
@@ -184,7 +187,16 @@
 
                         <tr>
                             <th>Title :</th>
-                            <td colspan="3">{{ $blog->title }}</td>
+                            <td >{{ $blog->title }}</td>
+                             <th>Image :</th>
+                            <td >
+                                @if($blog->image)
+                                    <img src="{{ asset('storage/' . $blog->image) }}" class="img-fluid rounded"
+                                        style="max-height:100px;">
+                                @else
+                                    <em class="text-muted">No image uploaded</em>
+                                @endif
+                            </td>
                         </tr>
 
                         <tr>
@@ -213,25 +225,23 @@
                             </td>
                         </tr>
 
+                       
                         <tr>
-                            <th>Image :</th>
-                            <td colspan="3">
-                                @if($blog->image)
-                                    <img src="{{ asset('storage/' . $blog->image) }}" class="img-fluid rounded"
-                                        style="max-height:100px;">
-                                @else
-                                    <em class="text-muted">No image uploaded</em>
-                                @endif
-                            </td>
+                            <th>Description :</th>
+                            <td colspan="3">{!! $blog->description !!}</td>
                         </tr>
                         <tr>
-<th>Description :</th>
-<td colspan="3">{!! $blog->description !!}</td>
+                            <th>Benefits :</th>
+                            <td colspan="3">{!! $blog->benefits !!}</td>
+                        </tr>
+                        <tr>
+                            <th>Quote :</th>
+                             <td colspan="3">{{ $blog->quote }}</td>
                         </tr>
 
                     </table>
 
-                    
+
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
@@ -296,10 +306,17 @@
                                         <img src="{{ asset('storage/' . $blog->image) }}" width="100" class="mt-2 rounded">
                                     @endif
                                 </div>
-
+ <div class="col-md-8">
+                                    <label>Quote</label>
+                                    <input type="text" name="quote" value="{{ $blog->quote }}" class="form-control" required>
+                                </div>
                                 <div class="col-12">
                                     <label>Description</label>
                                     <textarea name="description" class="summernote">{!! $blog->description !!}</textarea>
+                                </div>
+                                <div class="col-12">
+                                    <label>Benefits</label>
+                                    <textarea name="benefits" class="summernote">{!! $blog->benefits !!}</textarea>
                                 </div>
                             </div>
                         </div>

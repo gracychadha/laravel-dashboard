@@ -14,7 +14,7 @@ class WhyChooseUsSectionController extends Controller
             ['id' => 1],
             [
                 'sub_title' => 'Why Choose Us?',
-                'main_title' => 'Why DiagnoEdge Labs?',
+                'main_title' => 'Why Continuity Care Labs?',
                 'description_1' => 'Default description...',
                 'big_card_value' => '10+',
                 'big_card_description' => 'Years of Excellence',
@@ -32,22 +32,22 @@ class WhyChooseUsSectionController extends Controller
     public function update(Request $request, WhyChooseUsSection $section)
     {
         $validated = $request->validate([
-            'sub_title'            => 'required|string|max:255',
-            'main_title'           => 'required|string|max:255',
-            'description_1'        => 'required|string',
-            'description_2'        => 'nullable|string',
-            'big_card_value'       => 'required|string|max:50',
+            'sub_title' => 'required|string|max:255',
+            'main_title' => 'required|string|max:255',
+            'description_1' => 'required|string',
+            'description_2' => 'nullable|string',
+            'big_card_value' => 'required|string|max:50',
             'big_card_description' => 'required|string|max:255',
-            'small_card_1_title'   => 'required|string|max:255',
-            'small_card_2_title'   => 'required|string|max:255',
-            'small_card_3_title'   => 'required|string|max:255',
-            'small_card_4_title'   => 'required|string|max:255',
-            'big_card_image'       => 'nullable|image|mimes:jpeg,png,jpg,svg,webp|max:2048',
-            'small_card_1_image'   => 'nullable|image|mimes:jpeg,png,jpg,svg,webp|max:2048',
-            'small_card_2_image'   => 'nullable|image|mimes:jpeg,png,jpg,svg,webp|max:2048',
-            'small_card_3_image'   => 'nullable|image|mimes:jpeg,png,jpg,svg,webp|max:2048',
-            'small_card_4_image'   => 'nullable|image|mimes:jpeg,png,jpg,svg,webp|max:2048',
-            'is_active'            => 'sometimes|in:1,0,on,off',
+            'small_card_1_title' => 'required|string|max:255',
+            'small_card_2_title' => 'required|string|max:255',
+            'small_card_3_title' => 'required|string|max:255',
+            'small_card_4_title' => 'required|string|max:255',
+            'big_card_image' => 'nullable|image|mimes:jpeg,png,jpg,svg,webp|max:2048',
+            'small_card_1_image' => 'nullable|image|mimes:jpeg,png,jpg,svg,webp|max:2048',
+            'small_card_2_image' => 'nullable|image|mimes:jpeg,png,jpg,svg,webp|max:2048',
+            'small_card_3_image' => 'nullable|image|mimes:jpeg,png,jpg,svg,webp|max:2048',
+            'small_card_4_image' => 'nullable|image|mimes:jpeg,png,jpg,svg,webp|max:2048',
+            'is_active' => 'sometimes|in:1,0,on,off',
         ]);
 
         // Handle Big Card Image

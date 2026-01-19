@@ -20,7 +20,7 @@ class AppointmentConfirmation extends Mailable
 
     public function build()
     {
-        return $this->subject('Your Appointment is Confirmed — Diagnoedge')
-            ->view('website.emails.appointment-confirmation'); 
+        return $this->subject('Your Appointment is Confirmed — Continuity Care')
+            ->view('website.emails.appointment-confirmation');
     }
 }

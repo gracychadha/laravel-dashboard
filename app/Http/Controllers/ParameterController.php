@@ -24,10 +24,10 @@ class ParameterController extends Controller
                     'title' => $parameters->title,
                     'status' => $parameters->status,
                     'icon' => $parameters->icon,
-                    'price'=>$parameters->price,
+                    'price' => $parameters->price,
                     'icon_url' => $parameters->icon
                         ? asset('storage/' . $parameters->icon)
-                        : asset('assets/images/no-image.png'),
+                        : asset('admin/images/no-image.png'),
                 ];
             });
 
