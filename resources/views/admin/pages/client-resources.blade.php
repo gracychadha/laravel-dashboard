@@ -1,5 +1,5 @@
 @extends("admin.layout.admin-master")
-@section("title", "Testimonials | Continuity Care")
+@section("title", "Client Resources Policy | Continuity Care")
 
 @section("content")
     <div class="content-body">
@@ -7,7 +7,7 @@
             <div class="page-titles">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Testimonials</li>
+                    <li class="breadcrumb-item active">Client Resources Policy</li>
                 </ol>
             </div>
 
@@ -17,7 +17,7 @@
                     <span class="input-group-text"><i class="flaticon-381-search-2"></i></span> --}}
                 </div>
                 <button class="btn btn-primary btn-rounded" data-bs-toggle="modal" data-bs-target="#addModal">
-                    + Add Testimonial
+                    + Add Policy
                 </button>
             </div>
 
@@ -40,46 +40,33 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Photo</th>
-                                    <th>Name</th>
-                                    <th>Designation</th>
+                                    <th>Policy Name</th>
                                     <th>Status</th>
                                     <th class="text-center">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse($testimonials as $testimonial)
+                                @forelse($ClientPolicy as $card)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>
-                                            @if($testimonial->image)
-                                                <img src="{{ asset('storage/' . $testimonial->image) }}" width="50"
-                                                    class="rounded-circle">
-                                            @else
-                                                <div class="bg-light rounded-circle d-flex align-items-center justify-content-center"
-                                                    style="width:50px;height:50px;">
-                                                    <i class="fas fa-user text-muted"></i>
-                                                </div>
-                                            @endif
-                                        </td>
-                                        <td><strong>{{ $testimonial->name }}</strong></td>
-                                        <td>{{ $testimonial->designation }}</td>
+
+                                        <td><strong>{{ $card->title }}</strong></td>
                                         <td>
                                             <span
-                                                class="badge light badge-{{ $testimonial->status == 'active' ? 'success' : 'danger' }}">
-                                                {{ ucfirst($testimonial->status) }}
+                                                class="badge light badge-{{ $card->status == 'active' ? 'success' : 'danger' }}">
+                                                {{ ucfirst($card->status) }}
                                             </span>
                                         </td>
                                         <td class="text-center">
                                             <button class="btn btn-sm btn-info light" data-bs-toggle="modal"
-                                                data-bs-target="#view{{ $testimonial->id }}">
+                                                data-bs-target="#view{{ $card->id }}">
                                                 <i class="fas fa-eye"></i>
                                             </button>
                                             <button class="btn btn-sm btn-warning light" data-bs-toggle="modal"
-                                                data-bs-target="#edit{{ $testimonial->id }}">
+                                                data-bs-target="#edit{{ $card->id }}">
                                                 <i class="fas fa-edit"></i>
                                             </button>
-                                            <form action="{{ route('testimonials.destroy', $testimonial) }}" method="POST"
+                                            <form action="{{ route('client-resources.destroy', $card) }}" method="POST"
                                                 class="d-inline">
                                                 @csrf @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-danger light delete-btn">
@@ -91,7 +78,7 @@
                                 @empty
                                     <tr>
                                         <td colspan="6" class="text-center py-5 text-muted">
-                                            No testimonials found. Click "+ Add Testimonial" to create one.
+                                            No Section Card found. Click "+ Add Policy" to create one.
                                         </td>
                                     </tr>
                                 @endforelse
@@ -105,34 +92,30 @@
 
     <!-- Add Modal -->
     <div class="modal fade" id="addModal">
-        <div class="modal-dialog custom-modal">
-            <form action="{{ route('testimonials.store') }}" method="POST" enctype="multipart/form-data">
+        <div class="modal-dialog custom-modal bg-theme-light">
+            <form action="{{ route('client-resource.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header bg-theme-light">
-                        <h5>Add New Testimonial</h5>
+                        <h5>Add New Policy</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body">
                         <div class="row g-3">
                             <div class="col-md-6">
-                                <label>Name <span class="text-danger">*</span></label>
-                                <input type="text" name="name" placeholder="Enter Testimonial Name" class="form-control"
-                                    required>
+                                <label>title <span class="text-danger">*</span></label>
+                                <input type="text" name="title" placeholder="Enter Title " class="form-control" required>
                             </div>
+
                             <div class="col-md-6">
-                                <label>Designation <span class="text-danger">*</span></label>
-                                <input type="text" name="designation" placeholder="Designation" class="form-control"
-                                    required>
-                            </div>
-                            <div class="col-md-6">
-                                <label>Photo <span class="text-danger">*</span></label>
+                                <label>Icon <span class="text-danger">(60*60)*</span></label>
                                 <input type="file" name="image" class="form-control" accept="image/*" required>
                             </div>
                             <div class="col-md-6">
-                                <label>Side Photo <span class="text-danger">*</span></label>
-                                <input type="file" name="photo" class="form-control" accept="image/*" required>
+                                <label>Pdf <span class="text-danger">*</span></label>
+                                <input type="file" name="pdf" class="form-control" accept="application/pdf" required>
                             </div>
+
                             <div class="col-md-6">
                                 <label>Status</label>
                                 <select name="status" class="form-control">
@@ -140,13 +123,9 @@
                                     <option value="inactive">Inactive</option>
                                 </select>
                             </div>
-                            <div class="col-md-6">
-                                <label>Quote<span class="text-danger">(Max Words:6-7)*</span></label>
-                                <input type="text" name="quote" placeholder="Best Services" class="form-control" required>
-                            </div>
                             <div class="col-12">
-                                <label>Message <span class="text-danger">*</span></label>
-                                <textarea name="message" class="form-control summernote" rows="4" required></textarea>
+                                <label>Description <span class="text-danger">*</span></label>
+                                <textarea name="description" class="form-control summernote" rows="4" required></textarea>
                             </div>
                         </div>
                     </div>
@@ -160,14 +139,14 @@
     </div>
 
     <!-- View & Edit Modals -->
-    @foreach($testimonials as $testimonial)
+    @foreach($ClientPolicy as $card)
         <!-- View Modal -->
-        <div class="modal fade" id="view{{ $testimonial->id }}" tabindex="-1">
+        <div class="modal fade" id="view{{ $card->id }}" tabindex="-1">
             <div class="modal-dialog custom-modal modal-centered">
                 <div class="modal-content">
 
                     <div class="modal-header">
-                        <h5 class="modal-title">Testimonial Details</h5>
+                        <h5 class="modal-title">Policy Details</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
 
@@ -175,51 +154,42 @@
                     <table class="table table-bordered table-striped mb-0">
 
                         <tr>
-                            <th>Name :</th>
-                            <td>{{ $testimonial->name }}</td>
+                            <th>Title :</th>
+                            <td>{{ $card->title }}</td>
 
                             <th>Status :</th>
                             <td>
-                                <span class="badge bg-{{ $testimonial->status == 'active' ? 'success' : 'danger' }}">
-                                    {{ ucfirst($testimonial->status) }}
+                                <span class="badge bg-{{ $card->status == 'active' ? 'success' : 'danger' }}">
+                                    {{ ucfirst($card->status) }}
                                 </span>
                             </td>
                         </tr>
 
-                        <tr>
-                            <th>Designation :</th>
-                            <td>
-                                {{ $testimonial->designation ?? '—' }}
-                            </td>
-                            <th>Quote</th>
-                            <td>
-                                {{ $testimonial->quote }}
-                            </td>
-                        </tr>
+
 
                         <tr>
                             <th>Image :</th>
                             <td>
-                                @if($testimonial->image)
-                                    <img src="{{ asset('storage/' . $testimonial->image) }}" width="120"
-                                        class="rounded-circle mb-2">
+                                @if($card->image)
+                                    <img src="{{ asset('storage/' . $card->image) }}" width="120" class=" mb-2">
                                 @else
                                     <em class="text-muted">No image uploaded</em>
                                 @endif
                             </td>
-                            <th>Side Image :</th>
+                            <th>Pdf :</th>
                             <td>
-                                @if($testimonial->image)
-                                    <img src="{{ asset('storage/' . $testimonial->image) }}" width="120"
-                                        class="rounded-circle mb-2">
+                                @if ($card->pdf)
+                                    <a href="{{ asset('storage/' . $card->pdf) }}" class="btn btn-primary btn-sm"
+                                        target="_blank">View</a>
                                 @else
-                                    <em class="text-muted">No image uploaded</em>
+                                    <em class="text-muted">NO Pdf uploaded</em>
                                 @endif
                             </td>
+
                         </tr>
                         <tr>
-                            <th>Message :</th>
-                            <td colspan="3">{!! $testimonial->message !!}</td>
+                            <th>Description :</th>
+                            <td colspan="3">{!! $card->description !!}</td>
                         </tr>
 
                     </table>
@@ -238,61 +208,50 @@
 
 
         <!-- Edit Modal -->
-        <div class="modal fade" id="edit{{ $testimonial->id }}">
+        <div class="modal fade" id="edit{{ $card->id }}">
             <div class="modal-dialog custom-modal">
-                <form action="{{ route('testimonials.update', $testimonial) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('client-resources.update', $card) }}" method="POST" enctype="multipart/form-data">
                     @csrf @method('PUT')
                     <div class="modal-content">
                         <div class="modal-header bg-theme-light">
-                            <h5>Edit Testimonial</h5>
+                            <h5>Edit section</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
                         <div class="modal-body">
                             <div class="row g-3">
                                 <div class="col-md-6">
-                                    <label>Name</label>
-                                    <input type="text" name="name" value="{{ $testimonial->name }}" class="form-control"
-                                        required>
+                                    <label>Title</label>
+                                    <input type="text" name="title" value="{{ $card->title }}" class="form-control" required>
                                 </div>
-                                <div class="col-md-6">
-                                    <label>Designation</label>
-                                    <input type="text" name="designation" value="{{ $testimonial->designation }}"
-                                        class="form-control" required>
-                                </div>
+
                                 <div class="col-md-6">
                                     <label>Change Photo</label>
                                     <input type="file" name="image" class="form-control" accept="image/*">
-                                    @if($testimonial->image)
-                                        <img src="{{ asset('storage/' . $testimonial->image) }}" width="80"
-                                            class="mt-2 rounded-circle">
+                                    @if($card->image)
+                                        <img src="{{ asset('storage/' . $card->image) }}" width="80" class="mt-2 rounded-circle">
                                     @endif
                                 </div>
+
                                 <div class="col-md-6">
-                                    <label>Change Side Photo</label>
-                                    <input type="file" name="photo" class="form-control" accept="image/*">
-                                    @if($testimonial->photo)
-                                        <img src="{{ asset('storage/' . $testimonial->photo) }}" width="120"
-                                            class="mt-2 ">
+                                    <label>Pdf <span class="text-danger">*</span></label>
+                                    <input type="file" name="pdf" class="form-control" accept="application/pdf" >
+                                    @if($card->pdf)
+                                        <a href="{{ asset('storage/'.$card->pdf) }}" class="text-danger btn mt-2 bg-theme-light"  target="_blank">View  uploaded File</a>
                                     @endif
-                                </div>
-                                <div class="col-md-6">
-                                    <label>Quote</label>
-                                    <input type="text" name="quote" value="{{ $testimonial->quote }}" class="form-control"
-                                        required>
                                 </div>
                                 <div class="col-md-6">
                                     <label>Status</label>
                                     <select name="status" class="form-control">
-                                        <option value="active" {{ $testimonial->status == 'active' ? 'selected' : '' }}>Active
+                                        <option value="active" {{ $card->status == 'active' ? 'selected' : '' }}>Active
                                         </option>
-                                        <option value="inactive" {{ $testimonial->status == 'inactive' ? 'selected' : '' }}>
+                                        <option value="inactive" {{ $card->status == 'inactive' ? 'selected' : '' }}>
                                             Inactive</option>
                                     </select>
                                 </div>
                                 <div class="col-12">
-                                    <label>Message</label>
-                                    <textarea name="message" class="form-control summernote" rows="4"
-                                        required>{{ $testimonial->message }}</textarea>
+                                    <label>Description</label>
+                                    <textarea name="description" class="form-control summernote" rows="4"
+                                        required>{{ $card->description }}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -326,8 +285,8 @@
                 e.preventDefault();
                 let form = $(this).closest('form');
                 Swal.fire({
-                    title: 'Delete Testimonial?',
-                    text: "This testimonial will be permanently deleted!",
+                    title: 'Delete Section?',
+                    text: "This Section Card will be permanently deleted!",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#d33',

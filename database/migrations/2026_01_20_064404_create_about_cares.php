@@ -1,13 +1,17 @@
 <?php
+
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    public function up()
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
     {
-        Schema::create('about_sections', function (Blueprint $table) {
+        Schema::create('about_cares', function (Blueprint $table) {
             $table->id();
             $table->string('sub_title')->default('About Us');
             $table->text('main_title');
@@ -15,18 +19,18 @@ return new class extends Migration
             $table->longText('description_2')->nullable();
             $table->string('image')->nullable();
             $table->string('icon_1')->nullable();
-            $table->string('icon_2')->nullable();
-            $table->string('feature_1_title');
-            $table->text('feature_1_description');
-            $table->string('feature_2_title');
-            $table->text('feature_2_description');
-            $table->boolean('is_active')->default(true);
+            $table->string('feature_1_title')->nullable();
+            $table->string('image_2')->nullable();
+            $table->boolean('is_active')->default(true);    
             $table->timestamps();
         });
     }
 
-    public function down()
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
     {
-        Schema::dropIfExists('about_sections');
+        Schema::dropIfExists('about_cares');
     }
 };

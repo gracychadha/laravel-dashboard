@@ -27,9 +27,7 @@ use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\CounterController;
 use App\Http\Controllers\SiteImagesController;
 use App\Http\Controllers\GalleryController;
-use App\Http\Controllers\AboutSectionController;
 use App\Http\Controllers\SliderImageController;
-use App\Http\Controllers\WhyChooseUsSectionController;
 use App\Http\Controllers\JobCareerController;
 use App\Http\Controllers\CorporateBenefitController;
 use App\Http\Controllers\CorporateServiceController;
@@ -48,20 +46,19 @@ use App\Models\PopularTests;
 use App\Http\Controllers\UserRegisterController;
 use App\Http\Controllers\JobCareerApplicationController;
 use App\Http\Controllers\PopularTestController;
+// fetch controller class to use in routes
 use App\Http\Controllers\StaffController;
+use App\Http\Controllers\AboutCareController;
+use App\Http\Controllers\ActAboutController;
+use App\Http\Controllers\HowWorkController;
+use App\Http\Controllers\WhyChooseSectionController;
+use App\Http\Controllers\ClientResourceController;
 
 
 
-
-// for search
-Route::get('/search-all', [SearchController::class, 'searchAll'])->name('search.all');
-
-
-
-
-// FOR FETCH DATA IN FRONTEND
-Route::get('/doctors', [DoctorController::class, 'frontendDoctors'])->name('doctors');
-Route::get('/', [GalleryController::class, 'frontendGallery'])->name('welcome');
+Route::get('/', function () {
+    return redirect('/admin-panel');
+});
 
 
 
@@ -246,18 +243,8 @@ Route::middleware('auth')->group(function () {
         ->name('blogs.destroy');
 
 
-    // ────────────── Testimonials ──────────────
-    Route::get('/testimonials', [TestimonialController::class, 'index'])
-        ->name('testimonials.index');
 
-    Route::post('/testimonials', [TestimonialController::class, 'store'])
-        ->name('testimonials.store');
 
-    Route::put('/testimonials/{testimonial}', [TestimonialController::class, 'update'])
-        ->name('testimonials.update');
-
-    Route::delete('/testimonials/{testimonial}', [TestimonialController::class, 'destroy'])
-        ->name('testimonials.destroy');
 
 
     // ────────────── FAQs ──────────────
@@ -317,9 +304,6 @@ Route::middleware('auth')->group(function () {
 
 
 
-    // ────────────── About Section ──────────────
-    Route::get('/about-section', [AboutSectionController::class, 'index'])->name('about-section.index');
-    Route::put('/about-section', [AboutSectionController::class, 'update'])->name('about-section.update');
 
 
     // ────────────── SLIDER IMAGES ──────────────
@@ -332,12 +316,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/sliderimage/{sliderImage}', [SliderImageController::class, 'destroy'])
         ->name('sliderimage.destroy');
 
-    // ────────────── WHY CHOOSE US SECTION ──────────────
-    Route::get('/whychooseus-section', [WhyChooseUsSectionController::class, 'index'])
-        ->name('whychooseus.section');
-
-    Route::put('/whychooseus-section/{section}', [WhyChooseUsSectionController::class, 'update'])
-        ->name('whychooseus.section.update');
 
 
     // ────────────── JOB CAREER (Job Openings) ──────────────
@@ -394,7 +372,6 @@ Route::middleware('auth')->group(function () {
         ->name('profile.password.update');
 
 
-    // ────────────── Roles & Permissions Page ──────────────    
     // Separate pages for Roles and Permissions
     Route::get('/roles', [RolePermissionController::class, 'rolesIndex'])
         ->name('roles.index');
@@ -426,7 +403,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/roles/{role}/permissions', [RolePermissionController::class, 'updateRolePermissions'])
         ->name('roles.permissions.update');
 
-    // ────────────── user page ──────────────   
+
     // User Management Routes
     Route::get('/users', [UserRegisterController::class, 'index'])
         ->name('admin-register.index');
@@ -605,7 +582,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin-subparameters/search', [SubparameterController::class, 'search']);
     Route::get('/health-risks/search', [HealthRiskController::class, 'search']);
 
-
+    // Dashboard Routes for admin panel
+    // For about section 
+    Route::get('/about-section', [AboutCareController::class, 'index'])->name('about-section.index');
+    Route::put('/about-section', [AboutCareController::class, 'update'])->name('about-section.update');
+    // FOr Act About
+    Route::get('/act-about-section', [ActAboutController::class, 'index'])->name('act-about-section.index');
+    Route::put('/act-about-section', [ActAboutController::class, 'update'])->name('act-about-section.update');
+    // For How we work
+    Route::get('/how-works', [HowWorkController::class, 'index'])->name('how-works.index');
+    Route::put('/how-works/{section}', [HowWorkController::class, 'update'])->name('how-works.update');
     // for staff crud
     Route::post('/staff/store', [StaffController::class, 'store'])->name('admin-staff.store');
     Route::get('/staff', [StaffController::class, 'index'])->name('admin-staff.index');
@@ -613,6 +599,21 @@ Route::middleware('auth')->group(function () {
     Route::post('/staff/update', [StaffController::class, 'update']);
     Route::delete('/staff/delete/{id}', [StaffController::class, 'delete']);
     Route::post('/staff/deleteSelected', [StaffController::class, 'deleteSelected']);
+    // For Why choose us section 
+    Route::get('/whychoose-section', [WhyChooseSectionController::class, 'index'])->name('whychoose-section.index');
+    Route::post('/whychoose-section', [WhyChooseSectionController::class, 'store'])->name('whychoose-section.store');
+    Route::put('/whychoose-section/{card}', [WhyChooseSectionController::class, 'update'])->name('whychoose-section.update');
+    Route::delete('/whychoose-section/{card}', [WhyChooseSectionController::class, 'destroy'])->name('whychoose-section.destroy');
+    // for testimonial
+    Route::get('/testimonials', [TestimonialController::class, 'index'])->name('testimonials.index');
+    Route::post('/testimonials', [TestimonialController::class, 'store'])->name('testimonials.store');
+    Route::put('/testimonials/{testimonial}', [TestimonialController::class, 'update'])->name('testimonials.update');
+    Route::delete('/testimonials/{testimonial}', [TestimonialController::class, 'destroy'])->name('testimonials.destroy');
+    // client resources policy
+    Route::get('/client-resources', [ClientResourceController::class, 'index'])->name('client-resources.index');
+    Route::post('/client-resources',[ClientResourceController::class , 'store'])->name('client-resource.store');
+    Route::put('client-resources/{card}' ,[ClientResourceController::class ,'update'])->name('client-resources.update');
+    Route::delete('/client-resource/{card}',[ClientResourceController::class,'destroy'])->name('client-resources.destroy');
 });
 
 

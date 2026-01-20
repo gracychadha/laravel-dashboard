@@ -17,7 +17,7 @@
                     <span class="input-group-text"><i class="flaticon-381-search-2"></i></span>
                 </div>
                 <button class="btn btn-primary btn-rounded" data-bs-toggle="modal" data-bs-target="#addModal">
-                    + Add Slider Image
+                    + Add Slider 
                 </button>
             </div>
 
@@ -36,7 +36,6 @@
                                     <th>#</th>
                                     <th>Image</th>
                                     <th>Status</th>
-                                    <th>Uploaded</th>
                                     <th class="text-center">Actions</th>
                                 </tr>
                             </thead>
@@ -54,7 +53,7 @@
                                                 {{ ucfirst($sliderImage->status) }}
                                             </span>
                                         </td>
-                                        <td>{{ $sliderImage->created_at->format('d M Y') }}</td>
+                                       
                                         <td class="text-center">
                                             <button class="btn btn-sm btn-warning light" data-bs-toggle="modal"
                                                 data-bs-target="#edit{{ $sliderImage->id }}">
@@ -90,8 +89,8 @@
             <form action="{{ route('sliderimage.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5>Add New Slider Image</h5>
+                    <div class="modal-header bg-theme-light">
+                        <h5>Add New Slider </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body">
@@ -99,7 +98,7 @@
                             <div class="col-md-8">
                                 <label>Slider Image <span class="text-danger">*</span></label>
                                 <input type="file" name="image" class="form-control" accept="image/*" required>
-                                <small class="text-muted">Best size: 1920x1080px | PNG, JPG</small>
+                                <small class="text-muted">Best size: 1920x681px | PNG, JPG</small>
                                 <!-- Adjust size as needed -->
                             </div>
                             <div class="col-md-4">
@@ -127,7 +126,7 @@
                 <form action="{{ route('sliderimage.update', $sliderImage) }}" method="POST" enctype="multipart/form-data">
                     @csrf @method('PUT')
                     <div class="modal-content">
-                        <div class="modal-header">
+                        <div class="modal-header bg-theme-light">
                             <h5>Edit Slider Image</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>

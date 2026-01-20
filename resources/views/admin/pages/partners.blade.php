@@ -90,7 +90,7 @@
             <form action="{{ route('partners.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header bg-theme-light">
                         <h5>Add New Partner Logo</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
@@ -112,7 +112,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Save Partner</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
                     </div>
                 </div>
             </form>
@@ -126,7 +126,7 @@
                 <form action="{{ route('partners.update', $partner) }}" method="POST" enctype="multipart/form-data">
                     @csrf @method('PUT')
                     <div class="modal-content">
-                        <div class="modal-header">
+                        <div class="modal-header bg-theme-light">
                             <h5>Edit Partner Logo</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
@@ -153,7 +153,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-primary">Update Partner</button>
+                            <button type="submit" class="btn btn-primary">Update</button>
                         </div>
                     </div>
                 </form>

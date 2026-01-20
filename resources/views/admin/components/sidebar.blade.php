@@ -40,7 +40,7 @@
                             </li>
                         @endcanany
 
-                        {{-- @canany(['manage-slider', 'manage-about', 'manage-why-choose-us', 'manage-accreditations',
+                        @canany(['manage-slider', 'manage-about', 'manage-why-choose-us', 'manage-accreditations',
                         'manage-gallery', 'manage-testimonials'])
                         <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Home Page</a>
                             <ul aria-expanded="false">
@@ -50,22 +50,16 @@
                                 @can('manage-about')
                                 <li><a href="{{ route('about-section.index') }}">About Us</a></li>
                                 @endcan
-                                @can('manage-why-choose-us')
-                                <li><a href="{{ route('whychooseus.section') }}">Why Choose Us</a></li>
-                                @endcan
-                                @can('manage-accreditations')
-                                <li><a href="{{ route('accreditations.index') }}">Accreditations</a></li>
-                                @endcan
-                                @can('manage-gallery')
-                                <li><a href="{{ route('gallery.index') }}">Gallery</a></li>
-                                @endcan
-                                @can('manage-gallery')
-                                <li><a href="{{ route('faqs.index') }}">Faq</a></li>
-                                @endcan
+                                <li><a href="{{ route('act-about-section.index') }}"> About Act Section</a></li>
+                                <li><a href="{{ route('how-works.index') }}">How We Works</a></li>
+                                <li><a href="{{ route('whychoose-section.index') }}">Why Choose Us</a></li>
+                               
                               
+                               
+
                             </ul>
                         </li>
-                        @endcanany --}}
+                        @endcanany
 
                         {{-- @canany(['manage-know-us', 'manage-counter', 'manage-what-makes-different'])
                         <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">About Us Page</a>
@@ -83,21 +77,7 @@
                         </li>
                         @endcanany
 
-                        @canany(['manage-partners', 'manage-partner-images', 'manage-why-partners'])
-                        <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Partner Page</a>
-                            <ul aria-expanded="false">
-                                @can('manage-partners')
-                                <li><a href="{{ route('admin-partner-about.index') }}">Our Partners</a></li>
-                                @endcan
-                                @can('manage-partner-images')
-                                <li><a href="{{ route('partners.index') }}">Partner Image</a></li>
-                                @endcan
-                                @can('manage-why-partners')
-                                <li><a href="{{ route('admin-why-partner.index') }}">Why Partners</a></li>
-                                @endcan
-                            </ul>
-                        </li>
-                        @endcanany
+
 
                         @canany(['manage-corporate-benefits', 'manage-corporate-services'])
                         <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Corporate Page</a>
@@ -110,22 +90,30 @@
                                 @endcan
                             </ul>
                         </li>
-                        @endcanany
+                        @endcanany--}}
+
 
                         @can('manage-job-career')
-                        <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Job Career</a>
-                            <ul aria-expanded="false">
-                                <li><a href="{{ route('jobcareer.index') }}">Add Vacancy</a></li>
-                            </ul>
-                        </li>
-                        @endcan --}}
+                            <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Job Career</a>
+                                <ul aria-expanded="false">
+                                    <li><a href="{{ route('jobcareer.index') }}">Add Vacancy</a></li>
+                                </ul>
+                            </li>
+                        @endcan
 
+                        @can('manage-partner-images')
+                            <li><a href="{{ route('partners.index') }}" aria-expanded="false">Partners</a></li>
+                        @endcan
                         @can('manage-testimonials')
                             <li><a href="{{ route('testimonials.index') }}" aria-expanded="false">Testimonials</a></li>
                         @endcan
                         @can('manage-gallery')
                             <li><a href="{{ route('faqs.index') }}" aria-expanded="false">Faq</a></li>
                         @endcan
+                       
+                            <li><a class="" href="{{ route('client-resources.index') }}" aria-expanded="false">Client Resources</a></li>
+                            <li><a class="" href="/" aria-expanded="false">Staff Resources</a></li>
+                       
                         @can('manage-privacy-policy')
                             <li><a class="" href="{{ route('admin-privacy-policy.index') }}" aria-expanded="false">Privacy
                                     Policy</a></li>
@@ -217,10 +205,12 @@
                     </a>
                 </div>
             </li>
-            <p class="p-3 text-center">
-                Admin Panel Version <span class="text-theme">1.0.0</span> <br>
-                Last Updated: <span class="text-theme">December , 2026 </span>
-            </p>
+            <div class=" mt-2">
+                <p class="p-2 text-center">
+                    Admin Panel Version <span class="text-theme">1.0.0</span> <br>
+                    Last Updated: <span class="text-theme">Dec, 2026 </span>
+                </p>
+            </div>
         </ul>
     </div>
 </div>

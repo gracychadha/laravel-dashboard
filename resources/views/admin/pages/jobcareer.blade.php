@@ -13,11 +13,11 @@
 
             <div class="form-head d-flex mb-3 mb-md-4 align-items-center justify-content-between">
                 <div class="input-group search-area w-25">
-                    <input type="text" class="form-control" placeholder="Search jobs..." id="searchInput">
-                    <span class="input-group-text"><i class="flaticon-381-search-2"></i></span>
+                    {{-- <input type="text" class="form-control" placeholder="Search jobs..." id="searchInput">
+                    <span class="input-group-text"><i class="flaticon-381-search-2"></i></span> --}}
                 </div>
                 <button class="btn btn-primary btn-rounded" data-bs-toggle="modal" data-bs-target="#addJobModal">
-                    + Add Job Opening
+                    + Add Job 
                 </button>
             </div>
 
@@ -108,8 +108,8 @@
             <form action="{{ route('jobcareer.store') }}" method="POST">
                 @csrf
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Add New Job Opening</h5>
+                    <div class="modal-header bg-theme-light">
+                        <h5 class="modal-title">Add New Job </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body">
@@ -247,8 +247,8 @@
                 <form action="{{ route('jobcareer.update', $job) }}" method="POST">
                     @csrf @method('PUT')
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Edit Job: {{ $job->title }}</h5>
+                        <div class="modal-header bg-theme-light">
+                            <h5 class="modal-title">Edit Job{{ $job->title }}</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
                         <div class="modal-body">
