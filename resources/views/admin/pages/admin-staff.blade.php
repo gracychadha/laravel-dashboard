@@ -212,8 +212,8 @@
     </div>
 
     {{-- VIEW Staff MODAL --}}
-    <div class="modal fade" id="viewModal" tabindex="-1">
-        <div class="modal-dialog modal-lg modal-centered">
+    <div class="modal fade show" id="viewModal" tabindex="-1">
+        <div class="modal-dialog custom-modal modal-centered">
             <div class="modal-content">
 
                 <div class="modal-header bg-theme-light">
@@ -221,7 +221,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
 
-                <table class="table table-bordered table-striped mb-0 ">
+                <table class="table table-bordered table-striped mb-0">
                     <tr>
                         <th>Name :</th>
                         <td id="v_name"></td>

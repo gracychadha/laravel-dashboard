@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\ClientResource;
+use App\Models\StaffResource;
 use Illuminate\Support\Facades\Storage;
-class ClientResourceController extends Controller
+class StaffResourceController extends Controller
 {
     //
+
     public function index()
     {
-        $ClientPolicy = ClientResource::latest()->get();
-        return view('admin.pages.client-resources', compact('ClientPolicy'));
+        $StaffPolicy = StaffResource::latest()->get();
+        return view('admin.pages.staff-resources', compact('StaffPolicy'));
     }
 
     public function store(request $request)
@@ -27,20 +28,20 @@ class ClientResourceController extends Controller
         $data = $request->all();
 
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('ClientPolicy', 'public');
+            $data['image'] = $request->file('image')->store('StaffPolicy', 'public');
         }
         // for pdf 
         if ($request->hasFile('pdf')) {
             $filename = time() . '_' . $request->file('pdf')->getClientOriginalName();
-            $data['pdf'] = $request->file('pdf')->storeAs('ClientPolicy/pdfs', $filename, 'public');
+            $data['pdf'] = $request->file('pdf')->storeAs('StaffPolicy/pdfs', $filename, 'public');
         }
 
 
-        ClientResource::create($data);
+        StaffResource::create($data);
 
         return back()->with('success', 'Policy  added successfully!');
     }
-    public function update(Request $request, ClientResource $ClientPolicy)
+    public function update(Request $request, StaffResource $StaffPolicy)
     {
         $request->validate([
             'title' => 'required|string|max:255',
@@ -59,26 +60,26 @@ class ClientResourceController extends Controller
 
         // IMAGE
         if ($request->hasFile('image')) {
-            if ($ClientPolicy->image) {
-                Storage::disk('public')->delete($ClientPolicy->image);
+            if ($StaffPolicy->image) {
+                Storage::disk('public')->delete($StaffPolicy->image);
             }
-            $data['image'] = $request->file('image')->store('ClientPolicy', 'public');
+            $data['image'] = $request->file('image')->store('StaffPolicy', 'public');
         }
 
         // PDF
         if ($request->hasFile('pdf')) {
-            if ($ClientPolicy->pdf) {
-                Storage::disk('public')->delete($ClientPolicy->pdf);
+            if ($StaffPolicy->pdf) {
+                Storage::disk('public')->delete($StaffPolicy->pdf);
             }
-            $data['pdf'] = $request->file('pdf')->store('ClientPolicy/pdfs', 'public');
+            $data['pdf'] = $request->file('pdf')->store('StaffPolicy/pdfs', 'public');
         }
 
-        $ClientPolicy->update($data);
+        $StaffPolicy->update($data);
 
         return back()->with('success', 'Policy Card updated successfully!');
     }
 
-    public function destroy(ClientResource $card)
+    public function destroy(StaffResource $card)
     {
         if ($card->image) {
             Storage::disk('public')->delete($card->image);
@@ -90,4 +91,3 @@ class ClientResourceController extends Controller
         return back()->with('success', 'Policy Card deleted successfully!');
     }
 }
-

@@ -41655,4 +41655,18 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 .bg-theme-light {
     background: #d6e1d9;
 }
+/* Modal table text wrap fix */
+#viewModal table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+#viewModal td, 
+#viewModal th {
+    word-wrap: break-word;
+    word-break: break-word;
+    white-space: normal;
+    vertical-align: top;
+}
+
 /*# sourceMappingURL=style.css.map */

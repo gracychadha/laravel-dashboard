@@ -21,7 +21,7 @@
             <div class="row">
                 @can('view-applications')
                     <div class="col-xl-3 col-xxl-3 col-sm-6">
-                        <a href="{{ route('admin-applications.index') }}">
+                        <a href="#">
                             <div class="card gradient-bx text-white bg-danger">
                                 <div class="card-body">
                                     <div class="media align-items-center">
@@ -68,12 +68,12 @@
                 @endcan
                 @can('manage-doctors')
                     <div class="col-xl-3 col-xxl-3 col-sm-6">
-                        <a href="{{ route('admin-doctors.index') }}">
+                        <a href="#">
                             <div class="card gradient-bx text-white bg-success">
                                 <div class="card-body">
                                     <div class="media align-items-center">
                                         <div class="media-body">
-                                            <p class="mb-1">Doctor</p>
+                                            <p class="mb-1">Staff</p>
                                             <div class="d-flex flex-wrap">
                                                 <h2 class="fs-40 font-w600 text-white mb-0 me-3">14</h2>
                                                 {{-- <h2 class="fs-40 font-w600 text-white mb-0 me-3">{{ $doctorCount }}</h2> --}}
@@ -115,7 +115,7 @@
                 @endcan
                 @can('view-contact-leads')
                     <div class="col-xl-3 col-xxl-3 col-sm-6">
-                        <a href="{{ route('admin-contact.index') }}">
+                        <a href="#">
                             <div class="card gradient-bx text-white bg-info">
                                 <div class="card-body">
                                     <div class="media align-items-center">
@@ -188,12 +188,12 @@
                 @can('view-appointments')
 
                     <div class="col-xl-3 col-xxl-3 col-sm-6">
-                        <a href="{{ route('admin-appointment.index') }}">
+                        <a href="#">
                             <div class="card gradient-bx text-white bg-secondary">
                                 <div class="card-body">
                                     <div class="media align-items-center">
                                         <div class="media-body">
-                                            <p class="mb-1">Appointments</p>
+                                            <p class="mb-1">Services</p>
                                             <div class="d-flex flex-wrap">
                                                 <h2 class="fs-40 font-w600 text-white mb-0 me-3">12</h2>
                                                 <div>
@@ -289,43 +289,43 @@
                 <div class="col-xl-9 col-xxl-8 col-lg-7">
                     <div class="card">
                         <div class="card-header border-0 pb-0">
-                            <h3 class="fs-20 mb-0 text-black">Top Rated Doctors</h3>
+                            <h3 class="fs-20 mb-0 text-black">Top Rated Staff</h3>
 
                             @can('manage-doctors')
-                                <a href="{{ route('admin-doctors.index') }}" class="text-primary font-w500">View more >></a>
+                                <a href="{{ route('admin-staff.index') }}" class="text-primary font-w500">View more >></a>
                             @endcan
                         </div>
                         <div class="card-body">
                             <div class="assigned-doctor owl-carousel align-items-center">
-                                @if($doctors->count() > 0)
+                                {{-- @if($doctors->count() > 0)
 
-                                    @foreach ($doctors as $doctor)
+                                    @foreach ($doctors as $doctor) --}}
                                         <div class="items">
                                             <div class="text-center">
-                                                <img src="{{ asset('uploads/' . $doctor->image) }}" alt="Doctor Image">
+                                                <img src="/images/doctors/1.jpg" alt="Doctor Image">
 
                                                 <div class="dr-star"><i class="las la-star"></i> 5</div>
 
                                                 <h5 class="fs-16 mb-1 font-w600">
                                                     <a class="text-black" href="#">
-                                                        Dr. {{ $doctor->fullname ?: 'No Name' }}
+                                                        Dr. Grace
                                                     </a>
                                                 </h5>
 
                                                 <span class="text-primary mb-2 d-block">
-                                                    {{ $doctor->designation ?: 'No Designation' }}
+                                                    Doctor
                                                 </span>
 
                                                 <p class="fs-12">
-                                                    Specialization: {{ $doctor->specialization ?: 'No Data' }}
+                                                    Specialization: XYZ
                                                 </p>
                                             </div>
                                         </div>
-                                    @endforeach
+                                    {{-- @endforeach
 
                                 @else
                                     <p class="text-center text-muted">No doctors present.</p>
-                                @endif
+                                @endif --}}
 
                             </div>
                         </div>
@@ -371,7 +371,7 @@
     </div>
 @endsection
 @push('scripts')
-    <script>
+    {{-- <script>
         var lineChart = function () {
             var options = {
                 series: [
@@ -545,7 +545,7 @@
             chartArea.render();
         }
 
-    </script>
+    </script> --}}
 
 
 @endpush

@@ -44,15 +44,14 @@
                         'manage-gallery', 'manage-testimonials'])
                         <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Home Page</a>
                             <ul aria-expanded="false">
-                                @can('manage-slider')
                                 <li><a href="{{ route('sliderimage.index') }}">Slider</a></li>
-                                @endcan
-                                @can('manage-about')
                                 <li><a href="{{ route('about-section.index') }}">About Us</a></li>
-                                @endcan
                                 <li><a href="{{ route('act-about-section.index') }}"> About Act Section</a></li>
                                 <li><a href="{{ route('how-works.index') }}">How We Works</a></li>
                                 <li><a href="{{ route('whychoose-section.index') }}">Why Choose Us</a></li>
+                                <li><a href="{{ route('about-two-section.index') }}">About Two </a></li>
+                                <li><a href="{{ route('case-study.index') }}">Case Study</a></li>
+                                <li><a href="{{ route('network.index') }}">Network Section</a></li>
                                
                               
                                
@@ -60,6 +59,22 @@
                             </ul>
                         </li>
                         @endcanany
+                         <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">About Page</a>
+                            <ul aria-expanded="false">
+                                <li><a href="{{ route('value.index') }}">Values Section</a></li>
+                                <li><a href="{{ route('about-faqs.index') }}">Faq Section</a></li>
+                               
+                            </ul>
+                        </li>
+                         <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Commitment Page</a>
+                            <ul aria-expanded="false">
+                                <li><a href="{{ route('commitment-one.index') }}">Commitment 1</a></li>
+                                <li><a href="{{ route('commitment-two.index') }}">Commitment 2</a></li>
+                                <li><a href="{{ route('commitment-three.index') }}">Commitment 3</a></li>
+                                <li><a href="{{ route('commitment-four.index') }}">Commitment 4</a></li>
+                               
+                            </ul>
+                        </li>
 
                         {{-- @canany(['manage-know-us', 'manage-counter', 'manage-what-makes-different'])
                         <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">About Us Page</a>
@@ -112,7 +127,7 @@
                         @endcan
                        
                             <li><a class="" href="{{ route('client-resources.index') }}" aria-expanded="false">Client Resources</a></li>
-                            <li><a class="" href="/" aria-expanded="false">Staff Resources</a></li>
+                            <li><a class="" href="{{ route('staff-resources.index') }}" aria-expanded="false">Staff Resources</a></li>
                        
                         @can('manage-privacy-policy')
                             <li><a class="" href="{{ route('admin-privacy-policy.index') }}" aria-expanded="false">Privacy

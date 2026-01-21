@@ -10,8 +10,6 @@ use App\Http\Controllers\HealthRiskController;
 use App\Http\Controllers\BlogCategoryController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\AboutSectionTwoController;
-use App\Models\Gallery;
-use App\Models\Doctor;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ParameterController;
 use App\Http\Controllers\ServiceController;
@@ -39,10 +37,6 @@ use App\Http\Controllers\RolePermissionController;
 use App\Http\Controllers\TermsConditionController;
 use App\Http\Controllers\SeoSettingController;
 use App\Http\Controllers\SeoPageController;
-use App\Http\Controllers\SearchController;
-use App\Models\Parameter;
-use App\Models\Test;
-use App\Models\PopularTests;
 use App\Http\Controllers\UserRegisterController;
 use App\Http\Controllers\JobCareerApplicationController;
 use App\Http\Controllers\PopularTestController;
@@ -53,7 +47,18 @@ use App\Http\Controllers\ActAboutController;
 use App\Http\Controllers\HowWorkController;
 use App\Http\Controllers\WhyChooseSectionController;
 use App\Http\Controllers\ClientResourceController;
-
+use App\Http\Controllers\StaffResourceController;
+use App\Http\Controllers\AboutTwoController;
+use App\Http\Controllers\CaseStudyController;
+use App\Http\Controllers\NetworkController;
+use App\Http\Controllers\ValueController;
+use App\Http\Controllers\AboutFaqController;
+use App\Http\Controllers\CommitmentOneController;
+use App\Http\Controllers\CommitmentTwoController;
+use App\Http\Controllers\CommitmentThreeController;
+use App\Http\Controllers\CommitmentFourController;
+// for model
+use App\Models\Staff;
 
 
 Route::get('/', function () {
@@ -66,85 +71,8 @@ Route::get('/', function () {
 
 
 Route::get('/dashboard', function () {
-
-    $totalLeads = \App\Models\Contact::count();
-    $appointmentLeads = \App\Models\Appointment::count();
-    $doctorCount = \App\Models\Doctor::count();
-    $applicationLeads = \App\Models\JobCareerApplication::count();
-    $doctors = \App\Models\Doctor::all();
-    $users = \App\Models\User::all();
-
-    // CONTACT LEADS MONTHLY
-    $contact = \App\Models\Contact::select(
-        DB::raw('COUNT(id) as count'),
-        DB::raw('MONTHNAME(created_at) as month'),
-        DB::raw('MONTH(created_at) as month_no')
-    )
-        ->groupBy('month', 'month_no')
-        ->orderBy('month_no')
-        ->get();
-
-    // APPOINTMENT MONTHLY
-    $appointment = \App\Models\Appointment::select(
-        DB::raw('COUNT(id) as count'),
-        DB::raw('MONTHNAME(created_at) as month'),
-        DB::raw('MONTH(created_at) as month_no')
-    )
-        ->groupBy('month', 'month_no')
-        ->orderBy('month_no')
-        ->get();
-
-    // JOB APPLICATION MONTHLY
-    $jobs = \App\Models\JobCareerApplication::select(
-        DB::raw('COUNT(id) as count'),
-        DB::raw('MONTHNAME(created_at) as month'),
-        DB::raw('MONTH(created_at) as month_no')
-    )
-        ->groupBy('month', 'month_no')
-        ->orderBy('month_no')
-        ->get();
-    // BOOKING APPLICATION MONTHLY
-    $booking = \App\Models\Booking::select(
-        DB::raw('COUNT(id) as count'),
-        DB::raw('MONTHNAME(created_at) as month'),
-        DB::raw('MONTH(created_at) as month_no')
-    )
-        ->groupBy('month', 'month_no')
-        ->orderBy('month_no')
-        ->get();
-    // DAILY APPOINTMENT COUNT FOR CURRENT MONTH
-    $dailyAppointments = \App\Models\Appointment::select(
-        DB::raw('COUNT(id) as count'),
-        DB::raw('DAY(created_at) as day')
-    )
-        ->whereMonth('created_at', now()->month)
-        ->whereYear('created_at', now()->year)
-        ->groupBy('day')
-        ->orderBy('day')
-        ->get();
-
-
-    // Extract labels (from one dataset — they are all sorted the same)
-    $months = $appointment->pluck('month');
-    // extract days + counts
-    $days = $dailyAppointments->pluck('day');
-    $dailyAppointmentData = $dailyAppointments->pluck('count');
-
-    return view('admin.pages.dashboard', [
-        'months' => $months,
-        'contactData' => $contact->pluck('count'),
-        'appointmentData' => $appointment->pluck('count'),
-        'jobData' => $jobs->pluck('count'),
-        'bookingData' => $booking->pluck('count'),
-        'totalLeads' => $totalLeads,
-        'appointmentLeads' => $appointmentLeads,
-        'applicationLeads' => $applicationLeads,
-        'doctorCount' => $doctorCount,
-        'days' => $days,
-        'dailyAppointmentData' => $dailyAppointmentData,
-        'doctors' => $doctors,
-        'users' => $users
-    ]);
+     $users = \App\Models\User::all();
+    return view('admin.pages.dashboard',[ 'users' => $users]);
 })->middleware('auth')->name('dashboard');
 
 
@@ -611,9 +539,46 @@ Route::middleware('auth')->group(function () {
     Route::delete('/testimonials/{testimonial}', [TestimonialController::class, 'destroy'])->name('testimonials.destroy');
     // client resources policy
     Route::get('/client-resources', [ClientResourceController::class, 'index'])->name('client-resources.index');
-    Route::post('/client-resources',[ClientResourceController::class , 'store'])->name('client-resource.store');
-    Route::put('client-resources/{card}' ,[ClientResourceController::class ,'update'])->name('client-resources.update');
-    Route::delete('/client-resource/{card}',[ClientResourceController::class,'destroy'])->name('client-resources.destroy');
+    Route::post('/client-resources', [ClientResourceController::class, 'store'])->name('client-resource.store');
+    Route::put('client-resources/{ClientPolicy}', [ClientResourceController::class, 'update'])->name('client-resources.update');
+    Route::delete('/client-resource/{card}', [ClientResourceController::class, 'destroy'])->name('client-resources.destroy');
+    // staff resources
+    Route::get('/staff-resources', [StaffResourceController::class, 'index'])->name('staff-resources.index');
+    Route::post('/staff-resources', [StaffResourceController::class, 'store'])->name('staff-resource.store');
+    Route::put('staff-resources/{StaffPolicy}', [StaffResourceController::class, 'update'])->name('staff-resources.update');
+    Route::delete('/staff-resource/{card}', [StaffResourceController::class, 'destroy'])->name('staff-resources.destroy');
+    // For about two section
+    Route::get('/about-two-section', [AboutTwoController::class, 'index'])->name('about-two-section.index');
+    Route::put('/about-two-section', [AboutTwoController::class, 'update'])->name('about-two-section.update');
+    // case study 
+    Route::get('/case-study', [CaseStudyController::class, 'index'])->name('case-study.index');
+    Route::post('/case-study', [CaseStudyController::class, 'store'])->name('case-study.store');
+    Route::put('case-study/{CaseStudy}', [CaseStudyController::class, 'update'])->name('case-study.update');
+    Route::delete('/case-study/{card}', [CaseStudyController::class, 'destroy'])->name('case-study.destroy');
+    // For How we work
+    Route::get('/network', [NetworkController::class, 'index'])->name('network.index');
+    Route::put('/network/{section}', [NetworkController::class, 'update'])->name('network.update');
+    // For Values Sction
+    Route::get('/value', [ValueController::class, 'index'])->name('value.index');
+    Route::put('/value/{section}', [ValueController::class, 'update'])->name('value.update');
+
+    // for about faq
+    Route::get('/about-faqs', [AboutFaqController::class, 'index'])->name('about-faqs.index');
+    Route::post('/about-faqs', [AboutFaqController::class, 'store'])->name('about-faqs.store');
+    Route::put('/about-faqs/{faq}', [AboutFaqController::class, 'update'])->name('about-faqs.update');
+    Route::delete('/about-faqs/{faq}', [AboutFaqController::class, 'destroy'])->name('about-faqs.destroy');
+    // for commitment
+    Route::get('/commitment-one', [CommitmentOneController::class, 'index'])->name('commitment-one.index');
+    Route::put('/commitment-one', [CommitmentOneController::class, 'update'])->name('commitment-one.update');
+    // for commitment two
+    Route::get('/commitment-two',[CommitmentTwoController::class, 'index'])->name('commitment-two.index');
+    Route::put('/commitment-two',[CommitmentTwoController::class,'update'])->name('commitment-two.update');
+    // for commitment three
+    Route::get('/commitment-three',[CommitmentThreeController::class, 'index'])->name('commitment-three.index');
+    Route::put('/commitment-three',[CommitmentThreeController::class,'update'])->name('commitment-three.update');
+    // for commitment Four
+    Route::get('/commitment-four',[CommitmentFourController::class, 'index'])->name('commitment-four.index');
+    Route::put('/commitment-four',[CommitmentFourController::class,'update'])->name('commitment-four.update');
 });
 
 

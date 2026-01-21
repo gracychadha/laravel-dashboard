@@ -1,5 +1,5 @@
 @extends("admin.layout.admin-master")
-@section("title", "Client Resources Policy | Continuity Care")
+@section("title", "Staff Resources Policy | Continuity Care")
 
 @section("content")
     <div class="content-body">
@@ -7,7 +7,7 @@
             <div class="page-titles">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                    <li class="breadcrumb-item active">Client Resources Policy</li>
+                    <li class="breadcrumb-item active">Staff Resources Policy</li>
                 </ol>
             </div>
 
@@ -46,7 +46,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse($ClientPolicy as $card)
+                                @forelse($StaffPolicy as $card)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
 
@@ -66,7 +66,7 @@
                                                 data-bs-target="#edit{{ $card->id }}">
                                                 <i class="fas fa-edit"></i>
                                             </button>
-                                            <form action="{{ route('client-resources.destroy', $card) }}" method="POST"
+                                            <form action="{{ route('staff-resources.destroy', $card) }}" method="POST"
                                                 class="d-inline">
                                                 @csrf @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-danger light delete-btn">
@@ -93,7 +93,7 @@
     <!-- Add Modal -->
     <div class="modal fade" id="addModal">
         <div class="modal-dialog custom-modal bg-theme-light">
-            <form action="{{ route('client-resource.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('staff-resource.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header bg-theme-light">
@@ -139,9 +139,9 @@
     </div>
 
     <!-- View & Edit Modals -->
-    @foreach($ClientPolicy as $ClientPolicy)
+    @foreach($StaffPolicy as $StaffPolicy)
         <!-- View Modal -->
-        <div class="modal fade" id="view{{ $ClientPolicy->id }}" tabindex="-1">
+        <div class="modal fade" id="view{{ $StaffPolicy->id }}" tabindex="-1">
             <div class="modal-dialog custom-modal modal-centered">
                 <div class="modal-content">
 
@@ -155,12 +155,12 @@
 
                         <tr>
                             <th>Title :</th>
-                            <td>{{ $ClientPolicy->title }}</td>
+                            <td>{{ $StaffPolicy->title }}</td>
 
                             <th>Status :</th>
                             <td>
-                                <span class="badge bg-{{ $ClientPolicy->status == 'active' ? 'success' : 'danger' }}">
-                                    {{ ucfirst($ClientPolicy->status) }}
+                                <span class="badge bg-{{ $StaffPolicy->status == 'active' ? 'success' : 'danger' }}">
+                                    {{ ucfirst($StaffPolicy->status) }}
                                 </span>
                             </td>
                         </tr>
@@ -170,16 +170,16 @@
                         <tr>
                             <th>Image :</th>
                             <td>
-                                @if($ClientPolicy->image)
-                                    <img src="{{ asset('storage/' . $ClientPolicy->image) }}" width="120" class=" mb-2">
+                                @if($StaffPolicy->image)
+                                    <img src="{{ asset('storage/' . $StaffPolicy->image) }}" width="120" class=" mb-2">
                                 @else
                                     <em class="text-muted">No image uploaded</em>
                                 @endif
                             </td>
                             <th>Pdf :</th>
                             <td>
-                                @if ($ClientPolicy->pdf)
-                                    <a href="{{ asset('storage/' . $ClientPolicy->pdf) }}" class="btn btn-primary btn-sm"
+                                @if ($StaffPolicy->pdf)
+                                    <a href="{{ asset('storage/' . $StaffPolicy->pdf) }}" class="btn btn-primary btn-sm"
                                         target="_blank">View</a>
                                 @else
                                     <em class="text-muted">NO Pdf uploaded</em>
@@ -189,7 +189,7 @@
                         </tr>
                         <tr>
                             <th>Description :</th>
-                            <td colspan="3">{!! $ClientPolicy->description !!}</td>
+                            <td colspan="3">{!! $StaffPolicy->description !!}</td>
                         </tr>
 
                     </table>
@@ -208,9 +208,10 @@
 
 
         <!-- Edit Modal -->
-        <div class="modal fade" id="edit{{ $ClientPolicy->id }}">
+        <div class="modal fade" id="edit{{ $StaffPolicy->id }}">
             <div class="modal-dialog custom-modal">
-                <form action="{{ route('client-resources.update', $ClientPolicy) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('staff-resources.update', $StaffPolicy) }}" method="POST"
+                    enctype="multipart/form-data">
                     @csrf @method('PUT')
                     <div class="modal-content">
                         <div class="modal-header bg-theme-light">
@@ -221,37 +222,40 @@
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <label>Title</label>
-                                    <input type="text" name="title" value="{{ $ClientPolicy->title }}" class="form-control" required>
+                                    <input type="text" name="title" value="{{ $StaffPolicy->title }}" class="form-control"
+                                        required>
                                 </div>
 
                                 <div class="col-md-6">
                                     <label>Change Photo</label>
                                     <input type="file" name="image" class="form-control" accept="image/*">
-                                    @if($ClientPolicy->image)
-                                        <img src="{{ asset('storage/' . $ClientPolicy->image) }}" width="80" class="mt-2 rounded-circle">
+                                    @if($StaffPolicy->image)
+                                        <img src="{{ asset('storage/' . $StaffPolicy->image) }}" width="80"
+                                            class="mt-2 rounded-circle">
                                     @endif
                                 </div>
 
                                 <div class="col-md-6">
                                     <label>Pdf <span class="text-danger">*</span></label>
-                                    <input type="file" name="pdf" class="form-control" accept="application/pdf" >
-                                    @if($ClientPolicy->pdf)
-                                        <a href="{{ asset('storage/'.$ClientPolicy->pdf) }}" class="text-danger btn mt-2 bg-theme-light"  target="_blank">View  uploaded File</a>
+                                    <input type="file" name="pdf" class="form-control" accept="application/pdf">
+                                    @if($StaffPolicy->pdf)
+                                        <a href="{{ asset('storage/' . $StaffPolicy->pdf) }}"
+                                            class="text-danger btn mt-2 bg-theme-light" target="_blank">View uploaded File</a>
                                     @endif
                                 </div>
                                 <div class="col-md-6">
                                     <label>Status</label>
                                     <select name="status" class="form-control">
-                                        <option value="active" {{ $ClientPolicy->status == 'active' ? 'selected' : '' }}>Active
+                                        <option value="active" {{ $StaffPolicy->status == 'active' ? 'selected' : '' }}>Active
                                         </option>
-                                        <option value="inactive" {{ $ClientPolicy->status == 'inactive' ? 'selected' : '' }}>
+                                        <option value="inactive" {{ $StaffPolicy->status == 'inactive' ? 'selected' : '' }}>
                                             Inactive</option>
                                     </select>
                                 </div>
                                 <div class="col-12">
                                     <label>Description</label>
                                     <textarea name="description" class="form-control summernote" rows="4"
-                                        required>{{ $ClientPolicy->description }}</textarea>
+                                        required>{{ $StaffPolicy->description }}</textarea>
                                 </div>
                             </div>
                         </div>
