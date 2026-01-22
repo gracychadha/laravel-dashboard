@@ -75,6 +75,7 @@
                                
                             </ul>
                         </li>
+                        
 
                         {{-- @canany(['manage-know-us', 'manage-counter', 'manage-what-makes-different'])
                         <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">About Us Page</a>
@@ -141,6 +142,35 @@
                     </ul>
                 </li>
             @endcanany
+            {{-- for who we serve --}}
+         
+                <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                        <i class="flaticon-381-briefcase"></i>  
+                        <span class="nav-text">Who we Serve</span>
+                    </a>
+                    <ul aria-expanded="false">
+                      
+                         <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">NDIS Page</a>
+                            <ul aria-expanded="false">
+                                <li><a href="{{ route('ndis-about.index') }}">About Section</a></li>
+                                <li><a href="{{ route('ndis-service.index') }}">Services Section</a></li>
+                                <li><a href="{{ route('ndis-support.index') }}">Who We Support </a></li>
+                            </ul>
+                        </li>
+                         <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Aged Care Page</a>
+                            <ul aria-expanded="false">
+                                <li><a href="{{ route('aged-about.index') }}">About Section</a></li>
+                                <li><a href="{{ route('aged-benefit.index') }}">Benefit Section</a></li>
+                                <li><a href="{{ route('aged-service.index') }}">Service Section </a></li>
+                            </ul>
+                        </li>
+                        <li><a class="" href="#" aria-expanded="false">NIISQ Page</a></li>
+                        <li><a class="" href="#" aria-expanded="false">DVA Page</a></li>
+  
+
+                    </ul>
+                </li>
+          
 
             @can('manage-profile')
                 <li><a href="{{ route('profile') }}" class="ai-icon" aria-expanded="false">

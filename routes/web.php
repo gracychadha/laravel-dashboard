@@ -57,8 +57,15 @@ use App\Http\Controllers\CommitmentOneController;
 use App\Http\Controllers\CommitmentTwoController;
 use App\Http\Controllers\CommitmentThreeController;
 use App\Http\Controllers\CommitmentFourController;
-// for model
-use App\Models\Staff;
+use App\Http\Controllers\NdisAboutController;
+use App\Http\Controllers\NdisServiceController;
+use App\Http\Controllers\NdisSupportController;
+use App\Http\Controllers\AgedAboutController;
+use App\Http\Controllers\AgedBenefitController;
+use App\Http\Controllers\AgedServiceController;
+use App\Http\Controllers\NiisqSectionController;
+use App\Http\Controllers\DvaSectionController;
+
 
 
 Route::get('/', function () {
@@ -71,8 +78,8 @@ Route::get('/', function () {
 
 
 Route::get('/dashboard', function () {
-     $users = \App\Models\User::all();
-    return view('admin.pages.dashboard',[ 'users' => $users]);
+    $users = \App\Models\User::all();
+    return view('admin.pages.dashboard', ['users' => $users]);
 })->middleware('auth')->name('dashboard');
 
 
@@ -571,14 +578,38 @@ Route::middleware('auth')->group(function () {
     Route::get('/commitment-one', [CommitmentOneController::class, 'index'])->name('commitment-one.index');
     Route::put('/commitment-one', [CommitmentOneController::class, 'update'])->name('commitment-one.update');
     // for commitment two
-    Route::get('/commitment-two',[CommitmentTwoController::class, 'index'])->name('commitment-two.index');
-    Route::put('/commitment-two',[CommitmentTwoController::class,'update'])->name('commitment-two.update');
+    Route::get('/commitment-two', [CommitmentTwoController::class, 'index'])->name('commitment-two.index');
+    Route::put('/commitment-two', [CommitmentTwoController::class, 'update'])->name('commitment-two.update');
     // for commitment three
-    Route::get('/commitment-three',[CommitmentThreeController::class, 'index'])->name('commitment-three.index');
-    Route::put('/commitment-three',[CommitmentThreeController::class,'update'])->name('commitment-three.update');
+    Route::get('/commitment-three', [CommitmentThreeController::class, 'index'])->name('commitment-three.index');
+    Route::put('/commitment-three', [CommitmentThreeController::class, 'update'])->name('commitment-three.update');
     // for commitment Four
-    Route::get('/commitment-four',[CommitmentFourController::class, 'index'])->name('commitment-four.index');
-    Route::put('/commitment-four',[CommitmentFourController::class,'update'])->name('commitment-four.update');
+    Route::get('/commitment-four', [CommitmentFourController::class, 'index'])->name('commitment-four.index');
+    Route::put('/commitment-four', [CommitmentFourController::class, 'update'])->name('commitment-four.update');
+    // for ndis about section 
+    Route::get('/ndis-about', [NdisAboutController::class, 'index'])->name('ndis-about.index');
+    Route::put('/ndis-about', [NdisAboutController::class, 'update'])->name('ndis-about.update');
+    // for ndis service section 
+    Route::get('/ndis-service', [NdisServiceController::class, 'index'])->name('ndis-service.index');
+    Route::put('/ndis-service', [NdisServiceController::class, 'update'])->name('ndis-service.update');
+    // for support 
+    Route::get('/ndis-support', [NdisSupportController::class, 'index'])->name('ndis-support.index');
+    Route::put('/ndis-support',[NdisSupportController::class,'update'])->name('ndis-support.update');
+    // for aged care sections
+    Route::get('/aged-about',[AgedAboutController::class,'index'])->name('aged-about.index');
+    Route::put('/aged-about',[AgedAboutController::class,'update'])->name('aged-about.update');
+    // for aged benefits
+    ROute::get('/aged-benefit',[AgedBenefitController::class,'index'])->name('aged-benefit.index');
+    Route::put('/aged-benefit',[AgedBenefitController::class,'update'])->name('aged-benefit.update');
+    // for aged services
+    Route::get('/aged-service',[AgedServiceController::class,'index'])->name('aged-service.index');
+    Route::put('/aged-service/{section}',[AgedServiceController::class,'update'])->name('aged-service.update');
+    // for niisq page
+    Route::get('/niisq-page',[NiisqSectionController::class,'index'])->name('niisq-page.index');
+    Route::put('/niisq-page',[NiisqSectionController::class,'update'])->name('niisq-page.update');
+    // for dva page
+    Route::get('/dva-page',[DvaSectionController::class,'index'])->name('dva-page.index');
+    Route::put('/dva-page',[DvaSectionController::class,'update'])->name('dva-page.update');
 });
 
 
