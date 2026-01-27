@@ -23,9 +23,7 @@
                         <span class="nav-text">CMS</span>
                     </a>
                     <ul aria-expanded="false">
-                        {{-- @can('manage-ads')
-                        <li><a class="" href="{{ route('site-images.index') }}" aria-expanded="false">Ads & Popup</a></li>
-                        @endcan --}}
+                       
 
                         @canany(['manage-blog-categories', 'manage-blogs'])
                             <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Blogs</a>
@@ -75,39 +73,6 @@
                                
                             </ul>
                         </li>
-                        
-
-                        {{-- @canany(['manage-know-us', 'manage-counter', 'manage-what-makes-different'])
-                        <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">About Us Page</a>
-                            <ul aria-expanded="false">
-                                @can('manage-know-us')
-                                <li><a href="{{ route('about-section-two.index') }}">Know Us Better</a></li>
-                                @endcan
-                                @can('manage-counter')
-                                <li><a href="{{ route('counters.index') }}">Counter</a></li>
-                                @endcan
-                                @can('manage-what-makes-different')
-                                <li><a href="{{ route('admin-about-makes.index') }}">What Makes Us Different</a></li>
-                                @endcan
-                            </ul>
-                        </li>
-                        @endcanany
-
-
-
-                        @canany(['manage-corporate-benefits', 'manage-corporate-services'])
-                        <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Corporate Page</a>
-                            <ul aria-expanded="false">
-                                @can('manage-corporate-benefits')
-                                <li><a href="{{ route('admin-corporate.index') }}">Benefits</a></li>
-                                @endcan
-                                @can('manage-corporate-services')
-                                <li><a href="{{ route('admin-corporate-service.index') }}">Services</a></li>
-                                @endcan
-                            </ul>
-                        </li>
-                        @endcanany--}}
-
 
                         @can('manage-job-career')
                             <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Job Career</a>
@@ -144,33 +109,110 @@
             @endcanany
             {{-- for who we serve --}}
          
-                <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                        <i class="flaticon-381-briefcase"></i>  
-                        <span class="nav-text">Who we Serve</span>
-                    </a>
-                    <ul aria-expanded="false">
-                      
-                         <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">NDIS Page</a>
-                            <ul aria-expanded="false">
-                                <li><a href="{{ route('ndis-about.index') }}">About Section</a></li>
-                                <li><a href="{{ route('ndis-service.index') }}">Services Section</a></li>
-                                <li><a href="{{ route('ndis-support.index') }}">Who We Support </a></li>
-                            </ul>
-                        </li>
-                         <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Aged Care Page</a>
-                            <ul aria-expanded="false">
-                                <li><a href="{{ route('aged-about.index') }}">About Section</a></li>
-                                <li><a href="{{ route('aged-benefit.index') }}">Benefit Section</a></li>
-                                <li><a href="{{ route('aged-service.index') }}">Service Section </a></li>
-                            </ul>
-                        </li>
-                        <li><a class="" href="#" aria-expanded="false">NIISQ Page</a></li>
-                        <li><a class="" href="#" aria-expanded="false">DVA Page</a></li>
-  
+            
+            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="flaticon-381-briefcase"></i>  
+                    <span class="nav-text">Who we Serve</span>
+                </a>
+                <ul aria-expanded="false">
+                  
+                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">NDIS Page</a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{ route('ndis-about.index') }}">About Section</a></li>
+                            <li><a href="{{ route('ndis-service.index') }}">Services Section</a></li>
+                            <li><a href="{{ route('ndis-support.index') }}">Who We Support </a></li>
+                        </ul>
+                    </li>
+                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Aged Care Page</a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{ route('aged-about.index') }}">About Section</a></li>
+                            <li><a href="{{ route('aged-benefit.index') }}">Benefit Section</a></li>
+                            <li><a href="{{ route('aged-service.index') }}">Service Section </a></li>
+                        </ul>
+                    </li>
+                    <li><a class="" href="{{ route('niisq-page.index') }}" aria-expanded="false">NIISQ Page</a></li>
+                    <li><a class="" href="{{ route('dva-page.index') }}" aria-expanded="false">DVA Page</a></li>
 
-                    </ul>
-                </li>
-          
+
+                </ul>
+            </li>
+            <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                    <i class="flaticon-381-briefcase"></i>  
+                    <span class="nav-text"> Our Services</span>
+                </a>
+                <ul aria-expanded="false">
+                  
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Home Care</a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{ route('home-care-support.index') }}">Who we support</a></li>
+                            <li><a href="{{ route('home-care-about.index') }}">About Section</a></li>
+                            <li><a href="{{ route('home-care-service.index') }}">Services Section</a></li>
+                            <li><a href="{{ route('home-care-difference.index') }}">Home Care Differences</a></li>
+                            <li><a href="{{ route('home-care-community.index') }}">Commitment Section</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Community Participation</a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{ route('community-about.index') }}">About Section</a></li>
+                            <li><a href="{{ route('community-benefit.index') }}">Benefits Section</a></li>
+                            <li><a href="{{ route('community-approach.index') }}">Approach Section</a></li>
+                            <li><a href="{{ route('community-service.index') }}">Services Section</a></li>
+                            {{-- <li><a href="">Support Section</a></li> --}}
+                            <li><a href="{{ route('community-activity.index') }}">Activities Section</a></li>
+                            <li><a href="{{ route('community-planning.index') }}">Planning Section</a></li>
+                            <li><a href="{{ route('community-how-works.index') }}">Work Section</a></li>
+                            <li><a href="{{ route('community-eligibility-faqs.index') }}">Eligibility Section</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Supported Independent Living</a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{ route('SIL-about.index') }}">About Section</a></li>
+                            {{-- <li><a href="">Service Section--</a></li> --}}
+                            <li><a href="{{ route('support-apply.index') }}">Apply Section</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Care Coordination </a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{ route('care-coordination-about.index') }}">About Section</a></li>
+                            <li><a href="{{ route('care-coordination-faqs.index') }}">FAQ Section</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Community Nursing </a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{ route('community-nursing-about.index') }}">About Section</a></li>
+                            <li><a href="{{ route('community-nursing-service.index') }}">Services Section</a></li>
+                            <li><a href="{{ route('community-nursing-act.index') }}">Act Section</a></li>
+                            <li><a href="{{ route('community-nursing-faqs.index') }}">FAQ Section</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Allied Health </a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{ route('allied-health-about.index') }}">About Section</a></li>
+                            <li><a href="{{ route('allied-health-support.index') }}">Support Section</a></li>
+                            <li><a href="{{ route('allied-health-service.index') }}">Services Section</a></li>
+                            <li><a href="{{ route('allied-health-faqs.index') }}">FAQ Section</a></li>
+                            <li><a href="{{ route('allied-health-journey.index') }}">Journey Section</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Plan Management </a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{ route('plan-management-benefit.index') }}">Why Choose Section</a></li>
+                            <li><a href="{{ route('plan-management-about.index') }}">About Section</a></li>
+                            <li><a href="{{ route('plan-management-faqs.index') }}">FAQ Section</a></li>
+                        </ul>
+                    </li>
+                    <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Support Coordination </a>
+                        <ul aria-expanded="false">
+                            <li><a href="{{ route('support-care-about.index') }}">About Section</a></li>
+                            <li><a href="{{ route('support-coordination-plan.index') }}">How it support Section</a></li>
+                            <li><a href="{{ route('support-coordination-service.index') }}">Service Section</a></li>
+                            <li><a href="{{ route('support-coordination-benefit.index') }}">Benefit Section</a></li>
+                            <li><a href="{{ route('support-coordination-faqs.index') }}">Faq Section</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </li>
 
             @can('manage-profile')
                 <li><a href="{{ route('profile') }}" class="ai-icon" aria-expanded="false">

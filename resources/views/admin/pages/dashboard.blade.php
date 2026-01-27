@@ -321,6 +321,69 @@
                                                 </p>
                                             </div>
                                         </div>
+                                        <div class="items">
+                                            <div class="text-center">
+                                                <img src="/images/doctors/1.jpg" alt="Doctor Image">
+
+                                                <div class="dr-star"><i class="las la-star"></i> 5</div>
+
+                                                <h5 class="fs-16 mb-1 font-w600">
+                                                    <a class="text-black" href="#">
+                                                        Dr. Grace
+                                                    </a>
+                                                </h5>
+
+                                                <span class="text-primary mb-2 d-block">
+                                                    Doctor
+                                                </span>
+
+                                                <p class="fs-12">
+                                                    Specialization: XYZ
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="items">
+                                            <div class="text-center">
+                                                <img src="/images/doctors/1.jpg" alt="Doctor Image">
+
+                                                <div class="dr-star"><i class="las la-star"></i> 5</div>
+
+                                                <h5 class="fs-16 mb-1 font-w600">
+                                                    <a class="text-black" href="#">
+                                                        Dr. Grace
+                                                    </a>
+                                                </h5>
+
+                                                <span class="text-primary mb-2 d-block">
+                                                    Doctor
+                                                </span>
+
+                                                <p class="fs-12">
+                                                    Specialization: XYZ
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="items">
+                                            <div class="text-center">
+                                                <img src="/images/doctors/1.jpg" alt="Doctor Image">
+
+                                                <div class="dr-star"><i class="las la-star"></i> 5</div>
+
+                                                <h5 class="fs-16 mb-1 font-w600">
+                                                    <a class="text-black" href="#">
+                                                        Dr. Grace
+                                                    </a>
+                                                </h5>
+
+                                                <span class="text-primary mb-2 d-block">
+                                                    Doctor
+                                                </span>
+
+                                                <p class="fs-12">
+                                                    Specialization: XYZ
+                                                </p>
+                                            </div>
+                                        </div>
                                     {{-- @endforeach
 
                                 @else

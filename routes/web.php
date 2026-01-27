@@ -65,7 +65,40 @@ use App\Http\Controllers\AgedBenefitController;
 use App\Http\Controllers\AgedServiceController;
 use App\Http\Controllers\NiisqSectionController;
 use App\Http\Controllers\DvaSectionController;
-
+use App\Http\Controllers\HomeCareServiceController;
+use App\Http\Controllers\HomeCareAboutController;
+use App\Http\Controllers\HomeCare2ServiceController;
+use App\Http\Controllers\HomeCareDifferenceController;
+use App\Http\Controllers\HomeCareCommunityController;
+use App\Http\Controllers\SupportCoordinationAboutController;
+use App\Http\Controllers\SupportCoordinationPlanController;
+use App\Http\Controllers\SupportCoordinationServiceController;
+use App\Http\Controllers\SupportCoordinationBenefitController;
+use App\Http\Controllers\SupportCoordinationFaqController;
+use App\Http\Controllers\PlanManagementFaqController;
+use App\Http\Controllers\PlanManagementAboutController;
+use App\Http\Controllers\PlanManagementBenefitController;
+use App\Http\Controllers\AlliedHealthAboutController;
+use App\Http\Controllers\CommunityNursingAboutController;
+use App\Http\Controllers\CareCoordinationAboutController;
+use App\Http\Controllers\IndependentAboutController;
+use App\Http\Controllers\CommunityAboutController;
+use App\Http\Controllers\AliiedFaqController;
+use App\Http\Controllers\CommunityNursingFaqController;
+use App\Http\Controllers\CareFaqController;
+use App\Http\Controllers\AlliedHealthSupportController;
+use App\Http\Controllers\AlliedHealthJourneyController;
+use App\Http\Controllers\AlliedHealthServiceController;
+use App\Http\Controllers\CommunityNursingServiceController;
+use App\Http\Controllers\CommunityNursingActController;
+use App\Http\Controllers\SupportApplySectionController;
+use App\Http\Controllers\CommunityEligibilityFaqController;
+use App\Http\Controllers\CommunityWorkController;
+use App\Http\Controllers\CommunityPlanningController;
+use App\Http\Controllers\CommunityActivityController;
+use App\Http\Controllers\CommunityBenefitController;
+use App\Http\Controllers\CommunityApproachSectionController;
+use App\Http\Controllers\CommunityServiceController;
 
 
 Route::get('/', function () {
@@ -508,15 +541,6 @@ Route::middleware('auth')->group(function () {
 
 
 
-    Route::get('/appointments/search', [AppointmentController::class, 'search']);
-    Route::get('/contacts/search', [ContactController::class, 'search']);
-    Route::get('/applications/search', [JobCareerApplicationController::class, 'search']);
-    Route::get('/booking-lead/search', [BookingController::class, 'search']);
-    Route::get('/tests/search', [TestController::class, 'search']);
-    Route::get('/parameters/search', [ParameterController::class, 'search']);
-    Route::get('/admin-subparameters/search', [SubparameterController::class, 'search']);
-    Route::get('/health-risks/search', [HealthRiskController::class, 'search']);
-
     // Dashboard Routes for admin panel
     // For about section 
     Route::get('/about-section', [AboutCareController::class, 'index'])->name('about-section.index');
@@ -594,22 +618,163 @@ Route::middleware('auth')->group(function () {
     Route::put('/ndis-service', [NdisServiceController::class, 'update'])->name('ndis-service.update');
     // for support 
     Route::get('/ndis-support', [NdisSupportController::class, 'index'])->name('ndis-support.index');
-    Route::put('/ndis-support',[NdisSupportController::class,'update'])->name('ndis-support.update');
+    Route::put('/ndis-support', [NdisSupportController::class, 'update'])->name('ndis-support.update');
     // for aged care sections
-    Route::get('/aged-about',[AgedAboutController::class,'index'])->name('aged-about.index');
-    Route::put('/aged-about',[AgedAboutController::class,'update'])->name('aged-about.update');
+    Route::get('/aged-about', [AgedAboutController::class, 'index'])->name('aged-about.index');
+    Route::put('/aged-about', [AgedAboutController::class, 'update'])->name('aged-about.update');
     // for aged benefits
-    ROute::get('/aged-benefit',[AgedBenefitController::class,'index'])->name('aged-benefit.index');
-    Route::put('/aged-benefit',[AgedBenefitController::class,'update'])->name('aged-benefit.update');
+    Route::get('/aged-benefit', [AgedBenefitController::class, 'index'])->name('aged-benefit.index');
+    Route::put('/aged-benefit', [AgedBenefitController::class, 'update'])->name('aged-benefit.update');
     // for aged services
-    Route::get('/aged-service',[AgedServiceController::class,'index'])->name('aged-service.index');
-    Route::put('/aged-service/{section}',[AgedServiceController::class,'update'])->name('aged-service.update');
+    Route::get('/aged-service', [AgedServiceController::class, 'index'])->name('aged-service.index');
+    Route::put('/aged-service/{section}', [AgedServiceController::class, 'update'])->name('aged-service.update');
     // for niisq page
-    Route::get('/niisq-page',[NiisqSectionController::class,'index'])->name('niisq-page.index');
-    Route::put('/niisq-page',[NiisqSectionController::class,'update'])->name('niisq-page.update');
+    Route::get('/niisq-page', [NiisqSectionController::class, 'index'])->name('niisq-page.index');
+    Route::put('/niisq-page', [NiisqSectionController::class, 'update'])->name('niisq-page.update');
     // for dva page
-    Route::get('/dva-page',[DvaSectionController::class,'index'])->name('dva-page.index');
-    Route::put('/dva-page',[DvaSectionController::class,'update'])->name('dva-page.update');
+    Route::get('/dva-page', [DvaSectionController::class, 'index'])->name('dva-page.index');
+    Route::put('/dva-page', [DvaSectionController::class, 'update'])->name('dva-page.update');
+    // For Home care support
+    Route::get('/home-care-support', [HomeCareServiceController::class, 'index'])->name('home-care-support.index');
+    Route::put('/home-care-support/{section}', [HomeCareServiceController::class, 'update'])->name('home-care-support.update');
+    // for ndis about section 
+    Route::get('/home-care-about', [HomeCareAboutController::class, 'index'])->name('home-care-about.index');
+    Route::put('/home-care-about', [HomeCareAboutController::class, 'update'])->name('home-care-about.update');
+    // For Home care2 services 
+    Route::get('/home-care-service', [HomeCare2ServiceController::class, 'index'])->name('home-care-service.index');
+    Route::post('/home-care-service', [HomeCare2ServiceController::class, 'store'])->name('home-care-service.store');
+    Route::put('/home-care-service/{card}', [HomeCare2ServiceController::class, 'update'])->name('home-care-service.update');
+    Route::delete('/home-care-service/{card}', [HomeCare2ServiceController::class, 'destroy'])->name('home-care-service.destroy');
+    // home care
+    Route::get('/home-care-difference', [HomeCareDifferenceController::class, 'index'])->name('home-care-difference.index');
+    Route::put('/home-care-difference/{section}', [HomeCareDifferenceController::class, 'update'])->name('home-care-difference.update');
+
+    // for home care community
+    Route::get('/home-care-community', [HomeCareCommunityController::class, 'index'])->name('home-care-community.index');
+    Route::post('/home-care-community', [HomeCareCommunityController::class, 'store'])->name('home-care-community.store');
+    Route::put('/home-care-community/{card}', [HomeCareCommunityController::class, 'update'])->name('home-care-community.update');
+    Route::delete('/home-care-community/{card}', [HomeCareCommunityController::class, 'destroy'])->name('home-care-community.destroy');
+    // for support coordination about section 
+    Route::get('/support-care-about', [SupportCoordinationAboutController::class, 'index'])->name('support-care-about.index');
+    Route::put('/support-care-about', [SupportCoordinationAboutController::class, 'update'])->name('support-care-about.update');
+    // support coordination plan
+    Route::get('/support-coordination-plan', [SupportCoordinationPlanController::class, 'index'])->name('support-coordination-plan.index');
+    Route::post('/support-coordination-plan', [SupportCoordinationPlanController::class, 'store'])->name('support-coordination-plan.store');
+    Route::put('/support-coordination-plan/{card}', [SupportCoordinationPlanController::class, 'update'])->name('support-coordination-plan.update');
+    Route::delete('/support-coordination-plan/{card}', [SupportCoordinationPlanController::class, 'destroy'])->name('support-coordination-plan.destroy');
+    // For support coordination service
+    Route::get('/support-coordination-service', [SupportCoordinationServiceController::class, 'index'])->name('support-coordination-service.index');
+    Route::post('/support-coordination-service', [SupportCoordinationServiceController::class, 'store'])->name('support-coordination-service.store');
+    Route::put('/support-coordination-service/{card}', [SupportCoordinationServiceController::class, 'update'])->name('support-coordination-service.update');
+    Route::delete('/support-coordination-service/{card}', [SupportCoordinationServiceController::class, 'destroy'])->name('support-coordination-service.destroy');
+    // support benefit
+    Route::get('/support-coordination-benefit', [SupportCoordinationBenefitController::class, 'index'])->name('support-coordination-benefit.index');
+    Route::put('/support-coordination-benefit', [SupportCoordinationBenefitController::class, 'update'])->name('support-coordination-benefit.update');
+
+    // for support faq
+    Route::get('/support-coordination-faqs', [SupportCoordinationFaqController::class, 'index'])->name('support-coordination-faqs.index');
+    Route::post('/support-coordination-faqs', [SupportCoordinationFaqController::class, 'store'])->name('support-coordination-faqs.store');
+    Route::put('/support-coordination-faqs/{faq}', [SupportCoordinationFaqController::class, 'update'])->name('support-coordination-faqs.update');
+    Route::delete('/support-coordination-faqs/{faq}', [SupportCoordinationFaqController::class, 'destroy'])->name('support-coordination-faqs.destroy');
+    // for Plan Management faq
+    Route::get('/plan-management-faqs', [PlanManagementFaqController::class, 'index'])->name('plan-management-faqs.index');
+    Route::post('/plan-management-faqs', [PlanManagementFaqController::class, 'store'])->name('plan-management-faqs.store');
+    Route::put('/plan-management-faqs/{faq}', [PlanManagementFaqController::class, 'update'])->name('plan-management-faqs.update');
+    Route::delete('/plan-management-faqs/{faq}', [PlanManagementFaqController::class, 'destroy'])->name('plan-management-faqs.destroy');
+    // plan management about
+    Route::get('/plan-management-about', [PlanManagementAboutController::class, 'index'])->name('plan-management-about.index');
+    Route::post('/plan-management-about', [PlanManagementAboutController::class, 'store'])->name('plan-management-about.store');
+    Route::put('/plan-management-about/{card}', [PlanManagementAboutController::class, 'update'])->name('plan-management-about.update');
+    Route::delete('/plan-management-about/{card}', [PlanManagementAboutController::class, 'destroy'])->name('plan-management-about.destroy');
+    // benefit
+    Route::get('/plan-management-benefit', [PlanManagementBenefitController::class, 'index'])->name('plan-management-benefit.index');
+    Route::put('/plan-management-benefit/{section}', [PlanManagementBenefitController::class, 'update'])->name('plan-management-benefit.update');
+
+    // for allied health about
+    Route::get('/allied-health-about', [AlliedHealthAboutController::class, 'index'])->name('allied-health-about.index');
+    Route::put('/allied-health-about', [AlliedHealthAboutController::class, 'update'])->name('allied-health-about.update');
+    // for community nursing about
+    Route::get('/community-nursing-about', [CommunityNursingAboutController::class, 'index'])->name('community-nursing-about.index');
+    Route::put('/community-nursing-about', [CommunityNursingAboutController::class, 'update'])->name('community-nursing-about.update');
+    // for care coordination about
+    Route::get('/care-coordination-about', action: [CareCoordinationAboutController::class, 'index'])->name('care-coordination-about.index');
+    Route::put('/care-coordination-about', [CareCoordinationAboutController::class, 'update'])->name('care-coordination-about.update');
+    // for SIL about
+    Route::get('/SIL-about', action: [IndependentAboutController::class, 'index'])->name('SIL-about.index');
+    Route::put('/SIL-about', [IndependentAboutController::class, 'update'])->name('SIL-about.update');
+    // for community service
+    Route::get('/community-about', action: [CommunityAboutController::class, 'index'])->name('community-about.index');
+    Route::put('/community-about', [CommunityAboutController::class, 'update'])->name('community-about.update');
+    // for allied health faq section
+    Route::get('/allied-health-faqs', [AliiedFaqController::class, 'index'])->name('allied-health-faqs.index');
+    Route::post('/allied-health-faqs', [AliiedFaqController::class, 'store'])->name('allied-health-faqs.store');
+    Route::put('/allied-health-faqs/{faq}', [AliiedFaqController::class, 'update'])->name('allied-health-faqs.update');
+    Route::delete('/allied-health-faqs/{faq}', [AliiedFaqController::class, 'destroy'])->name('allied-health-faqs.destroy');
+    // for Community nursing faq section
+    Route::get('/community-nursing-faqs', [CommunityNursingFaqController::class, 'index'])->name('community-nursing-faqs.index');
+    Route::post('/community-nursing-faqs', [CommunityNursingFaqController::class, 'store'])->name('community-nursing-faqs.store');
+    Route::put('/community-nursing-faqs/{faq}', [CommunityNursingFaqController::class, 'update'])->name('community-nursing-faqs.update');
+    Route::delete('/community-nursing-faqs/{faq}', [CommunityNursingFaqController::class, 'destroy'])->name('community-nursing-faqs.destroy');
+    // for care coordination faq section
+    Route::get('/care-coordination-faqs', [CareFaqController::class, 'index'])->name('care-coordination-faqs.index');
+    Route::post('/care-coordination-faqs', [CareFaqController::class, 'store'])->name('care-coordination-faqs.store');
+    Route::put('/care-coordination-faqs/{faq}', [CareFaqController::class, 'update'])->name('care-coordination-faqs.update');
+    Route::delete('/care-coordination-faqs/{faq}', [CareFaqController::class, 'destroy'])->name('care-coordination-faqs.destroy');
+    // for allied health support
+    Route::get('/allied-health-support', [AlliedHealthSupportController::class, 'index'])->name('allied-health-support.index');
+    Route::put('/allied-health-support', [AlliedHealthSupportController::class, 'update'])->name('allied-health-support.update');
+    // for allied health journey
+    Route::get('/allied-health-journey', [AlliedHealthJourneyController::class, 'index'])->name('allied-health-journey.index');
+    Route::put('/allied-health-journey', [AlliedHealthJourneyController::class, 'update'])->name('allied-health-journey.update');
+    // for allied health services
+    Route::get('/allied-health-service', [AlliedHealthServiceController::class, 'index'])->name('allied-health-service.index');
+    Route::post('/allied-health-service', [AlliedHealthServiceController::class, 'store'])->name('allied-health-service.store');
+    Route::put('/allied-health-service/{card}', [AlliedHealthServiceController::class, 'update'])->name('allied-health-service.update');
+    Route::delete('/allied-health-service/{card}', [AlliedHealthServiceController::class, 'destroy'])->name('allied-health-service.destroy');
+    // for community nursing services
+    Route::get('/community-nursing-service', [CommunityNursingServiceController::class, 'index'])->name('community-nursing-service.index');
+    Route::post('/community-nursing-service', [CommunityNursingServiceController::class, 'store'])->name('community-nursing-service.store');
+    Route::put('/community-nursing-service/{card}', [CommunityNursingServiceController::class, 'update'])->name('community-nursing-service.update');
+    Route::delete('/community-nursing-service/{card}', [CommunityNursingServiceController::class, 'destroy'])->name('community-nursing-service.destroy');
+
+    // for community nursing act
+    Route::get('/community-nursing-act', [CommunityNursingActController::class, 'index'])->name('community-nursing-act.index');
+    Route::put('/community-nursing-act', [CommunityNursingActController::class, 'update'])->name('community-nursing-act.update');
+
+    // for support apply
+    Route::get('/support-apply', action: [SupportApplySectionController::class, 'index'])->name('support-apply.index');
+    Route::put('/support-apply', [SupportApplySectionController::class, 'update'])->name('support-apply.update');
+    // for community eligibility faq
+    Route::get('/community-eligibility-faqs', [CommunityEligibilityFaqController::class, 'index'])->name('community-eligibility-faqs.index');
+    Route::post('/community-eligibility-faqs', [CommunityEligibilityFaqController::class, 'store'])->name('community-eligibility-faqs.store');
+    Route::put('/community-eligibility-faqs/{faq}', [CommunityEligibilityFaqController::class, 'update'])->name('community-eligibility-faqs.update');
+    Route::delete('/community-eligibility-faqs/{faq}', [CommunityEligibilityFaqController::class, 'destroy'])->name('community-eligibility-faqs.destroy');
+    // For community How we work
+    Route::get('/community-how-works', [CommunityWorkController::class, 'index'])->name('community-how-works.index');
+    Route::put('/community-how-works/{section}', [CommunityWorkController::class, 'update'])->name('community-how-works.update');
+    // for community plannings
+    Route::get('/community-planning', [CommunityPlanningController::class, 'index'])->name('community-planning.index');
+    Route::put('/community-planning', [CommunityPlanningController::class, 'update'])->name('community-planning.update');
+    // for community activity
+    Route::get('/community-activity', [CommunityActivityController::class, 'index'])->name('community-activity.index');
+    Route::put('/community-activity', [CommunityActivityController::class, 'update'])->name('community-activity.update');
+    // for community benefit
+    Route::get('/community-benefit', [CommunityBenefitController::class, 'index'])->name('community-benefit.index');
+    Route::put('/community-benefit/{section}', [CommunityBenefitController::class, 'update'])->name('community-benefit.update');
+    // for community approach
+    Route::get('/community-approach', [CommunityApproachSectionController::class, 'index'])->name('community-approach.index');
+    Route::put('/community-approach', [CommunityApproachSectionController::class, 'update'])->name('community-approach.update');
+    // for community service
+    Route::get('/community-approach', [CommunityApproachSectionController::class, 'index'])->name('community-approach.index');
+    Route::put('/community-approach', [CommunityApproachSectionController::class, 'update'])->name('community-approach.update');
+    // community services
+    Route::get('/community-service', [CommunityServiceController::class, 'index'])->name('community-service.index');
+    Route::post('/community-service', [CommunityServiceController::class, 'store'])->name('community-service.store');
+    Route::put('/community-service/{card}', [CommunityServiceController::class, 'update'])->name('community-service.update');
+    Route::delete('/community-service/{card}', [CommunityServiceController::class, 'destroy'])->name('community-service.destroy');
+
+
+
 });
 
 
