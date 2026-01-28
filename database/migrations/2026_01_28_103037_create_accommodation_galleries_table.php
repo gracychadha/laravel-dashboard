@@ -10,24 +10,21 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('packages', function (Blueprint $table) {
+        Schema::create('accommodation_galleries', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('slug');
             $table->string('image')->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');
-            $table->longText('description')->nullable();
-            $table->unsignedBigInteger('subparameter_id')->nullable();
+            $table->json('service_id')->nullable();
             $table->timestamps();
         });
     }
-
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('packages');
+        Schema::dropIfExists('accommodation_galleries');
     }
 };

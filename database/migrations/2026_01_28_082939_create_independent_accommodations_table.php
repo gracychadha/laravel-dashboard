@@ -10,24 +10,24 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('packages', function (Blueprint $table) {
+        Schema::create('independent_accommodations', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('slug');
+            $table->string('sub_title')->nullable();
             $table->string('image')->nullable();
+            $table->string('slug')->unique();
+            $table->text('description')->nullable();
+            $table->longText('overview')->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');
-            $table->longText('description')->nullable();
-            $table->unsignedBigInteger('subparameter_id')->nullable();
             $table->timestamps();
         });
     }
-
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('packages');
+        Schema::dropIfExists('independent_accommodations');
     }
 };

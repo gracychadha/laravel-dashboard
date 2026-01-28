@@ -137,7 +137,7 @@
                 </ul>
             </li>
             <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
-                    <i class="flaticon-381-briefcase"></i>  
+                    <i class="flaticon-381-settings"></i>
                     <span class="nav-text"> Our Services</span>
                 </a>
                 <ul aria-expanded="false">
@@ -157,7 +157,7 @@
                             <li><a href="{{ route('community-benefit.index') }}">Benefits Section</a></li>
                             <li><a href="{{ route('community-approach.index') }}">Approach Section</a></li>
                             <li><a href="{{ route('community-service.index') }}">Services Section</a></li>
-                            {{-- <li><a href="">Support Section</a></li> --}}
+                            <li><a href="{{ route('community-support.index') }}">Support Section</a></li>
                             <li><a href="{{ route('community-activity.index') }}">Activities Section</a></li>
                             <li><a href="{{ route('community-planning.index') }}">Planning Section</a></li>
                             <li><a href="{{ route('community-how-works.index') }}">Work Section</a></li>
@@ -167,7 +167,8 @@
                     <li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Supported Independent Living</a>
                         <ul aria-expanded="false">
                             <li><a href="{{ route('SIL-about.index') }}">About Section</a></li>
-                            {{-- <li><a href="">Service Section--</a></li> --}}
+                            <li><a href="{{ route('independent-accommodation.index') }}">Service Section</a></li>
+                            <li><a href="{{ route('accommodation-gallery.index') }}">Gallery(accommodation)</a></li>
                             <li><a href="{{ route('support-apply.index') }}">Apply Section</a></li>
                         </ul>
                     </li>

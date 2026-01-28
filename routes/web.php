@@ -99,6 +99,10 @@ use App\Http\Controllers\CommunityActivityController;
 use App\Http\Controllers\CommunityBenefitController;
 use App\Http\Controllers\CommunityApproachSectionController;
 use App\Http\Controllers\CommunityServiceController;
+use App\Http\Controllers\CommunitySupportController;
+use App\Http\Controllers\IndependentAccommodationController;
+use App\Http\Controllers\AccommodationGalleryController;
+use App\Http\Controllers\AccomodationFaqController;
 
 
 Route::get('/', function () {
@@ -772,7 +776,44 @@ Route::middleware('auth')->group(function () {
     Route::post('/community-service', [CommunityServiceController::class, 'store'])->name('community-service.store');
     Route::put('/community-service/{card}', [CommunityServiceController::class, 'update'])->name('community-service.update');
     Route::delete('/community-service/{card}', [CommunityServiceController::class, 'destroy'])->name('community-service.destroy');
-
+    // community services
+    Route::get('/community-support', [CommunitySupportController::class, 'index'])->name('community-support.index');
+    Route::post('/community-support', [CommunitySupportController::class, 'store'])->name('community-support.store');
+    Route::put('/community-support/{card}', [CommunitySupportController::class, 'update'])->name('community-support.update');
+    Route::delete('/community-support/{card}', [CommunitySupportController::class, 'destroy'])->name('community-support.destroy');
+    // for support service 
+    Route::get('/independent-accommodation', [IndependentAccommodationController::class, 'index'])
+        ->name('independent-accommodation.index');
+    Route::post('/independent-accommodation', [IndependentAccommodationController::class, 'store'])
+        ->name('independent-accommodation.store');
+    Route::put('/independent-accommodation/{card}', [IndependentAccommodationController::class, 'update'])
+        ->name('independent-accommodation.update');
+    Route::delete('/independent-accommodation/{card}', [IndependentAccommodationController::class, 'destroy'])
+        ->name('independent-accommodation.destroy');
+    Route::post('/independent-accommodation/delete-selected', [IndependentAccommodationController::class, 'deleteSelected'])
+        ->name('independent-accommodation.delete-selected');
+    // for gallery
+    Route::get('/accommodation-gallery', [AccommodationGalleryController::class, 'index'])
+        ->name('accommodation-gallery.index');
+    Route::post('/accommodation-gallery', [AccommodationGalleryController::class, 'store'])
+        ->name('accommodation-gallery.store');
+    Route::put('/accommodation-gallery/{card}', [AccommodationGalleryController::class, 'update'])
+        ->name('accommodation-gallery.update');
+    Route::delete('/accommodation-gallery/{card}', [AccommodationGalleryController::class, 'destroy'])
+        ->name('accommodation-gallery.destroy');
+    Route::post('/accommodation-gallery/delete-selected', [AccommodationGalleryController::class, 'deleteSelected'])
+        ->name('accommodation-gallery.delete-selected');
+    // for gallery
+    Route::get('/accommodation-faq', [AccomodationFaqController::class, 'index'])
+        ->name('accommodation-faq.index');
+    Route::post('/accommodation-faq', [AccomodationFaqController::class, 'store'])
+        ->name('accommodation-faq.store');
+    Route::put('/accommodation-faq/{card}', [AccomodationFaqController::class, 'update'])
+        ->name('accommodation-faq.update');
+    Route::delete('/accommodation-faq/{card}', [AccomodationFaqController::class, 'destroy'])
+        ->name('accommodation-faq.destroy');
+    Route::post('/accommodation-faq/delete-selected', [AccomodationFaqController::class, 'deleteSelected'])
+        ->name('accommodation-faq.delete-selected');
 
 
 });
