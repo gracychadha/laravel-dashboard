@@ -169,6 +169,7 @@
                             <li><a href="{{ route('SIL-about.index') }}">About Section</a></li>
                             <li><a href="{{ route('independent-accommodation.index') }}">Service Section</a></li>
                             <li><a href="{{ route('accommodation-gallery.index') }}">Gallery(accommodation)</a></li>
+                            <li><a href="{{ route('accommodation-faq.index') }}">Faq(accommodation)</a></li>
                             <li><a href="{{ route('support-apply.index') }}">Apply Section</a></li>
                         </ul>
                     </li>
