@@ -22,7 +22,7 @@
                         text: 'Profile updated successfully!',
                         timer: 4000,
                         timerProgressBar: true,
-                    });
+                        });
                 </script>
             @endif
 
