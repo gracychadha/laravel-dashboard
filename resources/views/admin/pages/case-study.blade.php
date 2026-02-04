@@ -122,7 +122,7 @@
                             </div>
                             <div class="col-12">
                                 <label>Description <span class="text-danger">*</span></label>
-                                <textarea name="description" class="form-control summernote" rows="4" required></textarea>
+                                <textarea name="description" class="form-control " rows="4" required></textarea>
                             </div>
                         </div>
                     </div>
@@ -236,7 +236,7 @@
                                 </div>
                                 <div class="col-12">
                                     <label>Description</label>
-                                    <textarea name="description" class="form-control summernote" rows="4"
+                                    <textarea name="description" class="form-control " rows="4"
                                         required>{{ $CaseStudy->description }}</textarea>
                                 </div>
                             </div>
