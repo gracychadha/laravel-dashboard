@@ -147,7 +147,7 @@
                                             <label class="form-label fw-bold">Primary Description <span
                                                     class="text-danger">*</span></label>
                                             <textarea name="description_1"
-                                                class="form-control summernote  @error('description_1') is-invalid @enderror"
+                                                class="form-control   @error('description_1') is-invalid @enderror"
                                                 rows="4"
                                                 required>{{ old('description_1', $AboutCares->description_1) }}</textarea>
                                             @error('description_1')
@@ -159,7 +159,7 @@
                                         <div class="mb-4">
                                             <label class="form-label fw-bold">Secondary Description</label>
                                             <textarea name="description_2"
-                                                class="form-control summernote  @error('description_2') is-invalid @enderror"
+                                                class="form-control   @error('description_2') is-invalid @enderror"
                                                 rows="3">{{ old('description_2', $AboutCares->description_2) }}</textarea>
                                             @error('description_2')
                                                 <div class="invalid-feedback">{{ $message }}</div>
