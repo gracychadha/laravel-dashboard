@@ -14,7 +14,17 @@
 
 
 
-
+            {{-- <li><a class="has-arrow ai-icon" href="javascript:void()" aria-expanded="false">
+                   <i class="flaticon-381-user-7"></i> 
+                    <span class="nav-text">Contact Leads</span>
+                </a>
+                <ul aria-expanded="false">
+                  
+                    
+                    <li><a class="" href="{{ route('admin-contact.index') }}" aria-expanded="false">Contact Us</a></li>
+                  
+                </ul>
+            </li> --}}
 
             {{-- CMS --}}
             @canany(['manage-ads', 'manage-blog-categories', 'manage-blogs', 'manage-slider', 'manage-about', 'manage-why-choose-us', 'manage-accreditations', 'manage-gallery', 'manage-testimonials', 'manage-know-us', 'manage-counter', 'manage-what-makes-different', 'manage-partners', 'manage-partner-images', 'manage-why-partners', 'manage-corporate-benefits', 'manage-corporate-services', 'manage-job-career', 'manage-privacy-policy', 'manage-terms-conditions'])

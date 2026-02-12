@@ -16,8 +16,9 @@
                     <a href="javascript:void(0);" class="btn btn-danger btn-rounded deleteSelected">Delete Selected</a>
                 </div>
                 <div class="ms-auto d-lg-block">
-                    <a href="javascript:void(0);" class="btn btn-primary btn-rounded" data-bs-toggle="modal"
-                        data-bs-target="#addAppointment">+ Add New</a>
+                    <a href="javascript:void(0);" class="btn btn-primary btn-rounded addBtn">
+                        + Add New
+                    </a>
 
 
                 </div>
@@ -365,6 +366,7 @@
 @endsection
 @push('scripts')
     <script>
+
         $(document).on('click', '.viewStaff', function () {
 
             var id = $(this).data('id');
@@ -546,5 +548,14 @@
 
 
 
+        document.addEventListener('click', function (e) {
+            if (e.target.closest('.addBtn')) {
+                const modal = new bootstrap.Modal(
+                    document.getElementById('addAppointment')
+                );
+                modal.show();
+            }
+        });
     </script>
+
 @endpush

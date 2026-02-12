@@ -47,46 +47,46 @@
                                         </tr>
                                     </thead>
                                     <tbody id="contactTableBody">
-                                        @foreach($contact as $lead)
-                                            <tr>
-                                                <td>
-                                                    <div class="checkbox text-end align-self-center">
-                                                        <div class="form-check custom-checkbox ">
-                                                            <input type="checkbox" class="form-check-input checkItem"
-                                                                value="{{ $lead->id }}" required="">
-                                                            <label class="form-check-label" for="checkbox"></label>
-                                                        </div>
+                                        {{-- @foreach($contact as $lead)
+                                        <tr>
+                                            <td>
+                                                <div class="checkbox text-end align-self-center">
+                                                    <div class="form-check custom-checkbox ">
+                                                        <input type="checkbox" class="form-check-input checkItem"
+                                                            value="{{ $lead->id }}" required="">
+                                                        <label class="form-check-label" for="checkbox"></label>
                                                     </div>
-                                                </td>
-                                                <td class="patient-info ps-0">
+                                                </div>
+                                            </td>
+                                            <td class="patient-info ps-0">
 
-                                                    <span class="text-nowrap ms-2">{{ $lead->fullname }}</span>
-                                                </td>
-                                                <td class="text-primary">{{ $lead->email }}</td>
-                                                <td>{{ $lead->phone }}</td>
+                                                <span class="text-nowrap ms-2">{{ $lead->fullname }}</span>
+                                            </td>
+                                            <td class="text-primary">{{ $lead->email }}</td>
+                                            <td>{{ $lead->phone }}</td>
 
 
-                                                <td>
-                                                    <span class="me-3">
-                                                        <a href="javascript:void(0);" data-id="{{ $lead->id }}"
-                                                            class="viewContactbtn btn btn-sm btn-info light"><i
-                                                                class=" fa fa-eye fs-18"></i></a>
-                                                    </span>
-                                                    <span class="me-3">
-                                                        <a href="javascript:void(0);" data-id="{{ $lead->id }}"
-                                                            class="editContactbtn btn btn-sm btn-warning light"><i
-                                                                class="fa fa-pencil fs-18"></i></a>
-                                                    </span>
+                                            <td>
+                                                <span class="me-3">
+                                                    <a href="javascript:void(0);" data-id="{{ $lead->id }}"
+                                                        class="viewContactbtn btn btn-sm btn-info light"><i
+                                                            class=" fa fa-eye fs-18"></i></a>
+                                                </span>
+                                                <span class="me-3">
+                                                    <a href="javascript:void(0);" data-id="{{ $lead->id }}"
+                                                        class="editContactbtn btn btn-sm btn-warning light"><i
+                                                            class="fa fa-pencil fs-18"></i></a>
+                                                </span>
 
-                                                    <span>
-                                                        <a class=" btn btn-sm btn-danger light   deleteApp"
-                                                            data-id="{{ $lead->id }}"><i class="fa fa-trash fs-18"></i></a>
-                                                    </span>
+                                                <span>
+                                                    <a class=" btn btn-sm btn-danger light   deleteApp"
+                                                        data-id="{{ $lead->id }}"><i class="fa fa-trash fs-18"></i></a>
+                                                </span>
 
-                                                </td>
-                                            </tr>
+                                            </td>
+                                        </tr>
 
-                                        @endforeach
+                                        @endforeach --}}
 
                                     </tbody>
                                 </table>
@@ -402,41 +402,41 @@
 
                         res.data.forEach(item => {
                             html += `
-                            <tr>
-                                <td>
-                                    <input type="checkbox" class="checkItem" value="${item.id}">
-                                </td>
-                                <td>${highlight(item.fullname, keyword)}</td>
-                                <td class="text-primary">${highlight(item.email, keyword)}</td>
-                                <td>${highlight(item.phone, keyword)}</td>
-                                <td>
-                                    <a href="javascript:void(0)" data-id="${item.id}" 
-                                       class="viewContact btn btn-sm btn-info light">
-                                       <i class="fa fa-eye"></i>
-                                    </a>
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" class="checkItem" value="${item.id}">
+                                        </td>
+                                        <td>${highlight(item.fullname, keyword)}</td>
+                                        <td class="text-primary">${highlight(item.email, keyword)}</td>
+                                        <td>${highlight(item.phone, keyword)}</td>
+                                        <td>
+                                            <a href="javascript:void(0)" data-id="${item.id}" 
+                                               class="viewContact btn btn-sm btn-info light">
+                                               <i class="fa fa-eye"></i>
+                                            </a>
 
-                                    <a href="javascript:void(0)" data-id="${item.id}" 
-                                       class="editContact btn btn-sm btn-warning light">
-                                       <i class="fa fa-pencil"></i>
-                                    </a>
+                                            <a href="javascript:void(0)" data-id="${item.id}" 
+                                               class="editContact btn btn-sm btn-warning light">
+                                               <i class="fa fa-pencil"></i>
+                                            </a>
 
-                                    <a href="javascript:void(0)" data-id="${item.id}" 
-                                       class="deleteContact btn btn-sm btn-danger light">
-                                       <i class="fa fa-trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        `;
+                                            <a href="javascript:void(0)" data-id="${item.id}" 
+                                               class="deleteContact btn btn-sm btn-danger light">
+                                               <i class="fa fa-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                `;
                         });
 
                     } else {
                         html = `
-                        <tr>
-                            <td colspan="5" class="text-center text-danger">
-                                No related search
-                            </td>
-                        </tr>
-                    `;
+                                <tr>
+                                    <td colspan="5" class="text-center text-danger">
+                                        No related search
+                                    </td>
+                                </tr>
+                            `;
                     }
 
                     tableBody.innerHTML = html;
@@ -451,4 +451,67 @@
 
 
     </script>
+    <script>
+        const API_BASE = "http://localhost:8000/api";
+
+        function loadLeads() {
+            fetch(`${API_BASE}/leads`)
+                .then(res => res.json())
+                .then(res => {
+
+                    let html = '';
+
+                    res.data.forEach(lead => {
+                        html += `
+                        <tr>
+                            <td>
+                                <input type="checkbox" class="checkItem" value="${lead.id}">
+                            </td>
+                            <td>${lead.fullname}</td>
+                            <td class="text-primary">${lead.email}</td>
+                            <td>${lead.phone}</td>
+                            <td>
+                                <a href="javascript:void(0)" data-id="${lead.id}"
+                                   class="viewContactbtn btn btn-sm btn-info light">
+                                   <i class="fa fa-eye"></i>
+                                </a>
+
+                                <a href="javascript:void(0)" data-id="${lead.id}"
+                                   class="editContactbtn btn btn-sm btn-warning light">
+                                   <i class="fa fa-pencil"></i>
+                                </a>
+
+                                <a href="javascript:void(0)" data-id="${lead.id}"
+                                   class="deleteLead btn btn-sm btn-danger light">
+                                   <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>`;
+                    });
+
+                    document.getElementById('contactTableBody').innerHTML = html;
+                });
+        }
+
+        document.addEventListener("DOMContentLoaded", loadLeads);
+
+        $(document).on("click", ".viewContactbtn", function () {
+
+            let id = $(this).data("id");
+
+            $.get(`http://localhost:8000/api/leads/${id}`, function (res) {
+
+                $('#c_name').text(res.fullname);
+                $('#c_email').text(res.email);
+                $('#c_phone').text(res.phone);
+                $('#c_subject').text(res.subject);
+                $('#c_message').html(res.message);
+
+                new bootstrap.Modal('#viewContact').show();
+            });
+        });
+
+
+    </script>
+
 @endpush
